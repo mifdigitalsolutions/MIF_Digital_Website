@@ -2,217 +2,516 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>MIF Digital Solutions</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <meta name="description"
+          content="MIF Digital Solutions provides website development, AI solutions, cybersecurity and business technology services.">
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f7fa;
-            color: #172033;
-        }
+    <title>MIF Digital Solutions | Technology That Solves Real Business Problems</title>
 
-        header {
-            background: #071a2f;
-            color: white;
-            padding: 20px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 25px;
-        }
-
-        .hero {
-            min-height: 80vh;
-            display: flex;
-            align-items: center;
-            padding: 60px 8%;
-            background: linear-gradient(135deg, #071a2f, #123c69);
-            color: white;
-        }
-
-        .hero-content {
-            max-width: 700px;
-        }
-
-        .hero h1 {
-            font-size: 55px;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 20px;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 15px 28px;
-            background: #00b894;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-        }
-
-        .services {
-            padding: 70px 8%;
-            text-align: center;
-        }
-
-        .services h2 {
-            font-size: 38px;
-            margin-bottom: 40px;
-        }
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
-
-        .card h3 {
-            margin-bottom: 15px;
-        }
-
-        .card p {
-            line-height: 1.6;
-            color: #555;
-        }
-
-        footer {
-            background: #071a2f;
-            color: white;
-            text-align: center;
-            padding: 25px;
-        }
-
-        @media (max-width: 700px) {
-            header {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            nav a {
-                margin: 0 8px;
-            }
-
-            .hero h1 {
-                font-size: 40px;
-            }
-        }
-    </style>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-<header>
-    <div class="logo">MIF Digital Solutions</div>
+<!-- ================= NAVIGATION ================= -->
 
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-    </nav>
+<header class="navbar">
+
+    <div class="container nav-container">
+
+        <a href="#home" class="logo">
+            MIF <span>Digital Solutions</span>
+        </a>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+    </div>
+
 </header>
 
-<section class="hero" id="home">
-    <div class="hero-content">
-        <h1>Technology That Solves Real Business Problems.</h1>
+
+<!-- ================= HERO ================= -->
+
+<section id="home" class="hero">
+
+    <div class="container hero-content">
+
+        <div class="hero-text">
+
+            <p class="eyebrow">
+                MIF DIGITAL SOLUTIONS
+            </p>
+
+            <h1>
+                Technology That Solves
+                <span>Real Business Problems.</span>
+            </h1>
+
+            <p class="hero-description">
+                We help businesses build, improve, secure and
+                automate their digital operations with modern
+                technology.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#services" class="btn primary-btn">
+                    Explore Our Services
+                </a>
+
+                <a href="#contact" class="btn secondary-btn">
+                    Work With Us
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-card">
+
+            <div class="shield">
+                🛡️
+            </div>
+
+            <h3>
+                Digital Solutions
+            </h3>
+
+            <p>
+                Websites • AI • Cybersecurity • Automation
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SERVICES ================= -->
+
+<section id="services" class="section services-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <p class="eyebrow">
+                WHAT WE DO
+            </p>
+
+            <h2>
+                Our Services
+            </h2>
+
+            <p>
+                Practical technology solutions designed to help
+                businesses operate, grow and stay secure.
+            </p>
+
+        </div>
+
+
+        <div class="services-grid">
+
+
+            <!-- Website -->
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    🌐
+                </div>
+
+                <h3>
+                    Website Development
+                </h3>
+
+                <p>
+                    Professional, responsive websites designed
+                    to help businesses establish credibility,
+                    attract customers and grow online.
+                </p>
+
+                <a href="#contact">
+                    Get Started →
+                </a>
+
+            </div>
+
+
+            <!-- AI -->
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    🤖
+                </div>
+
+                <h3>
+                    AI Solutions
+                </h3>
+
+                <p>
+                    AI-powered tools, chatbots and automation
+                    systems designed to improve productivity
+                    and reduce repetitive work.
+                </p>
+
+                <a href="#contact">
+                    Get Started →
+                </a>
+
+            </div>
+
+
+            <!-- Cybersecurity -->
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    🔐
+                </div>
+
+                <h3>
+                    Cybersecurity
+                </h3>
+
+                <p>
+                    Security-focused solutions that help
+                    businesses protect their systems,
+                    information and customers.
+                </p>
+
+                <a href="#contact">
+                    Get Started →
+                </a>
+
+            </div>
+
+
+            <!-- Business systems -->
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    ⚙️
+                </div>
+
+                <h3>
+                    Business System Setup
+                </h3>
+
+                <p>
+                    Digital systems, WhatsApp Business,
+                    workflow setup and technology solutions
+                    for growing organizations.
+                </p>
+
+                <a href="#contact">
+                    Get Started →
+                </a>
+
+            </div>
+
+
+            <!-- Automation -->
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    ⚡
+                </div>
+
+                <h3>
+                    Business Automation
+                </h3>
+
+                <p>
+                    Automate repetitive business processes
+                    so your team can save time and focus
+                    on important work.
+                </p>
+
+                <a href="#contact">
+                    Get Started →
+                </a>
+
+            </div>
+
+
+            <!-- Digital presence -->
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    📈
+                </div>
+
+                <h3>
+                    Digital Growth
+                </h3>
+
+                <p>
+                    Technology and digital solutions that help
+                    businesses improve visibility, customer
+                    experience and online presence.
+                </p>
+
+                <a href="#contact">
+                    Get Started →
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section id="about" class="section about-section">
+
+    <div class="container about-grid">
+
+        <div>
+
+            <p class="eyebrow">
+                ABOUT MIF
+            </p>
+
+            <h2>
+                Technology Built Around
+                Your Business.
+            </h2>
+
+        </div>
+
+
+        <div class="about-text">
+
+            <p>
+                MIF Digital Solutions is a technology-focused
+                business helping organizations use modern
+                digital tools to solve real problems.
+            </p>
+
+            <p>
+                From websites and business systems to AI,
+                automation and cybersecurity, our goal is
+                simple: make technology useful, practical
+                and accessible to businesses.
+            </p>
+
+            <div class="stats">
+
+                <div>
+                    <strong>01</strong>
+                    <span>Business First</span>
+                </div>
+
+                <div>
+                    <strong>02</strong>
+                    <span>Technology Driven</span>
+                </div>
+
+                <div>
+                    <strong>03</strong>
+                    <span>Security Focused</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= WHY US ================= -->
+
+<section class="section why-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <p class="eyebrow">
+                WHY MIF
+            </p>
+
+            <h2>
+                More Than Just Technology
+            </h2>
+
+        </div>
+
+
+        <div class="why-grid">
+
+            <div class="why-card">
+                <span>01</span>
+                <h3>Business Focused</h3>
+                <p>
+                    We start with the business problem,
+                    then choose the technology.
+                </p>
+            </div>
+
+            <div class="why-card">
+                <span>02</span>
+                <h3>Modern Solutions</h3>
+                <p>
+                    We use modern technologies to build
+                    practical digital solutions.
+                </p>
+            </div>
+
+            <div class="why-card">
+                <span>03</span>
+                <h3>Security Conscious</h3>
+                <p>
+                    Security is considered when building
+                    and improving digital systems.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+
+<section class="cta">
+
+    <div class="container">
+
+        <h2>
+            Ready to Improve Your Business
+            With Technology?
+        </h2>
 
         <p>
-            MIF Digital Solutions helps businesses build, improve,
-            secure and automate their digital operations.
+            Let's discuss what your business needs.
         </p>
 
-        <a href="#contact" class="btn">Get Started</a>
-    </div>
-</section>
-
-<section class="services" id="services">
-
-    <h2>Our Services</h2>
-
-    <div class="cards">
-
-        <div class="card">
-            <h3>Website Development</h3>
-            <p>
-                Professional websites designed to help businesses
-                build trust and attract customers.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>AI Solutions</h3>
-            <p>
-                AI-powered tools and automation designed to improve
-                business productivity.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>Cybersecurity</h3>
-            <p>
-                Security-focused solutions to help businesses
-                protect their systems and customers.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>Business System Setup</h3>
-            <p>
-                Digital systems, WhatsApp Business and technology
-                setup for growing organizations.
-            </p>
-        </div>
+        <a href="#contact" class="btn primary-btn">
+            Let's Work Together
+        </a>
 
     </div>
 
 </section>
 
-<section class="services" id="contact">
 
-    <h2>Let's Work Together</h2>
+<!-- ================= CONTACT ================= -->
 
-    <p style="margin-bottom: 25px;">
-        Ready to improve your business with technology?
-    </p>
+<section id="contact" class="section contact-section">
 
-    <a href="mailto:mifdigitalsolutions@gmail.com" class="btn">
-        Contact MIF Digital Solutions
-    </a>
+    <div class="container contact-grid">
+
+        <div>
+
+            <p class="eyebrow">
+                CONTACT US
+            </p>
+
+            <h2>
+                Let's Work Together
+            </h2>
+
+            <p>
+                Have a business problem that technology
+                could solve? Let's talk.
+            </p>
+
+        </div>
+
+
+        <div class="contact-card">
+
+            <h3>
+                MIF Digital Solutions
+            </h3>
+
+            <p>
+                Technology • AI • Cybersecurity • Automation
+            </p>
+
+            <a href="mailto:hello@mifdigitalsolutions.com">
+                📧 hello@mifdigitalsolutions.com
+            </a>
+
+            <a href="https://wa.me/2340000000000"
+               target="_blank"
+               class="whatsapp">
+                💬 Chat With Us on WhatsApp
+            </a>
+
+        </div>
+
+    </div>
 
 </section>
+
+
+<!-- ================= FOOTER ================= -->
 
 <footer>
-    <p>© 2026 MIF Digital Solutions. All rights reserved.</p>
+
+    <div class="container footer-content">
+
+        <div>
+
+            <h3>
+                MIF Digital Solutions
+            </h3>
+
+            <p>
+                Technology that solves real business problems.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 MIF Digital Solutions.
+        All rights reserved.
+
+    </div>
+
 </footer>
+
 
 </body>
 </html>

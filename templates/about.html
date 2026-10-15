@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About Us | MIF Digital Solutions</title>
+
+    <meta name="description"
+          content="Discover MIF Digital Solutions, a technology company delivering websites, mobile apps, AI solutions, chatbots, cybersecurity and business automation.">
+
+    <meta name="theme-color" content="#0756cf">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        /* ==========================================
+           MIF DIGITAL SOLUTIONS — ABOUT PAGE
+           Brand colours: Blue, Green and White
+        ========================================== */
+
+        .about-page {
+            --about-blue: #0866e8;
+            --about-dark-blue: #073b8c;
+            --about-navy: #10213b;
+            --about-green: #17a879;
+            --about-light-blue: #eff6ff;
+            --about-light-green: #edfbf5;
+            --about-text: #52627a;
+            --about-border: #e1e9f2;
+
+            color: var(--about-navy);
+            background: #ffffff;
+            overflow: hidden;
+        }
+
+        .about-page * {
+            box-sizing: border-box;
+        }
+
+        .about-page .about-container {
+            width: min(1160px, calc(100% - 48px));
+            margin: 0 auto;
+        }
+
+        /* ==========================================
+           NAVIGATION BRANDING
+        ========================================== */
+
+        .about-page .site-header {
+            background: rgba(255, 255, 255, 0.97);
+            border-bottom: 1px solid #e8eef5;
+        }
+
+        .about-page .logo span {
+            color: var(--about-dark-blue);
+            font-weight: 800;
+        }
+
+        .about-page .nav-links a {
+            transition: color 0.2s ease;
+        }
+
+        .about-page .nav-links a:hover,
+        .about-page .nav-links a.active {
+            color: var(--about-blue);
+        }
+
+        /* ==========================================
+           BLUE AND GREEN HERO
+        ========================================== */
+
+        .about-hero {
+            position: relative;
+            padding: 82px 0 76px;
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 86% 18%,
+                    rgba(8, 102, 232, 0.12),
+                    transparent 33%
+                ),
+                radial-gradient(
+                    circle at 10% 100%,
+                    rgba(23, 168, 121, 0.09),
+                    transparent 35%
+                ),
+                linear-gradient(135deg, #ffffff 0%, #f4f8ff 100%);
+        }
+
+        .about-hero::before {
+            content: "";
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            right: -170px;
+            top: -160px;
+            border: 45px solid rgba(8, 102, 232, 0.07);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .about-hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+            align-items: center;
+            gap: 64px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            margin: 0 0 20px;
+            color: var(--about-blue);
+
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+        }
+
+        .about-eyebrow::before {
+            content: "";
+            width: 26px;
+            height: 3px;
+            background: var(--about-green);
+            border-radius: 3px;
+        }
+
+        .about-hero h1 {
+            max-width: 680px;
+            margin: 0 0 23px;
+
+            color: var(--about-navy);
+            font-size: clamp(38px, 5vw, 62px);
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1.08;
+        }
+
+        .about-highlight {
+            color: var(--about-blue);
+        }
+
+        .about-hero-description {
+            max-width: 610px;
+            margin: 0 0 28px;
+
+            color: var(--about-text);
+            font-size: 17px;
+            line-height: 1.9;
+        }
+
+        .about-button-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .about-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            min-height: 52px;
+            padding: 14px 23px;
+
+            border: 1px solid transparent;
+            border-radius: 12px;
+
+            background: var(--about-blue);
+            color: #ffffff;
+
+            font-size: 14px;
+            font-weight: 750;
+            text-decoration: none;
+
+            box-shadow: 0 8px 20px rgba(8, 102, 232, 0.17);
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .about-button:hover {
+            background: var(--about-dark-blue);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 26px rgba(8, 102, 232, 0.22);
+        }
+
+        .about-button.secondary {
+            background: #ffffff;
+            color: var(--about-dark-blue);
+            border-color: #d5e3f5;
+            box-shadow: none;
+        }
+
+        .about-button.secondary:hover {
+            border-color: var(--about-blue);
+            background: var(--about-light-blue);
+            color: var(--about-dark-blue);
+        }
+
+        /* ==========================================
+           BLUE SHIELD BRAND VISUAL
+        ========================================== */
+
+        .about-visual {
+            position: relative;
+            min-height: 390px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-visual-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+
+            background: linear-gradient(
+                145deg,
+                rgba(8, 102, 232, 0.13),
+                rgba(23, 168, 121, 0.10)
+            );
+
+            filter: blur(2px);
+        }
+
+        .about-shield-card {
+            position: relative;
+            z-index: 1;
+
+            width: min(100%, 390px);
+            padding: 37px 30px;
+
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 28px;
+
+            background: rgba(255, 255, 255, 0.88);
+            box-shadow:
+                0 25px 70px rgba(16, 53, 101, 0.12),
+                inset 0 1px 0 #ffffff;
+
+            text-align: center;
+            backdrop-filter: blur(14px);
+        }
+
+        .about-shield-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 112px;
+            height: 112px;
+            margin: 0 auto 22px;
+
+            border: 1px solid #d6e8ff;
+            border-radius: 32px;
+
+            background: linear-gradient(
+                145deg,
+                #e6f1ff,
+                #ffffff 75%
+            );
+
+            box-shadow: 0 12px 32px rgba(8, 102, 232, 0.12);
+        }
+
+        .about-shield-icon svg {
+            width: 67px;
+            height: 67px;
+            display: block;
+        }
+
+        .about-shield-card h2 {
+            margin: 0 0 12px;
+            color: var(--about-navy);
+            font-size: 23px;
+            font-weight: 800;
+        }
+
+        .about-shield-card > p {
+            margin: 0 auto 25px;
+            max-width: 290px;
+
+            color: var(--about-text);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .about-principles {
+            display: grid;
+            gap: 11px;
+            text-align: left;
+        }
+
+        .about-principle {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            padding: 13px 15px;
+
+            border: 1px solid #e6edf5;
+            border-radius: 13px;
+            background: #ffffff;
+        }
+
+        .about-principle-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 37px;
+            height: 37px;
+            flex-shrink: 0;
+
+            border-radius: 11px;
+            background: var(--about-light-blue);
+            color: var(--about-blue);
+
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .about-principle:nth-child(2) .about-principle-icon {
+            color: var(--about-green);
+            background: var(--about-light-green);
+        }
+
+        .about-principle strong {
+            display: block;
+            margin-bottom: 3px;
+            color: var(--about-navy);
+            font-size: 13px;
+        }
+
+        .about-principle small {
+            display: block;
+            color: var(--about-text);
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        /* ==========================================
+           SHARED SECTION STYLING
+        ========================================== */
+
+        .about-section {
+            padding: 76px 0;
+        }
+
+        .about-section.soft-background {
+            background: #f7faff;
+        }
+
+        .about-section.green-background {
+            background: linear-gradient(
+                135deg,
+                #f1fbf6,
+                #f7faff
+            );
+        }
+
+        .about-section-heading {
+            max-width: 740px;
+            margin: 0 auto 38px;
+            text-align: center;
+        }
+
+        .about-section-heading .about-eyebrow {
+            justify-content: center;
+        }
+
+        .about-section-heading h2 {
+            margin: 0 0 16px;
+
+            color: var(--about-navy);
+            font-size: clamp(29px, 3.5vw, 42px);
+            font-weight: 800;
+            letter-spacing: -1.1px;
+            line-height: 1.2;
+        }
+
+        .about-section-heading > p:last-child {
+            margin: 0;
+
+            color: var(--about-text);
+            font-size: 15px;
+            line-height: 1.9;
+        }
+
+        /* ==========================================
+           COMPANY STORY
+        ========================================== */
+
+        .about-story-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+            align-items: start;
+            gap: 64px;
+        }
+
+        .about-story-title .about-eyebrow {
+            margin-bottom: 16px;
+        }
+
+        .about-story-title h2 {
+            margin: 0;
+
+            color: var(--about-navy);
+            font-size: clamp(29px, 3.4vw, 42px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .about-story-title h2 span {
+            color: var(--about-blue);
+        }
+
+        .about-story-copy p {
+            margin: 0 0 18px;
+
+            color: var(--about-text);
+            font-size: 15px;
+            line-height: 1.95;
+        }
+
+        .about-story-note {
+            margin-top: 25px;
+            padding: 19px 21px;
+
+            border-left: 4px solid var(--about-green);
+            border-radius: 0 13px 13px 0;
+
+            background: var(--about-light-green);
+            color: #225a4a;
+
+            font-size: 14px;
+            font-weight: 650;
+            line-height: 1.8;
+        }
+
+        /* ==========================================
+           MISSION, VISION AND COMMITMENT
+        ========================================== */
+
+        .about-values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .about-value-card {
+            position: relative;
+            overflow: hidden;
+
+            padding: 29px 25px 30px;
+
+            border: 1px solid var(--about-border);
+            border-radius: 20px;
+
+            background: #ffffff;
+
+            box-shadow: 0 8px 25px rgba(16, 53, 101, 0.035);
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .about-value-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+
+            background: linear-gradient(
+                90deg,
+                var(--about-blue),
+                #44a1ff
+            );
+        }
+
+        .about-value-card:nth-child(2)::before {
+            background: linear-gradient(
+                90deg,
+                var(--about-green),
+                #55d4a5
+            );
+        }
+
+        .about-value-card:nth-child(3)::before {
+            background: linear-gradient(
+                90deg,
+                var(--about-blue),
+                var(--about-green)
+            );
+        }
+
+        .about-value-card:hover {
+            transform: translateY(-5px);
+            border-color: #c8def7;
+
+            box-shadow: 0 18px 38px rgba(16, 53, 101, 0.08);
+        }
+
+        .about-value-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 54px;
+            height: 54px;
+            margin-bottom: 21px;
+
+            border-radius: 16px;
+            background: var(--about-light-blue);
+
+            font-size: 25px;
+        }
+
+        .about-value-card:nth-child(2) .about-value-icon {
+            background: var(--about-light-green);
+        }
+
+        .about-value-card h3 {
+            margin: 0 0 13px;
+
+            color: var(--about-navy);
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .about-value-card p {
+            margin: 0;
+
+            color: var(--about-text);
+            font-size: 14px;
+            line-height: 1.9;
+        }
+
+        /* ==========================================
+           WHY CHOOSE MIF
+        ========================================== */
+
+        .about-advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .about-advantage {
+            display: flex;
+            align-items: flex-start;
+            gap: 17px;
+
+            padding: 24px;
+
+            border: 1px solid var(--about-border);
+            border-radius: 17px;
+            background: #ffffff;
+
+            transition:
+                border-color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .about-advantage:hover {
+            border-color: #a8d9c6;
+            transform: translateY(-3px);
+        }
+
+        .about-advantage-check {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 43px;
+            height: 43px;
+            flex-shrink: 0;
+
+            border-radius: 13px;
+            background: var(--about-light-green);
+            color: var(--about-green);
+
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        .about-advantage h3 {
+            margin: 1px 0 9px;
+            color: var(--about-navy);
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .about-advantage p {
+            margin: 0;
+            color: var(--about-text);
+            font-size: 13px;
+            line-height: 1.85;
+        }
+
+        /* ==========================================
+           OUR APPROACH
+        ========================================== */
+
+        .about-steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .about-step {
+            padding: 25px 21px;
+
+            border: 1px solid rgba(8, 102, 232, 0.13);
+            border-radius: 17px;
+
+            background: rgba(255, 255, 255, 0.87);
+        }
+
+        .about-step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 43px;
+            height: 43px;
+            margin-bottom: 19px;
+
+            border-radius: 13px;
+
+            background: var(--about-blue);
+            color: #ffffff;
+
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .about-step:nth-child(even) .about-step-number {
+            background: var(--about-green);
+        }
+
+        .about-step h3 {
+            margin: 0 0 10px;
+            color: var(--about-navy);
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .about-step p {
+            margin: 0;
+            color: var(--about-text);
+            font-size: 13px;
+            line-height: 1.85;
+        }
+
+        /* ==========================================
+           CALL TO ACTION
+        ========================================== */
+
+        .about-cta {
+            padding: 68px 0;
+            background: #ffffff;
+        }
+
+        .about-cta-panel {
+            position: relative;
+            overflow: hidden;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 35px;
+
+            padding: 43px 45px;
+
+            border-radius: 24px;
+
+            background: linear-gradient(
+                115deg,
+                #073b8c 0%,
+                #0866e8 68%,
+                #138eaf 100%
+            );
+
+            box-shadow: 0 22px 48px rgba(8, 73, 163, 0.17);
+        }
+
+        .about-cta-panel::after {
+            content: "";
+            position: absolute;
+
+            width: 280px;
+            height: 280px;
+            right: -110px;
+            top: -155px;
+
+            border: 38px solid rgba(255, 255, 255, 0.10);
+            border-radius: 50%;
+
+            pointer-events: none;
+        }
+
+        .about-cta-copy {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+        }
+
+        .about-cta-copy .about-eyebrow {
+            color: #c9f5e4;
+            margin-bottom: 13px;
+        }
+
+        .about-cta-copy .about-eyebrow::before {
+            background: #6de1b4;
+        }
+
+        .about-cta-copy h2 {
+            margin: 0 0 13px;
+
+            color: #ffffff;
+            font-size: clamp(26px, 3.2vw, 36px);
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            line-height: 1.2;
+        }
+
+        .about-cta-copy > p:last-child {
+            margin: 0;
+
+            color: #e0edff;
+            font-size: 14px;
+            line-height: 1.9;
+        }
+
+        .about-cta .about-button {
+            position: relative;
+            z-index: 1;
+            flex-shrink: 0;
+
+            background: #ffffff;
+            color: var(--about-dark-blue);
+            box-shadow: none;
+        }
+
+        .about-cta .about-button:hover {
+            background: #e8fff5;
+            color: var(--about-dark-blue);
+        }
+
+        /* ==========================================
+           FOOTER
+        ========================================== */
+
+        .about-page .site-footer {
+            background: #f6f9fd;
+            border-top: 1px solid #e5edf6;
+        }
+
+        .about-page .site-footer .footer-content {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 22px 24px 16px;
+
+            text-align: left;
+        }
+
+        .about-page .site-footer h3 {
+            margin: 0 0 6px;
+            color: var(--about-dark-blue);
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .about-page .site-footer p {
+            color: var(--about-text);
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .about-page .site-footer .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 17px;
+        }
+
+        .about-page .site-footer .footer-links a {
+            color: var(--about-text);
+            font-size: 12px;
+            font-weight: 650;
+            text-decoration: none;
+        }
+
+        .about-page .site-footer .footer-links a:hover {
+            color: var(--about-blue);
+        }
+
+        .about-page .site-footer .copyright {
+            margin-top: 12px;
+            padding-top: 0;
+            border-top: none;
+        }
+
+        /* ==========================================
+           RESPONSIVE TABLET LAYOUT
+        ========================================== */
+
+        @media (max-width: 950px) {
+            .about-hero-grid {
+                grid-template-columns: minmax(0, 1fr) minmax(260px, 0.8fr);
+                gap: 32px;
+            }
+
+            .about-story-grid {
+                gap: 35px;
+            }
+
+            .about-values-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .about-steps-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .about-cta-panel {
+                padding: 35px;
+            }
+        }
+
+        /* ==========================================
+           RESPONSIVE MOBILE LAYOUT
+        ========================================== */
+
+        @media (max-width: 680px) {
+            .about-page .about-container {
+                width: calc(100% - 36px);
+            }
+
+            .about-hero {
+                padding: 52px 0 45px;
+            }
+
+            .about-hero-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .about-hero h1 {
+                font-size: clamp(36px, 9vw, 48px);
+                letter-spacing: -1.4px;
+            }
+
+            .about-hero-description {
+                font-size: 15px;
+                line-height: 1.85;
+            }
+
+            .about-visual {
+                min-height: auto;
+                padding: 5px 0;
+            }
+
+            .about-shield-card {
+                padding: 27px 22px;
+            }
+
+            .about-shield-icon {
+                width: 95px;
+                height: 95px;
+                border-radius: 26px;
+            }
+
+            .about-shield-icon svg {
+                width: 58px;
+                height: 58px;
+            }
+
+            .about-section {
+                padding: 48px 0;
+            }
+
+            .about-section-heading {
+                margin-bottom: 27px;
+            }
+
+            .about-story-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .about-values-grid,
+            .about-advantages-grid,
+            .about-steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-value-card {
+                padding: 25px 22px;
+            }
+
+            .about-advantage {
+                padding: 20px;
+            }
+
+            .about-cta {
+                padding: 45px 0;
+            }
+
+            .about-cta-panel {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 23px;
+
+                padding: 30px 23px;
+                border-radius: 19px;
+            }
+
+            .about-page .site-footer .footer-content {
+                padding: 22px 18px 14px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .about-page *,
+            .about-page *::before,
+            .about-page *::after {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="about-page">
+
+    <!-- ========================================
+         HEADER AND NAVIGATION
+    ========================================= -->
+
+    <header class="site-header">
+        <div class="container">
+
+            <nav class="navbar" aria-label="Main navigation">
+
+                <a href="{{ url_for('home') }}" class="logo">
+                    <img
+                        src="{{ url_for('static', filename='image/MIF_Logo.jpeg') }}"
+                        alt="MIF Digital Solutions logo"
+                        class="logo-image"
+                    >
+                    <span>MIF Digital Solutions</span>
+                </a>
+
+                <div class="nav-links">
+                    <a href="{{ url_for('home') }}">Home</a>
+
+                    <a href="{{ url_for('services') }}">Services</a>
+
+                    <a href="{{ url_for('about') }}"
+                       class="active"
+                       aria-current="page">
+                        About
+                    </a>
+
+                    <a href="{{ url_for('contact') }}">Contact</a>
+                </div>
+
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- ========================================
+             ABOUT HERO
+        ========================================= -->
+
+        <section class="about-hero">
+
+            <div class="about-container about-hero-grid">
+
+                <div class="about-hero-copy">
+
+                    <p class="about-eyebrow">
+                        GET TO KNOW MIF
+                    </p>
+
+                    <h1>
+                        Technology Built Around
+                        <span class="about-highlight">Your Business.</span>
+                    </h1>
+
+                    <p class="about-hero-description">
+                        MIF Digital Solutions helps businesses solve
+                        real problems through website development,
+                        mobile applications, artificial intelligence,
+                        chatbots, cybersecurity and business automation.
+                        We focus on practical technology that creates
+                        value and supports growth.
+                    </p>
+
+                    <div class="about-button-row">
+
+                        <a href="{{ url_for('services') }}"
+                           class="about-button">
+                            Explore Our Services <span>→</span>
+                        </a>
+
+                        <a href="{{ url_for('contact') }}"
+                           class="about-button secondary">
+                            Let's Talk
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BLUE SHIELD BRAND VISUAL -->
+
+                <div class="about-visual" aria-label="MIF digital protection and technology principles">
+
+                    <div class="about-visual-glow"></div>
+
+                    <div class="about-shield-card">
+
+                        <div class="about-shield-icon">
+
+                            <svg
+                                viewBox="0 0 100 100"
+                                xmlns="http://www.w3.org/2000/svg"
+                                role="img"
+                                aria-label="Blue shield representing digital protection"
+                            >
+                                <defs>
+                                    <linearGradient
+                                        id="mifShieldGradient"
+                                        x1="0%"
+                                        y1="0%"
+                                        x2="100%"
+                                        y2="100%"
+                                    >
+                                        <stop offset="0%" stop-color="#1685ff"/>
+                                        <stop offset="100%" stop-color="#0646b5"/>
+                                    </linearGradient>
+                                </defs>
+
+                                <path
+                                    d="M50 7 L83 20 V44
+                                       C83 65 69 82 50 93
+                                       C31 82 17 65 17 44
+                                       V20 Z"
+                                    fill="url(#mifShieldGradient)"
+                                />
+
+                                <path
+                                    d="M50 17 L73 26 V44
+                                       C73 59 64 73 50 82
+                                       C36 73 27 59 27 44
+                                       V26 Z"
+                                    fill="none"
+                                    stroke="#ffffff"
+                                    stroke-width="2.5"
+                                    opacity="0.65"
+                                />
+
+                                <path
+                                    d="M36 49 L46 59 L65 39"
+                                    fill="none"
+                                    stroke="#ffffff"
+                                    stroke-width="6"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+
+                                <circle
+                                    cx="78"
+                                    cy="20"
+                                    r="8"
+                                    fill="#20bf88"
+                                    stroke="#ffffff"
+                                    stroke-width="3"
+                                />
+                            </svg>
+
+                        </div>
+
+                        <h2>Build. Automate. Protect.</h2>
+
+                        <p>
+                            Practical technology solutions designed
+                            around real business needs.
+                        </p>
+
+                        <div class="about-principles">
+
+                            <div class="about-principle">
+
+                                <div class="about-principle-icon">
+                                    ⚙️
+                                </div>
+
+                                <div>
+                                    <strong>Build</strong>
+                                    <small>Websites, applications and digital products.</small>
+                                </div>
+
+                            </div>
+
+
+                            <div class="about-principle">
+
+                                <div class="about-principle-icon">
+                                    ↗️
+                                </div>
+
+                                <div>
+                                    <strong>Automate</strong>
+                                    <small>Smarter workflows and better efficiency.</small>
+                                </div>
+
+                            </div>
+
+
+                            <div class="about-principle">
+
+                                <div class="about-principle-icon">
+                                    ✓
+                                </div>
+
+                                <div>
+                                    <strong>Protect</strong>
+                                    <small>Security-minded tools and digital practices.</small>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================
+             OUR STORY
+        ========================================= -->
+
+        <section class="about-section">
+
+            <div class="about-container about-story-grid">
+
+                <div class="about-story-title">
+
+                    <p class="about-eyebrow">
+                        OUR STORY
+                    </p>
+
+                    <h2>
+                        Turning Business Challenges
+                        Into <span>Digital Solutions.</span>
+                    </h2>
+
+                </div>
+
+
+                <div class="about-story-copy">
+
+                    <p>
+                        At MIF Digital Solutions, we believe technology
+                        should do more than look impressive. It should
+                        help people solve problems, work more efficiently
+                        and serve their customers better.
+                    </p>
+
+                    <p>
+                        That belief shapes our approach to website
+                        development, Android and iPhone applications,
+                        artificial intelligence, chatbot development,
+                        cybersecurity, software and business automation.
+                    </p>
+
+                    <p>
+                        We focus on understanding the business need,
+                        choosing a practical approach and building
+                        solutions with usefulness, security and future
+                        improvement in mind.
+                    </p>
+
+                    <div class="about-story-note">
+                        Our principle is simple: understand the problem
+                        first, then build technology that helps solve it.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================
+             MISSION, VISION AND COMMITMENT
+        ========================================= -->
+
+        <section class="about-section soft-background">
+
+            <div class="about-container">
+
+                <div class="about-section-heading">
+
+                    <p class="about-eyebrow">
+                        OUR PURPOSE
+                    </p>
+
+                    <h2>What Drives MIF Digital Solutions</h2>
+
+                    <p>
+                        Our mission, vision and commitment guide the
+                        way we approach technology and the people
+                        we build solutions for.
+                    </p>
+
+                </div>
+
+
+                <div class="about-values-grid">
+
+                    <article class="about-value-card">
+
+                        <div class="about-value-icon">
+                            🎯
+                        </div>
+
+                        <h3>Our Mission</h3>
+
+                        <p>
+                            To deliver practical and responsible digital
+                            solutions that help individuals, businesses
+                            and organizations improve their operations,
+                            solve problems and achieve their goals.
+                        </p>
+
+                    </article>
+
+
+                    <article class="about-value-card">
+
+                        <div class="about-value-icon">
+                            🌍
+                        </div>
+
+                        <h3>Our Vision</h3>
+
+                        <p>
+                            To grow into a trusted technology company
+                            known for developing useful digital products
+                            and providing solutions that create lasting
+                            value for businesses and communities.
+                        </p>
+
+                    </article>
+
+
+                    <article class="about-value-card">
+
+                        <div class="about-value-icon">
+                            💡
+                        </div>
+
+                        <h3>Our Commitment</h3>
+
+                        <p>
+                            To approach projects with clear communication,
+                            continuous learning, thoughtful development
+                            and a commitment to building solutions around
+                            genuine customer needs.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================
+             WHY CHOOSE MIF
+        ========================================= -->
+
+        <section class="about-section">
+
+            <div class="about-container">
+
+                <div class="about-section-heading">
+
+                    <p class="about-eyebrow">
+                        WHY WORK WITH US
+                    </p>
+
+                    <h2>Technology With a Clear Purpose</h2>
+
+                    <p>
+                        We focus on solving the right problem, choosing
+                        suitable technology and building solutions
+                        with the user's needs in mind.
+                    </p>
+
+                </div>
+
+
+                <div class="about-advantages-grid">
+
+                    <article class="about-advantage">
+
+                        <div class="about-advantage-check">
+                            ✓
+                        </div>
+
+                        <div>
+                            <h3>Problem-Focused Thinking</h3>
+
+                            <p>
+                                We start by understanding the challenge
+                                and the result the customer wants to achieve.
+                            </p>
+                        </div>
+
+                    </article>
+
+
+                    <article class="about-advantage">
+
+                        <div class="about-advantage-check">
+                            ✓
+                        </div>
+
+                        <div>
+                            <h3>Connected Technology Skills</h3>
+
+                            <p>
+                                Our service areas connect websites,
+                                mobile applications, AI, chatbots,
+                                software, cybersecurity and automation.
+                            </p>
+                        </div>
+
+                    </article>
+
+
+                    <article class="about-advantage">
+
+                        <div class="about-advantage-check">
+                            ✓
+                        </div>
+
+                        <div>
+                            <h3>Security-Minded Development</h3>
+
+                            <p>
+                                We consider digital safety and responsible
+                                technology practices when planning solutions.
+                            </p>
+                        </div>
+
+                    </article>
+
+
+                    <article class="about-advantage">
+
+                        <div class="about-advantage-check">
+                            ✓
+                        </div>
+
+                        <div>
+                            <h3>Practical Business Value</h3>
+
+                            <p>
+                                We aim to build solutions that support
+                                efficiency, improve customer experiences
+                                and address real operational needs.
+                            </p>
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================
+             OUR APPROACH
+        ========================================= -->
+
+        <section class="about-section green-background">
+
+            <div class="about-container">
+
+                <div class="about-section-heading">
+
+                    <p class="about-eyebrow">
+                        OUR APPROACH
+                    </p>
+
+                    <h2>From Idea to Useful Solution</h2>
+
+                    <p>
+                        Every project deserves a clear process.
+                        We organize our approach around understanding,
+                        planning, building and improving.
+                    </p>
+
+                </div>
+
+
+                <div class="about-steps-grid">
+
+                    <article class="about-step">
+
+                        <div class="about-step-number">
+                            01
+                        </div>
+
+                        <h3>Understand</h3>
+
+                        <p>
+                            Identify your goals, challenges,
+                            requirements and intended users.
+                        </p>
+
+                    </article>
+
+
+                    <article class="about-step">
+
+                        <div class="about-step-number">
+                            02
+                        </div>
+
+                        <h3>Plan</h3>
+
+                        <p>
+                            Choose a suitable approach based on
+                            your needs, priorities and resources.
+                        </p>
+
+                    </article>
+
+
+                    <article class="about-step">
+
+                        <div class="about-step-number">
+                            03
+                        </div>
+
+                        <h3>Build</h3>
+
+                        <p>
+                            Develop the solution with usability,
+                            functionality and maintainability in mind.
+                        </p>
+
+                    </article>
+
+
+                    <article class="about-step">
+
+                        <div class="about-step-number">
+                            04
+                        </div>
+
+                        <h3>Improve</h3>
+
+                        <p>
+                            Test the result and identify opportunities
+                            for further improvement.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================
+             CALL TO ACTION
+        ========================================= -->
+
+        <section class="about-cta">
+
+            <div class="about-container">
+
+                <div class="about-cta-panel">
+
+                    <div class="about-cta-copy">
+
+                        <p class="about-eyebrow">
+                            LET'S BUILD SOMETHING VALUABLE
+                        </p>
+
+                        <h2>
+                            Have an Idea or a Business Challenge?
+                        </h2>
+
+                        <p>
+                            Tell us what you want to achieve.
+                            Let's explore a practical technology
+                            solution for your needs.
+                        </p>
+
+                    </div>
+
+                    <a href="{{ url_for('contact') }}"
+                       class="about-button">
+                        Contact MIF <span>→</span>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ========================================
+         FOOTER
+    ========================================= -->
+
+    <footer class="site-footer">
+
+        <div class="container footer-content">
+
+            <div>
+                <h3>MIF Digital Solutions</h3>
+
+                <p>
+                    Technology that solves real business problems.
+                </p>
+            </div>
+
+
+            <div class="footer-links">
+
+                <a href="{{ url_for('home') }}">Home</a>
+
+                <a href="{{ url_for('services') }}">Services</a>
+
+                <a href="{{ url_for('about') }}"
+                   aria-current="page">
+                    About
+                </a>
+
+                <a href="{{ url_for('contact') }}">Contact</a>
+
+            </div>
+
+
+            <p class="copyright">
+                © 2026 MIF Digital Solutions. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Us | MIF Digital Solutions</title>
+
+    <meta name="description"
+          content="Contact MIF Digital Solutions for website development, mobile applications, AI solutions, chatbots, cybersecurity and business automation.">
+
+    <meta name="theme-color" content="#0d1b36">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        /* ==========================================
+           MIF DIGITAL SOLUTIONS — CONTACT PAGE
+           Brand colours: Blue, Green, Navy and White
+        ========================================== */
+
+        .contact-page {
+            --contact-blue: #1268e8;
+            --contact-blue-dark: #084db5;
+            --contact-green: #12a985;
+            --contact-navy: #0d1b36;
+            --contact-text: #24324a;
+            --contact-muted: #65738a;
+            --contact-border: #e0e8f2;
+            --contact-light: #f3f8ff;
+
+            background: #ffffff;
+            color: var(--contact-text);
+        }
+
+        .contact-page * {
+            box-sizing: border-box;
+        }
+
+        .contact-page a {
+            transition: color 0.2s ease,
+                        background 0.2s ease,
+                        transform 0.2s ease,
+                        box-shadow 0.2s ease;
+        }
+
+        /* NAVIGATION */
+
+        .contact-page .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid var(--contact-border);
+            backdrop-filter: blur(14px);
+        }
+
+        .contact-page .navbar {
+            min-height: 76px;
+        }
+
+        .contact-page .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--contact-navy);
+            text-decoration: none;
+            font-weight: 800;
+        }
+
+        .contact-page .logo-image {
+            width: 54px;
+            height: 54px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .contact-page .nav-links a {
+            color: var(--contact-text);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-page .nav-links a:hover,
+        .contact-page .nav-links a.active {
+            color: var(--contact-blue);
+        }
+
+        .contact-page .nav-links a.active::after {
+            background: var(--contact-blue);
+        }
+
+        /* PAGE INTRODUCTION */
+
+        .contact-page .contact-hero {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            padding: 66px 0 54px;
+            background:
+                radial-gradient(
+                    circle at 90% 10%,
+                    rgba(18, 104, 232, 0.12),
+                    transparent 34%
+                ),
+                linear-gradient(135deg, #ffffff 0%, #f3f8ff 100%);
+        }
+
+        .contact-page .contact-hero::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            right: -70px;
+            bottom: -160px;
+            width: 350px;
+            height: 350px;
+            border: 42px solid rgba(18, 104, 232, 0.07);
+            border-radius: 50%;
+        }
+
+        .contact-page .contact-hero-inner {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 170px;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .contact-page .eyebrow {
+            color: var(--contact-blue);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin: 0 0 15px;
+        }
+
+        .contact-page .contact-hero h1 {
+            max-width: 780px;
+            margin: 0 0 18px;
+            color: var(--contact-navy);
+            font-size: clamp(36px, 5vw, 58px);
+            font-weight: 850;
+            line-height: 1.08;
+            letter-spacing: -1.8px;
+        }
+
+        .contact-page .contact-hero h1 span {
+            color: var(--contact-blue);
+        }
+
+        .contact-page .contact-hero-description {
+            max-width: 700px;
+            margin: 0;
+            color: var(--contact-muted);
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        /* BLUE SHIELD BRAND ICON */
+
+        .contact-page .shield-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 140px;
+            height: 140px;
+            margin: auto;
+            border: 1px solid rgba(18, 104, 232, 0.15);
+            border-radius: 34px;
+            background: linear-gradient(145deg, #ffffff, #e7f2ff);
+            box-shadow: 0 18px 45px rgba(18, 104, 232, 0.13);
+        }
+
+        .contact-page .shield-icon svg {
+            width: 76px;
+            height: 76px;
+            display: block;
+        }
+
+        /* MAIN CONTACT SECTION */
+
+        .contact-page .contact-section {
+            padding: 55px 0 65px;
+            background: #ffffff;
+        }
+
+        .contact-page .contact-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+            align-items: start;
+            gap: 28px;
+        }
+
+        /* LEFT INFORMATION CARD */
+
+        .contact-page .contact-info {
+            position: relative;
+            overflow: hidden;
+            padding: 34px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
+            background:
+                radial-gradient(
+                    circle at 100% 0%,
+                    rgba(18, 104, 232, 0.38),
+                    transparent 38%
+                ),
+                linear-gradient(145deg, #0d1b36, #142d50);
+            color: #ffffff;
+            box-shadow: 0 18px 45px rgba(13, 27, 54, 0.12);
+        }
+
+        .contact-page .contact-info .eyebrow {
+            color: #70b6ff;
+        }
+
+        .contact-page .contact-info h2 {
+            margin: 0 0 15px;
+            color: #ffffff;
+            font-size: 29px;
+            line-height: 1.2;
+            letter-spacing: -0.6px;
+        }
+
+        .contact-page .contact-info > p:not(.eyebrow) {
+            margin: 0 0 26px;
+            color: #d1deef;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .contact-page .contact-info-item {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            padding: 18px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.13);
+        }
+
+        .contact-page .contact-info-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .contact-page .contact-info-symbol {
+            display: flex;
+            flex: 0 0 42px;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 13px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #76b8ff;
+            font-size: 20px;
+        }
+
+        .contact-page .contact-info-item h3 {
+            margin: 1px 0 6px;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 750;
+        }
+
+        .contact-page .contact-info-item p {
+            margin: 0;
+            color: #d1deef;
+            font-size: 14px;
+            line-height: 1.7;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-page .service-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .contact-page .service-tags span {
+            display: inline-block;
+            padding: 7px 10px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #e7f1ff;
+            font-size: 12px;
+        }
+
+        /* RIGHT FORM CARD */
+
+        .contact-page .contact-form-wrapper {
+            padding: 34px;
+            border: 1px solid var(--contact-border);
+            border-radius: 24px;
+            background: #ffffff;
+            box-shadow: 0 15px 45px rgba(22, 48, 84, 0.07);
+        }
+
+        .contact-page .form-heading {
+            margin-bottom: 25px;
+        }
+
+        .contact-page .form-heading h2 {
+            margin: 0 0 10px;
+            color: var(--contact-navy);
+            font-size: 27px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .contact-page .form-heading p {
+            margin: 0;
+            color: var(--contact-muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .contact-page .form-group {
+            margin-bottom: 19px;
+        }
+
+        .contact-page .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .contact-page .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--contact-navy);
+            font-size: 13px;
+            font-weight: 750;
+        }
+
+        .contact-page .form-group input,
+        .contact-page .form-group select,
+        .contact-page .form-group textarea {
+            display: block;
+            width: 100%;
+            min-width: 0;
+            padding: 13px 14px;
+            border: 1px solid #d9e3ef;
+            border-radius: 11px;
+            outline: none;
+            background: #fbfdff;
+            color: var(--contact-text);
+            font: inherit;
+            font-size: 14px;
+            transition: border-color 0.2s ease,
+                        box-shadow 0.2s ease,
+                        background 0.2s ease;
+        }
+
+        .contact-page .form-group input,
+        .contact-page .form-group select {
+            min-height: 48px;
+        }
+
+        .contact-page .form-group textarea {
+            min-height: 135px;
+            resize: vertical;
+            line-height: 1.7;
+        }
+
+        .contact-page .form-group input:focus,
+        .contact-page .form-group select:focus,
+        .contact-page .form-group textarea:focus {
+            border-color: var(--contact-blue);
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(18, 104, 232, 0.09);
+        }
+
+        .contact-page .form-group input::placeholder,
+        .contact-page .form-group textarea::placeholder {
+            color: #8b98a9;
+        }
+
+        .contact-page .contact-submit {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            min-height: 52px;
+            padding: 14px 20px;
+            border: 0;
+            border-radius: 12px;
+            background: linear-gradient(
+                120deg,
+                var(--contact-blue),
+                var(--contact-blue-dark)
+            );
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 9px 22px rgba(18, 104, 232, 0.2);
+        }
+
+        .contact-page .contact-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 13px 27px rgba(18, 104, 232, 0.27);
+        }
+
+        .contact-page .form-note {
+            margin: 13px 0 0;
+            color: var(--contact-muted);
+            font-size: 12px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .contact-page #formStatus {
+            margin: 14px 0 0;
+            color: var(--contact-blue-dark);
+            font-size: 13px;
+            line-height: 1.7;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-page #formStatus:empty {
+            display: none;
+        }
+
+        /* BOTTOM CTA */
+
+        .contact-page .contact-bottom-cta {
+            padding: 35px 0;
+            background: var(--contact-light);
+            border-top: 1px solid #e8f0fb;
+        }
+
+        .contact-page .contact-bottom-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .contact-page .contact-bottom-cta .eyebrow {
+            margin-bottom: 9px;
+        }
+
+        .contact-page .contact-bottom-cta h2 {
+            margin: 0 0 9px;
+            color: var(--contact-navy);
+            font-size: clamp(23px, 3vw, 32px);
+            line-height: 1.25;
+        }
+
+        .contact-page .contact-bottom-cta p:not(.eyebrow) {
+            max-width: 650px;
+            margin: 0;
+            color: var(--contact-muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .contact-page .contact-bottom-cta .btn {
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 12px 20px;
+            border: 1px solid var(--contact-blue);
+            border-radius: 11px;
+            background: var(--contact-blue);
+            color: #ffffff;
+            font-weight: 750;
+            text-decoration: none;
+        }
+
+        .contact-page .contact-bottom-cta .btn:hover {
+            background: var(--contact-blue-dark);
+            transform: translateY(-2px);
+        }
+
+        /* COMPACT FOOTER */
+
+        .contact-page .site-footer {
+            padding: 22px 0 14px;
+            border-top: 0;
+            background: #ffffff;
+        }
+
+        .contact-page .footer-content {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 12px 25px;
+        }
+
+        .contact-page .footer-content h3 {
+            margin: 0 0 5px;
+            color: var(--contact-navy);
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .contact-page .footer-content p {
+            margin: 0;
+            color: var(--contact-muted);
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .contact-page .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 16px;
+        }
+
+        .contact-page .footer-links a {
+            color: var(--contact-muted);
+            font-size: 12px;
+            font-weight: 650;
+            text-decoration: none;
+        }
+
+        .contact-page .footer-links a:hover {
+            color: var(--contact-blue);
+        }
+
+        .contact-page .footer-content .copyright {
+            grid-column: 1 / -1;
+            padding-top: 12px;
+            border-top: 1px solid #edf1f6;
+            text-align: center;
+            font-size: 11px;
+        }
+
+        /* TABLET */
+
+        @media (max-width: 900px) {
+            .contact-page .contact-layout {
+                grid-template-columns: 1fr;
+                gap: 22px;
+            }
+
+            .contact-page .contact-info {
+                padding: 28px;
+            }
+
+            .contact-page .contact-hero-inner {
+                grid-template-columns: minmax(0, 1fr) 120px;
+                gap: 22px;
+            }
+
+            .contact-page .shield-icon {
+                width: 110px;
+                height: 110px;
+                border-radius: 27px;
+            }
+
+            .contact-page .shield-icon svg {
+                width: 62px;
+                height: 62px;
+            }
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+            .contact-page .navbar {
+                gap: 12px;
+            }
+
+            .contact-page .logo {
+                gap: 8px;
+                font-size: 13px;
+            }
+
+            .contact-page .logo-image {
+                width: 42px;
+                height: 42px;
+            }
+
+            .contact-page .nav-links {
+                gap: 13px;
+            }
+
+            .contact-page .nav-links a {
+                font-size: 12px;
+            }
+
+            .contact-page .contact-hero {
+                padding: 40px 0 35px;
+            }
+
+            .contact-page .contact-hero-inner {
+                grid-template-columns: 1fr;
+                gap: 22px;
+            }
+
+            .contact-page .contact-hero h1 {
+                font-size: clamp(34px, 9vw, 46px);
+                letter-spacing: -1px;
+            }
+
+            .contact-page .contact-hero-description {
+                font-size: 15px;
+                line-height: 1.7;
+            }
+
+            .contact-page .shield-icon {
+                width: 76px;
+                height: 76px;
+                margin: 0;
+                border-radius: 21px;
+            }
+
+            .contact-page .shield-icon svg {
+                width: 44px;
+                height: 44px;
+            }
+
+            .contact-page .contact-section {
+                padding: 32px 0 40px;
+            }
+
+            .contact-page .contact-info,
+            .contact-page .contact-form-wrapper {
+                padding: 23px 19px;
+                border-radius: 18px;
+            }
+
+            .contact-page .contact-info h2,
+            .contact-page .form-heading h2 {
+                font-size: 24px;
+            }
+
+            .contact-page .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .contact-page .contact-bottom-cta {
+                padding: 28px 0;
+            }
+
+            .contact-page .contact-bottom-inner {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 18px;
+            }
+
+            .contact-page .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .contact-page .footer-links {
+                justify-content: center;
+                gap: 12px;
+            }
+
+            .contact-page .footer-content .copyright {
+                grid-column: auto;
+            }
+        }
+    </style>
+</head>
+
+<body class="contact-page">
+
+    <!-- NAVIGATION -->
+    <header class="site-header">
+        <div class="container">
+
+            <nav class="navbar">
+
+                <a href="/" class="logo">
+                    <img
+                        src="{{ url_for('static', filename='image/MIF_Logo.jpeg') }}"
+                        alt="MIF Digital Solutions logo"
+                        class="logo-image"
+                    >
+                    <span>MIF Digital Solutions</span>
+                </a>
+
+                <div class="nav-links">
+                    <a href="/">Home</a>
+                    <a href="/services">Services</a>
+                    <a href="/about">About</a>
+                    <a href="/contact" class="active" aria-current="page">
+                        Contact
+                    </a>
+                </div>
+
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- CONTACT HERO -->
+        <section class="contact-hero">
+
+            <div class="container contact-hero-inner">
+
+                <div>
+                    <p class="eyebrow">LET'S TALK TECHNOLOGY</p>
+
+                    <h1>
+                        Let's Discuss <span>Your Project.</span>
+                    </h1>
+
+                    <p class="contact-hero-description">
+                        Whether you're planning a website, mobile app,
+                        AI solution, chatbot or cybersecurity project,
+                        tell us what you need. Let's explore a practical
+                        solution for your business.
+                    </p>
+                </div>
+
+                <!-- MIF BLUE SHIELD -->
+                <div class="shield-icon" aria-label="MIF security shield">
+
+                    <svg
+                        viewBox="0 0 100 100"
+                        role="img"
+                        aria-label="Blue protection shield"
+                    >
+                        <defs>
+                            <linearGradient
+                                id="mifShieldGradient"
+                                x1="0"
+                                y1="0"
+                                x2="1"
+                                y2="1"
+                            >
+                                <stop offset="0%" stop-color="#39b6ff"/>
+                                <stop offset="100%" stop-color="#0753d6"/>
+                            </linearGradient>
+                        </defs>
+
+                        <path
+                            d="M50 7 L83 20 V45 C83 66 69 82 50 93
+                               C31 82 17 66 17 45 V20 Z"
+                            fill="url(#mifShieldGradient)"
+                        />
+
+                        <path
+                            d="M50 17 L73 26 V45 C73 61 63 73 50 81
+                               C37 73 27 61 27 45 V26 Z"
+                            fill="none"
+                            stroke="#ffffff"
+                            stroke-width="3"
+                            opacity="0.85"
+                        />
+
+                        <path
+                            d="M37 49 L46 58 L64 39"
+                            fill="none"
+                            stroke="#ffffff"
+                            stroke-width="6"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+
+                        <circle
+                            cx="78"
+                            cy="21"
+                            r="8"
+                            fill="#12a985"
+                            stroke="#ffffff"
+                            stroke-width="3"
+                        />
+                    </svg>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTACT DETAILS AND FORM -->
+        <section class="contact-section">
+
+            <div class="container">
+
+                <div class="contact-layout">
+
+                    <!-- LEFT: BUSINESS INFORMATION -->
+                    <aside class="contact-info">
+
+                        <p class="eyebrow">GET IN TOUCH</p>
+
+                        <h2>How Can We Help?</h2>
+
+                        <p>
+                            Every good solution starts with understanding
+                            the problem. Tell us about your goals, challenges
+                            or idea, and we'll use your enquiry to understand
+                            what you need.
+                        </p>
+
+
+                        <div class="contact-info-item">
+
+                            <div class="contact-info-symbol" aria-hidden="true">
+                                ◈
+                            </div>
+
+                            <div>
+                                <h3>Business Name</h3>
+                                <p>MIF Digital Solutions</p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-info-item">
+
+                            <div class="contact-info-symbol" aria-hidden="true">
+                                ⌖
+                            </div>
+
+                            <div>
+                                <h3>Location</h3>
+                                <p>Asaba, Delta State, Nigeria</p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-info-item">
+
+                            <div class="contact-info-symbol" aria-hidden="true">
+                                ⚙️
+                            </div>
+
+                            <div>
+                                <h3>What We Do</h3>
+
+                                <p>
+                                    Practical technology solutions for
+                                    businesses, startups and individuals.
+                                </p>
+
+                                <div class="service-tags">
+                                    <span>Websites</span>
+                                    <span>Mobile Apps</span>
+                                    <span>AI Solutions</span>
+                                    <span>Chatbots</span>
+                                    <span>Cybersecurity</span>
+                                    <span>Automation</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-info-item">
+
+                            <div class="contact-info-symbol" aria-hidden="true">
+                                ✓
+                            </div>
+
+                            <div>
+                                <h3>Our Approach</h3>
+                                <p>
+                                    Understand your needs, plan carefully
+                                    and work towards a practical solution.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </aside>
+
+
+                    <!-- RIGHT: PROJECT ENQUIRY FORM -->
+                    <div class="contact-form-wrapper">
+
+                        <div class="form-heading">
+
+                            <p class="eyebrow">START A PROJECT</p>
+
+                            <h2>Tell Us About Your Project</h2>
+
+                            <p>
+                                Complete the form below with a few details
+                                about your requirements.
+                            </p>
+
+                        </div>
+
+
+                        <form id="contactForm" method="POST" action="{{ url_for('contact') }}">
+
+                            <!-- NAME AND EMAIL -->
+                            <div class="form-row">
+
+                                <div class="form-group">
+                                    <label for="name">Full Name *</label>
+
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        placeholder="Your full name"
+                                        autocomplete="name"
+                                        maxlength="100"
+                                        required
+                                    >
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="email">Email Address *</label>
+
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        placeholder="you@example.com"
+                                        autocomplete="email"
+                                        maxlength="150"
+                                        required
+                                    >
+                                </div>
+
+                            </div>
+
+
+                            <!-- SERVICE AND BUDGET -->
+                            <div class="form-row">
+
+                                <div class="form-group">
+                                    <label for="service">Service Required *</label>
+
+                                    <select id="service" name="service" required>
+                                        <option value="">Choose a service</option>
+                                        <option>Website Development</option>
+                                        <option>Android App Development</option>
+                                        <option>iPhone App Development</option>
+                                        <option>Artificial Intelligence Solutions</option>
+                                        <option>Chatbot Development</option>
+                                        <option>Cybersecurity Solutions</option>
+                                        <option>Business Automation</option>
+                                        <option>Web Applications and Software</option>
+                                        <option>IT Setup and Technical Support</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="budget">Estimated Budget</label>
+
+                                    <select id="budget" name="budget">
+                                        <option value="">Choose a range (optional)</option>
+                                        <option>Below ₦100,000</option>
+                                        <option>₦100,000 – ₦300,000</option>
+                                        <option>₦300,000 – ₦500,000</option>
+                                        <option>₦500,000 – ₦1,000,000</option>
+                                        <option>Above ₦1,000,000</option>
+                                        <option>Not sure yet</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+
+                            <!-- PROJECT MESSAGE -->
+                            <div class="form-group">
+
+                                <label for="message">Project Details *</label>
+
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    rows="5"
+                                    maxlength="5000"
+                                    placeholder="Describe what you want to build, the problem you want to solve, or the improvement you need..."
+                                    required
+                                ></textarea>
+
+                            </div>
+
+
+                            <button type="submit" class="contact-submit">
+                                Prepare Project Enquiry <span aria-hidden="true">→</span>
+                            </button>
+<p id="formStatus" role="status" aria-live="polite"></p>
+                            <p class="form-note">
+    Your enquiry will be sent securely to MIF Digital Solutions.
+    We will review your project details and get back to you.
+</p>
+
+                            {% if status == "success" %}
+    <p class="form-success" role="status" aria-live="polite">
+        Thank you! Your enquiry has been sent successfully.
+        We'll review your project details.
+    </p>
+
+{% elif status == "missing_fields" %}
+    <p class="form-error" role="alert">
+        Please complete all required fields and try again.
+    </p>
+
+{% elif status == "invalid_input" %}
+    <p class="form-error" role="alert">
+        Some information is too long. Please review your entries.
+    </p>
+
+{% elif status == "email_not_configured" %}
+    <p class="form-error" role="alert">
+        Our enquiry system is not fully configured yet.
+        Please contact us directly.
+    </p>
+
+{% elif status == "send_failed" %}
+    <p class="form-error" role="alert">
+        We couldn't send your enquiry. Please try again later.
+    </p>
+{% endif %}
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- BOTTOM CALL TO ACTION -->
+        <section class="contact-bottom-cta">
+
+            <div class="container contact-bottom-inner">
+
+                <div>
+                    <p class="eyebrow">BUILD. AUTOMATE. PROTECT.</p>
+
+                    <h2>Have Another Question?</h2>
+
+                    <p>
+                        Explore our technology services to find the right
+                        starting point for your next project.
+                    </p>
+                </div>
+
+                <a href="/services" class="btn">
+                    Explore Our Services →
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+        <div class="container footer-content">
+
+            <div>
+                <h3>MIF Digital Solutions</h3>
+
+                <p>
+                    Technology that solves real business problems.
+                </p>
+            </div>
+
+            <nav class="footer-links" aria-label="Footer navigation">
+                <a href="/">Home</a>
+                <a href="/services">Services</a>
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+            </nav>
+
+            <p class="copyright">
+                © 2026 MIF Digital Solutions. All rights reserved.
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

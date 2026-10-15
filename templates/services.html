@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Our Services | MIF Digital Solutions</title>
+
+    <meta name="description"
+          content="MIF Digital Solutions provides website development, mobile apps, AI solutions, chatbots, cybersecurity and business automation.">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        :root {
+            --mif-blue: #0866e8;
+            --mif-blue-dark: #0649b5;
+            --mif-navy: #101d35;
+            --mif-text: #536176;
+            --mif-light: #f4f8ff;
+            --mif-border: #e4ebf5;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            color: var(--mif-navy);
+            background: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1160px, 90%);
+            margin: 0 auto;
+        }
+
+        /* NAVIGATION */
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid var(--mif-border);
+            backdrop-filter: blur(12px);
+        }
+
+        .navbar {
+            min-height: 88px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--mif-navy);
+            font-weight: 800;
+            font-size: 17px;
+        }
+
+        .logo-image {
+            width: 58px;
+            height: 58px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: #344158;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--mif-blue);
+        }
+
+        .nav-links a.active {
+            border-bottom: 2px solid var(--mif-blue);
+            padding-bottom: 8px;
+        }
+
+        /* BUTTONS */
+
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 23px;
+            border-radius: 10px;
+            font-weight: 700;
+            transition: transform 0.2s ease,
+                        background 0.2s ease,
+                        box-shadow 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            color: #ffffff;
+            background: var(--mif-blue);
+            box-shadow: 0 8px 22px rgba(8, 102, 232, 0.18);
+        }
+
+        .btn-primary:hover {
+            background: var(--mif-blue-dark);
+            box-shadow: 0 12px 26px rgba(8, 102, 232, 0.24);
+        }
+
+        /* PAGE HERO */
+
+        .page-hero {
+            position: relative;
+            overflow: hidden;
+            padding: 100px 0 90px;
+            background:
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(83, 164, 255, 0.18),
+                    transparent 35%
+                ),
+                linear-gradient(135deg, #f7faff, #ffffff 65%);
+        }
+
+        .page-hero::after {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            right: -100px;
+            bottom: -160px;
+            border: 45px solid rgba(8, 102, 232, 0.06);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .service-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 850px;
+        }
+
+        .eyebrow {
+            margin: 0 0 14px;
+            color: var(--mif-blue);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 3px;
+        }
+
+        .page-hero h1 {
+            max-width: 850px;
+            margin: 0 0 22px;
+            font-size: clamp(36px, 5.5vw, 62px);
+            line-height: 1.12;
+            letter-spacing: -2px;
+        }
+
+        .page-hero h1 span {
+            color: var(--mif-blue);
+        }
+
+        .page-hero .hero-description {
+            max-width: 720px;
+            margin: 0 0 30px;
+            color: var(--mif-text);
+            font-size: 18px;
+            line-height: 1.9;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .hero-badges span {
+            padding: 8px 13px;
+            color: #304563;
+            background: #ffffff;
+            border: 1px solid var(--mif-border);
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* GENERAL SECTIONS */
+
+        .section {
+            padding: 90px 0;
+        }
+
+        .section-heading {
+            max-width: 720px;
+            margin: 0 auto 48px;
+            text-align: center;
+        }
+
+        .section-heading h2 {
+            margin: 0 0 16px;
+            font-size: clamp(29px, 4vw, 42px);
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .section-heading > p:last-child {
+            color: var(--mif-text);
+            font-size: 16px;
+        }
+
+        /* SERVICE CARDS */
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .service-card {
+            display: flex;
+            flex-direction: column;
+            padding: 30px 26px;
+            background: #ffffff;
+            border: 1px solid var(--mif-border);
+            border-radius: 18px;
+            box-shadow: 0 8px 28px rgba(20, 48, 90, 0.04);
+            transition: transform 0.25s ease,
+                        border-color 0.25s ease,
+                        box-shadow 0.25s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(8, 102, 232, 0.35);
+            box-shadow: 0 18px 38px rgba(20, 48, 90, 0.10);
+        }
+
+        .service-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 58px;
+            height: 58px;
+            margin-bottom: 22px;
+            border-radius: 16px;
+            background: #edf5ff;
+            font-size: 28px;
+        }
+
+        .shield-icon {
+            background: linear-gradient(145deg, #eaf4ff, #ffffff);
+            border: 1px solid rgba(8, 102, 232, 0.16);
+            box-shadow: 0 8px 24px rgba(8, 102, 232, 0.12);
+        }
+
+        .shield-icon svg {
+            display: block;
+            width: 36px;
+            height: 36px;
+        }
+
+        .service-card h2 {
+            margin: 0 0 12px;
+            font-size: 21px;
+            line-height: 1.35;
+        }
+
+        .service-card > p {
+            margin: 0 0 18px;
+            color: var(--mif-text);
+            font-size: 14px;
+        }
+
+        .service-card ul {
+            margin: 0 0 24px;
+            padding-left: 20px;
+            color: #45556c;
+            font-size: 13px;
+        }
+
+        .service-card li {
+            margin-bottom: 9px;
+            padding-left: 3px;
+        }
+
+        .service-card li::marker {
+            color: var(--mif-blue);
+        }
+
+        .text-link {
+            display: inline-block;
+            margin-top: auto;
+            padding-top: 12px;
+            color: var(--mif-blue);
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .text-link:hover {
+            color: var(--mif-blue-dark);
+        }
+
+        /* OUR APPROACH */
+
+        .approach-section {
+            background: var(--mif-light);
+        }
+
+        .approach-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .approach-card {
+            padding: 30px;
+            background: #ffffff;
+            border: 1px solid var(--mif-border);
+            border-radius: 16px;
+        }
+
+        .approach-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            margin-bottom: 18px;
+            border-radius: 14px;
+            color: #ffffff;
+            background: var(--mif-blue);
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .approach-card h3 {
+            margin: 0 0 10px;
+            font-size: 21px;
+        }
+
+        .approach-card p {
+            margin: 0;
+            color: var(--mif-text);
+            font-size: 14px;
+        }
+
+        /* CALL TO ACTION */
+
+        .cta-section {
+            padding: 75px 0;
+        }
+
+        .cta-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 35px;
+            padding: 48px;
+            color: #ffffff;
+            background: linear-gradient(120deg, #092f72, #0866e8);
+            border-radius: 24px;
+            box-shadow: 0 18px 45px rgba(8, 102, 232, 0.17);
+        }
+
+        .cta-content .eyebrow {
+            color: #b8d9ff;
+        }
+
+        .cta-content h2 {
+            margin: 0 0 12px;
+            font-size: clamp(27px, 4vw, 38px);
+            line-height: 1.2;
+        }
+
+        .cta-content p:not(.eyebrow) {
+            max-width: 650px;
+            margin: 0;
+            color: #e3edff;
+        }
+
+        .cta-content .btn-primary {
+            flex-shrink: 0;
+            color: var(--mif-blue);
+            background: #ffffff;
+            box-shadow: none;
+        }
+
+        .cta-content .btn-primary:hover {
+            background: #edf5ff;
+        }
+
+        /* FOOTER */
+
+        .site-footer {
+            padding: 45px 0 25px;
+            background: #0b172b;
+            color: #ffffff;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .footer-content h3 {
+            margin: 0 0 8px;
+        }
+
+        .footer-content p {
+            margin: 0;
+            color: #b7c3d6;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 22px;
+        }
+
+        .footer-links a {
+            color: #e0e9f8;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: #79b8ff;
+        }
+
+        .copyright {
+            grid-column: 1 / -1;
+            padding-top: 20px;
+            margin-top: 12px !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        /* RESPONSIVE DESIGN */
+
+        @media (max-width: 900px) {
+            .services-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .approach-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-content {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                padding: 14px 0;
+                flex-direction: column;
+            }
+
+            .nav-links {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 14px;
+            }
+
+            .page-hero {
+                padding: 65px 0;
+            }
+
+            .page-hero h1 {
+                letter-spacing: -1px;
+            }
+
+            .page-hero .hero-description {
+                font-size: 16px;
+            }
+
+            .section {
+                padding: 65px 0;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                padding: 25px 22px;
+            }
+
+            .cta-content {
+                padding: 30px 24px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                gap: 16px;
+            }
+
+            .copyright {
+                grid-column: auto;
+            }
+        }
+        /* =========================================
+   SERVICES HERO — LAYOUT AND SPACING FIX
+========================================= */
+
+.page-hero {
+    padding: 38px 0 42px !important;
+    min-height: auto !important;
+}
+
+.page-hero .container {
+    width: min(1160px, 90%);
+    margin: 0 auto;
+}
+
+/* Prevent the homepage two-column grid from affecting Services */
+.page-hero .hero-content,
+.page-hero .services-hero-content {
+    display: block !important;
+    grid-template-columns: 1fr !important;
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 0 !important;
+}
+
+/* Keep the eyebrow and heading together */
+.page-hero .eyebrow {
+    display: block;
+    margin: 0 0 12px !important;
+    color: #0866e8;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+}
+
+.page-hero h1 {
+    max-width: 800px;
+    margin: 0 0 16px !important;
+    color: #10213b;
+    font-size: clamp(34px, 4.5vw, 54px);
+    line-height: 1.12;
+    letter-spacing: -1.5px;
+}
+
+/* Reduce space beneath the description */
+.page-hero .hero-description {
+    max-width: 760px;
+    margin: 0 0 22px !important;
+    color: #52627a;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* Bring the badges closer */
+.page-hero .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px !important;
+}
+
+/* Mobile spacing */
+@media (max-width: 600px) {
+    .page-hero {
+        padding: 30px 0 35px !important;
+    }
+
+    .page-hero .container {
+        width: calc(100% - 32px);
+    }
+
+    .page-hero h1 {
+        font-size: 35px;
+        letter-spacing: -0.8px;
+    }
+
+    .page-hero .hero-description {
+        font-size: 15px;
+    }
+}
+/* Close the excessive gap before Our Approach */
+.services-section {
+    padding-bottom: 20px !important;
+    margin-bottom: 0 !important;
+}
+
+.services-section .services-grid {
+    margin-bottom: 0 !important;
+}
+
+.approach-section {
+    padding-top: 25px !important;
+    margin-top: 0 !important;
+}
+
+.approach-section .section-heading {
+    margin-bottom: 25px !important;
+}
+
+/* Keep comfortable spacing on mobile */
+@media (max-width: 600px) {
+    .services-section {
+        padding-bottom: 15px !important;
+    }
+
+    .approach-section {
+        padding-top: 25px !important;
+    }
+}
+/* Tighten spacing above the footer */
+.services-section {
+    padding-bottom: 10px !important;
+    margin-bottom: 0 !important;
+}
+
+/* Reduce spacing around the project CTA */
+.services-section .project-cta,
+.services-section .cta-content {
+    margin-bottom: 0 !important;
+    padding-bottom: 15px !important;
+}
+
+/* Compact footer */
+footer {
+    padding-top: 15px !important;
+    padding-bottom: 10px !important;
+    margin-top: 0 !important;
+}
+
+footer .container {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+footer h2,
+footer h3,
+footer p {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+}
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header class="site-header">
+        <div class="container">
+            <nav class="navbar">
+
+                <a href="/" class="logo">
+                    <img
+                        src="{{ url_for('static', filename='image/MIF_Logo.jpeg') }}"
+                        alt="MIF Digital Solutions Logo"
+                        class="logo-image"
+                    >
+                    <span>MIF Digital Solutions</span>
+                </a>
+
+                <div class="nav-links">
+                    <a href="/">Home</a>
+                    <a href="/services" class="active">Services</a>
+                    <a href="/about">About</a>
+                    <a href="/contact">Contact</a>
+                </div>
+
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- PAGE HERO -->
+        <section class="page-hero">
+            <div class="container">
+                <div class="services-hero-content">
+
+                    <p class="eyebrow">OUR TECHNOLOGY SERVICES</p>
+
+                    <h1>
+                        Technology Solutions Built Around
+                        <span>Your Business.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        From websites and mobile applications to artificial
+                        intelligence, chatbots and cybersecurity, we help
+                        businesses turn technology into practical solutions.
+                    </p>
+
+                    <a href="/contact" class="btn btn-primary">
+                        Discuss Your Project <span aria-hidden="true">→</span>
+                    </a>
+
+                    <div class="hero-badges">
+                        <span>✓ Practical Solutions</span>
+                        <span>✓ Business-Focused Technology</span>
+                        <span>✓ Security-Minded Development</span>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CORE SERVICES -->
+        <section class="section services-section">
+            <div class="container">
+
+                <div class="section-heading">
+                    <p class="eyebrow">WHAT WE CAN BUILD</p>
+                    <h2>Our Core Services</h2>
+                    <p>
+                        We help individuals, startups and established
+                        businesses build, improve and protect their
+                        digital operations.
+                    </p>
+                </div>
+
+                <div class="services-grid">
+
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true">🌐</div>
+                        <h2>Website Development</h2>
+                        <p>
+                            Establish a professional online presence with
+                            a website designed around your business goals.
+                        </p>
+                        <ul>
+                            <li>Business and company websites</li>
+                            <li>Landing pages and portfolios</li>
+                            <li>Responsive mobile-friendly websites</li>
+                            <li>Website redesign and maintenance</li>
+                            <li>Website deployment and configuration</li>
+                        </ul>
+                        <a href="/contact" class="text-link">Build Your Website →</a>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true">📱</div>
+                        <h2>Android App Development</h2>
+                        <p>
+                            Develop Android applications that help businesses
+                            serve customers and deliver useful digital services.
+                        </p>
+                        <ul>
+                            <li>Business and service applications</li>
+                            <li>Customer-facing mobile applications</li>
+                            <li>API and backend integration</li>
+                            <li>Application interface development</li>
+                            <li>Testing and deployment guidance</li>
+                        </ul>
+                        <a href="/contact" class="text-link">Build an Android App →</a>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true">🍎</div>
+                        <h2>iPhone App Development</h2>
+                        <p>
+                            Plan and develop iOS applications that bring
+                            your services to customers using Apple devices.
+                        </p>
+                        <ul>
+                            <li>iPhone application development</li>
+                            <li>Cross-platform mobile applications</li>
+                            <li>Mobile user-interface development</li>
+                            <li>Backend and API integration</li>
+                            <li>Testing and App Store preparation</li>
+                        </ul>
+                        <a href="/contact" class="text-link">Build an iPhone App →</a>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true">🤖</div>
+                        <h2>Artificial Intelligence Solutions</h2>
+                        <p>
+                            Use AI to solve business problems, improve
+                            productivity and make digital services smarter.
+                        </p>
+                        <ul>
+                            <li>AI-powered applications</li>
+                            <li>AI assistants and smart tools</li>
+                            <li>AI integration into websites and apps</li>
+                            <li>Intelligent information processing</li>
+                            <li>AI-assisted workflow automation</li>
+                        </ul>
+                        <a href="/contact" class="text-link">Explore AI Solutions →</a>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true">💬</div>
+                        <h2>Chatbot Development</h2>
+                        <p>
+                            Give customers a better experience with chatbots
+                            that answer questions and assist with common tasks.
+                        </p>
+                        <ul>
+                            <li>AI-powered customer support chatbots</li>
+                            <li>Website chatbots</li>
+                            <li>Business enquiry assistants</li>
+                            <li>FAQ and information chatbots</li>
+                            <li>Chatbot and API integration</li>
+                        </ul>
+                        <a href="/contact" class="text-link">Build a Chatbot →</a>
+                    </article>
+
+                    <!-- CYBERSECURITY WITH MIF BLUE SHIELD -->
+                    <article class="service-card">
+                        <div class="service-icon shield-icon">
+                            <svg
+                                viewBox="0 0 64 64"
+                                xmlns="http://www.w3.org/2000/svg"
+                                role="img"
+                                aria-label="MIF blue cybersecurity shield"
+                            >
+                                <defs>
+                                    <linearGradient
+                                        id="mifShieldBlue"
+                                        x1="0" y1="0" x2="1" y2="1"
+                                    >
+                                        <stop offset="0%" stop-color="#39B6FF"/>
+                                        <stop offset="100%" stop-color="#0757D8"/>
+                                    </linearGradient>
+                                </defs>
+
+                                <path
+                                    d="M32 4 L54 13 V29 C54 44 44 55 32 61
+                                       C20 55 10 44 10 29 V13 Z"
+                                    fill="url(#mifShieldBlue)"
+                                />
+
+                                <path
+                                    d="M22 32 L29 39 L43 24"
+                                    fill="none"
+                                    stroke="#FFFFFF"
+                                    stroke-width="5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
+                        </div>
+
+                        <h2>Cybersecurity Solutions</h2>
+                        <p>
+                            Help businesses identify digital risks and
+                            improve their protection against online threats.
+                        </p>
+                        <ul>
+                            <li>Scam and suspicious-message detection tools</li>
+                            <li>Website safety checking</li>
+                            <li>Security awareness solutions</li>
+                            <li>Basic security reviews</li>
+                            <li>Security-focused software development</li>
+                        </ul>
+                        <a href="/contact" class="text-link">Improve Your Security →</a>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true">⚙️</div>
+                        <h2>Business Automation</h2>
+                        <p>
+                            Reduce repetitive work by connecting digital
+                            tools and improving everyday business processes.
+                        </p>
+                        <ul>
+                            <li>Workflow automation</li>
+                            <li>Automated business notifications</li>
+                            <li>Customer communication workflows</li>
+                            <li>AI-assisted business processes</li>
+                            <li>Third-party service integrations</li>
+                        </ul>
+                        <a href="/contact" class="text-link">Automate Your Business →</a>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true">💻</div>
+                        <h2>Web Applications and Software</h2>
+                        <p>
+                            Build interactive software that helps businesses
+                            manage information, deliver services and improve
+                            customer experiences.
+                        </p>
+                        <ul>
+                            <li>Custom web applications</li>
+                            <li>Business dashboards</li>
+                            <li>Database-driven applications</li>
+                            <li>API and backend development</li>
+                            <li>Custom digital product development</li>
+                        </ul>
+                        <a href="/contact" class="text-link">Discuss Your Software →</a>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true">🔧</div>
+                        <h2>IT Setup and Technical Support</h2>
+                        <p>
+                            Get practical assistance with business technology,
+                            software configuration and technical setup.
+                        </p>
+                        <ul>
+                            <li>Software and system configuration</li>
+                            <li>Basic networking setup</li>
+                            <li>Business technology installation</li>
+                            <li>Technical troubleshooting</li>
+                            <li>Digital tools configuration</li>
+                        </ul>
+                        <a href="/contact" class="text-link">Get Technical Support →</a>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- OUR APPROACH -->
+        <section class="section approach-section">
+            <div class="container">
+
+                <div class="section-heading">
+                    <p class="eyebrow">OUR APPROACH</p>
+                    <h2>From Business Problem to Digital Solution</h2>
+                    <p>
+                        We start by understanding the problem, identifying
+                        a practical solution and planning the technology
+                        needed to bring it to life.
+                    </p>
+                </div>
+
+                <div class="approach-grid">
+
+                    <article class="approach-card">
+                        <div class="approach-number">01</div>
+                        <h3>Understand</h3>
+                        <p>
+                            We learn about your goals, challenges and
+                            the people your solution needs to serve.
+                        </p>
+                    </article>
+
+                    <article class="approach-card">
+                        <div class="approach-number">02</div>
+                        <h3>Build</h3>
+                        <p>
+                            We plan and develop a solution around
+                            your requirements and available resources.
+                        </p>
+                    </article>
+
+                    <article class="approach-card">
+                        <div class="approach-number">03</div>
+                        <h3>Improve</h3>
+                        <p>
+                            We test the solution and identify opportunities
+                            to improve its performance and usefulness.
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CALL TO ACTION -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+
+                    <div>
+                        <p class="eyebrow">LET'S BUILD SOMETHING VALUABLE</p>
+                        <h2>Have a Project in Mind?</h2>
+                        <p>
+                            Whether you need a website, mobile application,
+                            chatbot, AI tool or cybersecurity solution,
+                            let's discuss your project.
+                        </p>
+                    </div>
+
+                    <a href="/contact" class="btn btn-primary">
+                        Start a Conversation →
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+
+            <div>
+                <h3>MIF Digital Solutions</h3>
+                <p>Technology that solves real business problems.</p>
+            </div>
+
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/services">Services</a>
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+            </div>
+
+            <p class="copyright">
+                © 2026 MIF Digital Solutions. All rights reserved.
+            </p>
+
+        </div>
+    </footer>
+
+</body>
+</html>

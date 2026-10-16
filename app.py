@@ -122,36 +122,22 @@ PROJECT MESSAGE
 
         # Send email through Gmail
         try:
-            with smtplib.SMTP_SSL(
+            with smtplib.SMTP(
                 "smtp.gmail.com",
-                465,
+                587,
                 timeout=20
             ) as server:
-
-                server.login(
-                    SMTP_EMAIL,
-                    SMTP_APP_PASSWORD
-                )
-
+                server.starttls()
+                server.login(SMTP_EMAIL, SMTP_APP_PASSWORD)
                 server.send_message(email_message)
 
-            app.logger.info(
-                "Contact form enquiry sent successfully."
-            )
-
-            return redirect(
-                url_for("contact", status="success")
-            )
+            app.logger.info("Contact form enquiry sent successfully.")
 
         except Exception:
-            # Keep sensitive SMTP details out of the log
-            app.logger.exception(
-                "Failed to send contact form enquiry."
-            )
+            app.logger.exception("Failed to send contact form enquiry.")
+            return redirect(url_for("contact", status="send_failed"))
 
-            return redirect(
-                url_for("contact", status="send_failed")
-            )
+        return redirect(url_for("contact", status="success"))
 
     # Display contact page and status messages
     return render_template(

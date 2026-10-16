@@ -3,10 +3,11 @@ import smtplib
 
 from email.message import EmailMessage
 from flask import Flask, render_template, request, redirect, url_for
-
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 
+load_dotenv()
 
 # ==============================
 # EMAIL CONFIGURATION
@@ -54,43 +55,45 @@ def about():
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
-
     if request.method == "POST":
 
+        # Collect form data
         name = request.form.get("name", "").strip()
         customer_email = request.form.get("email", "").strip()
         service = request.form.get("service", "").strip()
         budget = request.form.get("budget", "").strip()
         message = request.form.get("message", "").strip()
 
-        # Basic server-side validation
+        # Validate required fields
         if not all([name, customer_email, service, message]):
             return redirect(
                 url_for("contact", status="missing_fields")
             )
 
+        # Basic input-length validation
         if (
             len(name) > 120
             or len(customer_email) > 254
             or len(service) > 120
+            or len(budget) > 120
             or len(message) > 10000
+            or "\r" in customer_email
+            or "\n" in customer_email
         ):
             return redirect(
                 url_for("contact", status="invalid_input")
             )
 
-        # Email delivery must be configured before submissions
-        # can be delivered.
-        if not SMTP_APP_PASSWORD:
+        # Ensure Gmail configuration exists
+        if not SMTP_EMAIL or not BUSINESS_EMAIL or not SMTP_APP_PASSWORD:
             app.logger.error(
-                "Contact form email is not configured."
+                "Contact form email configuration is incomplete."
             )
-
             return redirect(
                 url_for("contact", status="email_not_configured")
             )
 
-        # Construct the email
+        # Create the email
         email_message = EmailMessage()
 
         email_message["Subject"] = (
@@ -102,27 +105,22 @@ def contact():
         email_message["Reply-To"] = customer_email
 
         email_message.set_content(
-            f"""
-NEW PROJECT ENQUIRY
-MIF Digital Solutions
-==============================
+            f"""New project enquiry received from the MIF Digital Solutions website.
 
-Customer Name: {name}
-Customer Email: {customer_email}
+CUSTOMER DETAILS
+----------------
+Name: {name}
+Email: {customer_email}
+Service Requested: {service}
+Budget: {budget or "Not specified"}
 
-Service Required: {service}
-Estimated Budget: {budget or "Not specified"}
-
-PROJECT DETAILS
+PROJECT MESSAGE
 ---------------
 {message}
-
-==============================
-Sent through the MIF Digital Solutions website.
 """
         )
 
-        # Send the email through Gmail
+        # Send email through Gmail
         try:
             with smtplib.SMTP_SSL(
                 "smtp.gmail.com",
@@ -138,7 +136,7 @@ Sent through the MIF Digital Solutions website.
                 server.send_message(email_message)
 
             app.logger.info(
-                "Contact enquiry email sent successfully."
+                "Contact form enquiry sent successfully."
             )
 
             return redirect(
@@ -146,8 +144,7 @@ Sent through the MIF Digital Solutions website.
             )
 
         except Exception:
-            # Log the technical error without exposing credentials
-            # or SMTP details to website visitors.
+            # Keep sensitive SMTP details out of the log
             app.logger.exception(
                 "Failed to send contact form enquiry."
             )
@@ -156,6 +153,7 @@ Sent through the MIF Digital Solutions website.
                 url_for("contact", status="send_failed")
             )
 
+    # Display contact page and status messages
     return render_template(
         "contact.html",
         status=request.args.get("status", "")

@@ -2046,3 +2046,32 @@ footer {
         padding: 22px;
     }
 }
+/* WhatsApp contact button */
+.whatsapp-contact {
+    margin: 24px 0;
+    text-align: center;
+}
+
+.whatsapp-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 22px;
+    background-color: #25D366;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.whatsapp-button:hover {
+    background-color: #128C7E;
+    color: #ffffff;
+}
+
+.whatsapp-button:focus-visible {
+    outline: 3px solid #128C7E;
+    outline-offset: 3px;
+}

@@ -1,6 +1,6 @@
 import os
 import smtplib
-
+import resend 
 from email.message import EmailMessage
 from flask import Flask, render_template, request, redirect, url_for
 from dotenv import load_dotenv
@@ -120,27 +120,60 @@ PROJECT MESSAGE
 """
         )
 
-        # Send email through Gmail
+# Send email through Resend
         try:
-            with smtplib.SMTP(
-                "smtp.gmail.com",
-                587,
-                timeout=20
-            ) as server:
-                server.starttls()
-                server.login(SMTP_EMAIL, SMTP_APP_PASSWORD)
-                server.send_message(email_message)
+            resend_api_key = os.environ.get(
+                "RESEND_API_KEY", ""
+            ).strip()
 
-            app.logger.info("Contact form enquiry sent successfully.")
+            if not resend_api_key:
+                app.logger.error(
+                    "RESEND_API_KEY is not configured."
+                )
+                return redirect(
+                    url_for(
+                        "contact",
+                        status="email_not_configured"
+                    )
+                )
+
+            resend.api_key = resend_api_key
+
+            email_result = resend.Emails.send({
+                "from": "MIF Digital Solutions <onboarding@resend.dev>",
+                "to": [BUSINESS_EMAIL],
+                "reply_to": customer_email,
+                "subject": (
+                    f"New Project Enquiry: "
+                    f"{service or 'General Enquiry'}"
+                ),
+                "text": (
+                    "New project enquiry received.\n\n"
+                    f"Name: {name}\n"
+                    f"Customer email: {customer_email}\n"
+                    f"Requested service: "
+                    f"{service or 'Not specified'}\n"
+                    f"Budget: {budget or 'Not specified'}\n\n"
+                    f"Message:\n{message}\n"
+                ),
+            })
+
+            app.logger.info(
+                "Contact form enquiry sent via Resend. "
+                "Email ID: %s",
+                email_result.get("id", "unknown")
+            )
 
         except Exception as error:
             app.logger.exception(
-                "Failed to send contact form enquiry. "
-                "Error type: %s | Error: %s",
+                "Failed to send contact form enquiry "
+                "through Resend. Error type: %s | Error: %s",
                 type(error)._name_,
                 error
             )
-            return redirect(url_for("contact", status="send_failed"))
+            return redirect(
+                url_for("contact", status="send_failed")
+            )
 
     # Display contact page and status messages
     return render_template(

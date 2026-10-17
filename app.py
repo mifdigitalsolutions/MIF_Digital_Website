@@ -1,13 +1,12 @@
 import os
-import smtplib
-import resend 
-from email.message import EmailMessage
-from flask import Flask, render_template, request, redirect, url_for
-from dotenv import load_dotenv
 
-app = Flask(__name__)
+import resend
+from dotenv import load_dotenv
+from flask import Flask, render_template, request, redirect, url_for
 
 load_dotenv()
+
+app = Flask(__name__)
 
 # ==============================
 # EMAIL CONFIGURATION
@@ -16,10 +15,7 @@ load_dotenv()
 BUSINESS_EMAIL = os.environ.get(
     "BUSINESS_EMAIL",
     "mifdigitalsolutions@gmail.com"
-)
-
-SMTP_EMAIL = os.environ.get("SMTP_EMAIL", BUSINESS_EMAIL)
-SMTP_APP_PASSWORD = os.environ.get("SMTP_APP_PASSWORD", "")
+).strip()
 
 
 # ==============================
@@ -55,6 +51,7 @@ def about():
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
+
     if request.method == "POST":
 
         # Collect form data
@@ -70,7 +67,7 @@ def contact():
                 url_for("contact", status="missing_fields")
             )
 
-        # Basic input-length validation
+        # Validate input lengths and email header safety
         if (
             len(name) > 120
             or len(customer_email) > 254
@@ -79,101 +76,78 @@ def contact():
             or len(message) > 10000
             or "\r" in customer_email
             or "\n" in customer_email
+            or "@" not in customer_email
         ):
             return redirect(
                 url_for("contact", status="invalid_input")
             )
 
-        # Ensure Gmail configuration exists
-        if not SMTP_EMAIL or not BUSINESS_EMAIL or not SMTP_APP_PASSWORD:
+        # Check email configuration
+        resend_api_key = os.environ.get(
+            "RESEND_API_KEY", ""
+        ).strip()
+
+        if not BUSINESS_EMAIL or not resend_api_key:
             app.logger.error(
-                "Contact form email configuration is incomplete."
+                "Contact form Resend configuration is incomplete."
             )
             return redirect(
-                url_for("contact", status="email_not_configured")
+                url_for(
+                    "contact",
+                    status="email_not_configured"
+                )
             )
 
-        # Create the email
-        email_message = EmailMessage()
-
-        email_message["Subject"] = (
-            f"New Project Enquiry: {service}"
-        )
-
-        email_message["From"] = SMTP_EMAIL
-        email_message["To"] = BUSINESS_EMAIL
-        email_message["Reply-To"] = customer_email
-
-        email_message.set_content(
-            f"""New project enquiry received from the MIF Digital Solutions website.
-
-CUSTOMER DETAILS
-----------------
-Name: {name}
-Email: {customer_email}
-Service Requested: {service}
-Budget: {budget or "Not specified"}
-
-PROJECT MESSAGE
----------------
-{message}
-"""
-        )
-
-# Send email through Resend
+        # Send email through Resend
         try:
-            resend_api_key = os.environ.get(
-                "RESEND_API_KEY", ""
-            ).strip()
-
-            if not resend_api_key:
-                app.logger.error(
-                    "RESEND_API_KEY is not configured."
-                )
-                return redirect(
-                    url_for(
-                        "contact",
-                        status="email_not_configured"
-                    )
-                )
-
             resend.api_key = resend_api_key
 
             email_result = resend.Emails.send({
-                "from": "MIF Digital Solutions <onboarding@resend.dev>",
+                "from": (
+                    "MIF Digital Solutions "
+                    "<onboarding@resend.dev>"
+                ),
                 "to": [BUSINESS_EMAIL],
                 "reply_to": customer_email,
                 "subject": (
-                    f"New Project Enquiry: "
-                    f"{service or 'General Enquiry'}"
+                    f"New Project Enquiry: {service}"
                 ),
                 "text": (
-                    "New project enquiry received.\n\n"
+                    "New project enquiry received "
+                    "from the MIF Digital Solutions website.\n\n"
+                    "CUSTOMER DETAILS\n"
+                    "----------------\n"
                     f"Name: {name}\n"
-                    f"Customer email: {customer_email}\n"
-                    f"Requested service: "
-                    f"{service or 'Not specified'}\n"
+                    f"Email: {customer_email}\n"
+                    f"Service Requested: {service}\n"
                     f"Budget: {budget or 'Not specified'}\n\n"
-                    f"Message:\n{message}\n"
+                    "PROJECT MESSAGE\n"
+                    "----------------\n"
+                    f"{message}\n"
                 ),
             })
 
             app.logger.info(
-                "Contact form enquiry sent via Resend. "
+                "Contact enquiry sent through Resend. "
                 "Email ID: %s",
                 email_result.get("id", "unknown")
             )
 
         except Exception as error:
             app.logger.exception(
-                "Failed to send contact form enquiry "
-                "through Resend. Error type: %s | Error: %s",
+                "Failed to send contact enquiry through Resend. "
+                "Error type: %s | Error: %s",
                 type(error)._name_,
                 error
             )
             return redirect(
                 url_for("contact", status="send_failed")
             )
+
+        # Redirect after successful submission
+        return redirect(
+            url_for("contact", status="success")
+        )
 
     # Display contact page and status messages
     return render_template(

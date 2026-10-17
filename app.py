@@ -133,11 +133,14 @@ PROJECT MESSAGE
 
             app.logger.info("Contact form enquiry sent successfully.")
 
-        except Exception:
-            app.logger.exception("Failed to send contact form enquiry.")
+        except Exception as error:
+            app.logger.exception(
+                "Failed to send contact form enquiry. "
+                "Error type: %s | Error: %s",
+                type(error)._name_,
+                error
+            )
             return redirect(url_for("contact", status="send_failed"))
-
-        return redirect(url_for("contact", status="success"))
 
     # Display contact page and status messages
     return render_template(

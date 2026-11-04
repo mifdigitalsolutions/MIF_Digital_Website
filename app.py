@@ -357,195 +357,37 @@ def verify_payment():
             )
 
         if (
-                response.ok
-                and result.get("status") is True
-                and data.get("status") == "success"
-                and data.get("reference") == reference
-                and data.get("currency") == "NGN"
-                and expected_amount is not None
-                and data.get("amount") == expected_amount
-            ):
-return f"""
+            response.ok
+            and result.get("status") is True
+            and data.get("status") == "success"
+            and data.get("reference") == reference
+            and data.get("currency") == "NGN"
+            and expected_amount is not None
+            and data.get("amount") == expected_amount
+        ):
+            return """
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#071426">
-
     <title>Payment Successful | MIF Digital Solutions</title>
-
-    <style>
-        * {{
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }}
-
-        body {{
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 25px;
-            background: #071426;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-        }}
-
-        .card {{
-            width: 100%;
-            max-width: 540px;
-            padding: 45px 32px;
-            text-align: center;
-            background: #102944;
-            border: 1px solid #1c5276;
-            border-radius: 24px;
-            box-shadow: 0 20px 65px rgba(0,0,0,0.4);
-        }}
-
-        .logo {{
-            width: 90px;
-            height: 75px;
-            object-fit: contain;
-            margin-bottom: 20px;
-        }}
-
-        .success-icon {{
-            width: 75px;
-            height: 75px;
-            margin: 0 auto 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: #073f40;
-            border: 2px solid #27d9c5;
-            color: #27d9c5;
-            font-size: 40px;
-        }}
-
-        h1 {{
-            font-size: 29px;
-            margin-bottom: 15px;
-        }}
-
-        .description {{
-            color: #b9cbdc;
-            line-height: 1.7;
-            margin-bottom: 25px;
-        }}
-
-        .details {{
-            padding: 20px;
-            margin: 25px 0;
-            background: #0a2037;
-            border-radius: 14px;
-            text-align: left;
-        }}
-
-        .details p {{
-            color: #b9cbdc;
-            margin: 10px 0;
-            line-height: 1.6;
-        }}
-
-        .details strong {{
-            color: #42d8e7;
-        }}
-
-        .amount {{
-            color: #42e6cf;
-            font-size: 25px;
-            font-weight: bold;
-        }}
-
-        .button {{
-            display: block;
-            padding: 16px;
-            margin-top: 15px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: bold;
-        }}
-
-        .home {{
-            background: #20c8d8;
-            color: #071426;
-        }}
-
-        .whatsapp {{
-            background: #138b5a;
-            color: white;
-        }}
-
-        .footer {{
-            margin-top: 25px;
-            color: #8199ad;
-            font-size: 12px;
-        }}
-    </style>
 </head>
-
 <body>
-    <main class="card">
-
-        <img
-            src="/static/image/MIF_Logo.jpeg"
-            alt="MIF Digital Solutions"
-            class="logo"
-        >
-
-        <div class="success-icon">&#10003;</div>
-
-        <h1>Payment Successful!</h1>
-
-        <p class="description">
-            Thank you for choosing MIF Digital Solutions.
-            Your payment has been successfully verified.
-        </p>
-
-        <section class="details">
-            <p>Service purchased:</p>
-            <p><strong>{package_id.replace('_', ' ').title()}</strong></p>
-
-            <p>Amount paid:</p>
-            <p class="amount">NGN {expected_amount // 100:,}</p>
-
-            <p>Payment status: <strong>Verified</strong></p>
-        </section>
-
-        <p class="description">
-            Our team will contact you by email with the next steps
-            for your selected service.
-        </p>
-
-        <a class="button home"
-           href="https://mifdigitalsolutions.com/">
-            Return to Homepage
-        </a>
-
-        <a class="button whatsapp"
-           href="https://wa.me/2348128556446"
-           target="_blank"
-           rel="noopener noreferrer">
-            Chat with us on WhatsApp
-        </a>
-
-        <div class="footer">
-            © 2026 MIF Digital Solutions. All rights reserved.
-        </div>
-
-    </main>
+    <h1>Payment Successful!</h1>
+    <p>Thank you for choosing MIF Digital Solutions.</p>
+    <p>Your payment has been verified successfully.</p>
+    <a href="/">Return to Homepage</a>
 </body>
 </html>
-            """
+"""
 
         return (
-                "<h1>Payment not confirmed</h1>"
-                "<p>Please contact MIF Digital Solutions if you were charged.</p>",
-                400,
-            )
+            "<h1>Payment not confirmed</h1>"
+            "<p>Please contact MIF Digital Solutions if you believe this is an error.</p>",
+            400,
+        )
+
 
     except requests.RequestException:
         app.logger.exception("Paystack payment verification failed.")

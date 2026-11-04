@@ -1251,7 +1251,7 @@
                             method="POST"
                             action="{{ url_for('contact') }}"
                         >
-
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                             <!-- NAME AND EMAIL -->
 
                             <div class="form-row">

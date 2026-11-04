@@ -77,7 +77,7 @@ section{padding:72px 0}.soft{border-block:1px solid var(--line);background:#ffff
 <div class="selected"><strong id="selectedService">Selected service</strong><span id="selectedPrice">₦0</span></div>
 <!-- The browser sends only a package ID. The server determines the authoritative price. -->
 <form method="POST" action="{{ url_for('start_payment') }}" id="paystackForm">
-
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     <input type="hidden" name="package_id" id="paymentPackage">
 
     <label for="customerEmail">Email address</label>

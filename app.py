@@ -422,6 +422,18 @@ def sitemap():
     xml += "</urlset>"
 
     return app.response_class(xml, mimetype="application/xml")
+# ============================================================
+# ROBOTS.TXT FOR SEARCH ENGINE CRAWLERS
+# ============================================================
+
+@app.route("/robots.txt")
+def robots():
+    content = """User-agent: *
+Allow: /
+
+Sitemap: https://mifdigitalsolutions.com/sitemap.xml
+"""
+    return app.response_class(content, mimetype="text/plain")
 
 # ==============================
 # RUN APPLICATION

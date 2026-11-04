@@ -5,10 +5,24 @@ import requests
 import resend
 from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect, url_for
-
+from flask_wtf.csrf import CSRFProtect
 load_dotenv()
 
 app = Flask(__name__)
+
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
+
+if not app.config["SECRET_KEY"]:
+    raise RuntimeError("SECRET_KEY is not configured.")
+
+app.config.update(
+    SESSION_COOKIE_SECURE=True,
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SAMESITE="Lax",
+    MAX_CONTENT_LENGTH=1 * 1024 * 1024
+)
+
+csrf = CSRFProtect(app)
 def init_orders_db():
     conn = sqlite3.connect("orders.db")
     try:

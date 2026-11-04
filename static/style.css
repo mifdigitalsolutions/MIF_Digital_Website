@@ -2174,3 +2174,52 @@ footer {
         font-size: 13px;
     }
 }
+
+/* =====================================
+   MIF DIGITAL SOLUTIONS SERVICE CARDS
+===================================== */
+
+.svc-business-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    align-items: stretch;
+}
+
+.svc-price-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 24px;
+    box-sizing: border-box;
+    border-radius: 16px;
+}
+
+.svc-price-card .svc-list {
+    margin-bottom: 24px;
+}
+
+.svc-price-card .svc-btn {
+    margin-top: auto;
+    align-self: flex-start;
+}
+
+/* TABLETS */
+@media (max-width: 900px) {
+    .svc-business-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+}
+
+/* MOBILE PHONES */
+@media (max-width: 600px) {
+    .svc-business-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .svc-price-card {
+        padding: 20px;
+    }
+}

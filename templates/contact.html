@@ -1,272 +1,370 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Contact Us | MIF Digital Solutions</title>
+    <title>Contact MIF Digital Solutions | Let's Build Something Better</title>
 
     <meta name="description"
-          content="Contact MIF Digital Solutions for website development, mobile applications, AI solutions, chatbots, cybersecurity and business automation.">
+          content="Connect with MIF Digital Solutions for premium website development, mobile applications, AI solutions, chatbots, cybersecurity and business automation.">
 
-    <meta name="theme-color" content="#0d1b36">
+    <meta name="theme-color" content="#050b16">
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='style.css') }}">
 
     <style>
-        /* ==========================================
-           MIF DIGITAL SOLUTIONS — CONTACT PAGE
-           Brand colours: Blue, Green, Navy and White
-        ========================================== */
+
+        /* =====================================================
+           MIF DIGITAL SOLUTIONS
+           PREMIUM CONTACT PAGE
+           Midnight Navy | Electric Blue | Cyan | Gold
+        ===================================================== */
 
         .contact-page {
-            --contact-blue: #1268e8;
-            --contact-blue-dark: #084db5;
-            --contact-green: #12a985;
-            --contact-navy: #0d1b36;
-            --contact-text: #24324a;
-            --contact-muted: #65738a;
-            --contact-border: #e0e8f2;
-            --contact-light: #f3f8ff;
+            --bg: #050b16;
+            --bg-secondary: #081426;
+            --surface: #0c1a2d;
+            --surface-light: #10233b;
+            --blue: #1677ff;
+            --blue-dark: #0753c7;
+            --cyan: #35d5f5;
+            --gold: #d8b66b;
+            --text: #edf4ff;
+            --muted: #9aacc5;
+            --border: rgba(148, 181, 222, 0.16);
+            --success: #35d49a;
+            --danger: #ff7777;
 
-            background: #ffffff;
-            color: var(--contact-text);
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            font-family: inherit;
         }
 
-        .contact-page * {
+        .contact-page *,
+        .contact-page *::before,
+        .contact-page *::after {
             box-sizing: border-box;
         }
 
-        .contact-page a {
-            transition: color 0.2s ease,
-                        background 0.2s ease,
-                        transform 0.2s ease,
-                        box-shadow 0.2s ease;
+        .contact-page a,
+        .contact-page button,
+        .contact-page input,
+        .contact-page select,
+        .contact-page textarea {
+            font: inherit;
         }
 
-        /* NAVIGATION */
+        .contact-page a {
+            transition:
+                color .25s ease,
+                background .25s ease,
+                border-color .25s ease,
+                transform .25s ease,
+                box-shadow .25s ease;
+        }
+
+        .contact-page .container {
+            width: min(1180px, 90%);
+            margin: 0 auto;
+        }
+
+        /* ================= NAVIGATION ================= */
 
         .contact-page .site-header {
             position: sticky;
             top: 0;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.96);
-            border-bottom: 1px solid var(--contact-border);
-            backdrop-filter: blur(14px);
+            background: rgba(5, 11, 22, .92);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
         }
 
         .contact-page .navbar {
-            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 82px;
+            gap: 20px;
         }
 
         .contact-page .logo {
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            color: var(--contact-navy);
-            text-decoration: none;
+            color: var(--text);
+            font-size: 16px;
             font-weight: 800;
+            text-decoration: none;
+            white-space: nowrap;
         }
 
         .contact-page .logo-image {
-            width: 54px;
-            height: 54px;
+            width: 49px;
+            height: 49px;
             object-fit: contain;
-            border-radius: 10px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .contact-page .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
         }
 
         .contact-page .nav-links a {
-            color: var(--contact-text);
+            position: relative;
+            padding: 9px 0;
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 650;
             text-decoration: none;
-            font-weight: 600;
         }
 
         .contact-page .nav-links a:hover,
         .contact-page .nav-links a.active {
-            color: var(--contact-blue);
+            color: var(--cyan);
         }
 
         .contact-page .nav-links a.active::after {
-            background: var(--contact-blue);
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            border-radius: 5px;
+            background: var(--cyan);
+            box-shadow: 0 0 12px rgba(53, 213, 245, .6);
         }
 
-        /* PAGE INTRODUCTION */
+        /* ================= HERO ================= */
 
         .contact-page .contact-hero {
             position: relative;
             isolation: isolate;
             overflow: hidden;
-            padding: 66px 0 54px;
+            padding: 100px 0 85px;
             background:
                 radial-gradient(
-                    circle at 90% 10%,
-                    rgba(18, 104, 232, 0.12),
-                    transparent 34%
+                    ellipse at 85% 15%,
+                    rgba(22, 119, 255, .20),
+                    transparent 38%
                 ),
-                linear-gradient(135deg, #ffffff 0%, #f3f8ff 100%);
+                radial-gradient(
+                    ellipse at 10% 100%,
+                    rgba(53, 213, 245, .09),
+                    transparent 38%
+                ),
+                linear-gradient(135deg, #050b16, #0a1930);
         }
 
-        .contact-page .contact-hero::after {
+        .contact-page .contact-hero::before {
             content: "";
             position: absolute;
             z-index: -1;
-            right: -70px;
-            bottom: -160px;
-            width: 350px;
-            height: 350px;
-            border: 42px solid rgba(18, 104, 232, 0.07);
+            width: 450px;
+            height: 450px;
+            top: -270px;
+            right: -100px;
+            border: 1px solid rgba(53, 213, 245, .14);
             border-radius: 50%;
+            box-shadow:
+                0 0 0 35px rgba(53, 213, 245, .025),
+                0 0 0 75px rgba(53, 213, 245, .02);
         }
 
         .contact-page .contact-hero-inner {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) 170px;
+            grid-template-columns: minmax(0, 1fr) 180px;
             align-items: center;
-            gap: 35px;
+            gap: 50px;
         }
 
         .contact-page .eyebrow {
-            color: var(--contact-blue);
-            font-size: 12px;
-            font-weight: 800;
+            margin: 0 0 17px;
+            color: var(--cyan);
+            font-size: 11px;
+            font-weight: 850;
             letter-spacing: 3px;
-            margin: 0 0 15px;
+            text-transform: uppercase;
         }
 
         .contact-page .contact-hero h1 {
-            max-width: 780px;
-            margin: 0 0 18px;
-            color: var(--contact-navy);
-            font-size: clamp(36px, 5vw, 58px);
+            max-width: 800px;
+            margin: 0 0 23px;
+            color: var(--text);
+            font-size: clamp(39px, 5.5vw, 68px);
             font-weight: 850;
             line-height: 1.08;
-            letter-spacing: -1.8px;
+            letter-spacing: -2.5px;
         }
 
         .contact-page .contact-hero h1 span {
-            color: var(--contact-blue);
+            display: inline-block;
+            color: var(--cyan);
+            background: linear-gradient(
+                100deg,
+                #35d5f5,
+                #1677ff 75%,
+                #d8b66b
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .contact-page .contact-hero-description {
             max-width: 700px;
             margin: 0;
-            color: var(--contact-muted);
-            font-size: 17px;
-            line-height: 1.8;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.9;
         }
 
-        /* BLUE SHIELD BRAND ICON */
+        /* ================= SHIELD ICON ================= */
 
         .contact-page .shield-icon {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 140px;
-            height: 140px;
+            width: 150px;
+            height: 150px;
             margin: auto;
-            border: 1px solid rgba(18, 104, 232, 0.15);
-            border-radius: 34px;
-            background: linear-gradient(145deg, #ffffff, #e7f2ff);
-            box-shadow: 0 18px 45px rgba(18, 104, 232, 0.13);
+            border: 1px solid rgba(53, 213, 245, .25);
+            border-radius: 36px;
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(22, 119, 255, .18),
+                    rgba(12, 26, 45, .85)
+                );
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, .25),
+                0 0 45px rgba(22, 119, 255, .12),
+                inset 0 1px 0 rgba(255, 255, 255, .08);
         }
 
         .contact-page .shield-icon svg {
-            width: 76px;
-            height: 76px;
             display: block;
+            width: 82px;
+            height: 82px;
+            filter: drop-shadow(0 0 15px rgba(53, 213, 245, .3));
         }
 
-        /* MAIN CONTACT SECTION */
+        /* ================= MAIN SECTION ================= */
 
         .contact-page .contact-section {
-            padding: 55px 0 65px;
-            background: #ffffff;
+            position: relative;
+            padding: 85px 0 95px;
+            background:
+                radial-gradient(
+                    ellipse at 0% 40%,
+                    rgba(22, 119, 255, .055),
+                    transparent 35%
+                ),
+                var(--bg);
         }
 
         .contact-page .contact-layout {
             display: grid;
-            grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+            grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
             align-items: start;
-            gap: 28px;
+            gap: 30px;
         }
 
-        /* LEFT INFORMATION CARD */
+        /* ================= INFORMATION CARD ================= */
 
         .contact-page .contact-info {
             position: relative;
+            isolation: isolate;
             overflow: hidden;
-            padding: 34px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 24px;
+            padding: 38px;
+            border: 1px solid rgba(53, 213, 245, .17);
+            border-radius: 25px;
             background:
                 radial-gradient(
                     circle at 100% 0%,
-                    rgba(18, 104, 232, 0.38),
-                    transparent 38%
+                    rgba(22, 119, 255, .25),
+                    transparent 40%
                 ),
-                linear-gradient(145deg, #0d1b36, #142d50);
-            color: #ffffff;
-            box-shadow: 0 18px 45px rgba(13, 27, 54, 0.12);
+                linear-gradient(145deg, #0d2038, #081426);
+            box-shadow: 0 25px 65px rgba(0, 0, 0, .22);
+        }
+
+        .contact-page .contact-info::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            width: 230px;
+            height: 230px;
+            right: -150px;
+            bottom: -150px;
+            border: 1px solid rgba(53, 213, 245, .15);
+            border-radius: 50%;
+            box-shadow: 0 0 0 25px rgba(53, 213, 245, .025);
         }
 
         .contact-page .contact-info .eyebrow {
-            color: #70b6ff;
+            color: var(--cyan);
         }
 
         .contact-page .contact-info h2 {
-            margin: 0 0 15px;
-            color: #ffffff;
-            font-size: 29px;
+            margin: 0 0 16px;
+            color: var(--text);
+            font-size: 30px;
+            font-weight: 800;
             line-height: 1.2;
-            letter-spacing: -0.6px;
+            letter-spacing: -.8px;
         }
 
         .contact-page .contact-info > p:not(.eyebrow) {
-            margin: 0 0 26px;
-            color: #d1deef;
-            line-height: 1.8;
-            font-size: 15px;
+            margin: 0 0 28px;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.9;
         }
 
         .contact-page .contact-info-item {
             display: flex;
-            gap: 14px;
             align-items: flex-start;
-            padding: 18px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.13);
-        }
-
-        .contact-page .contact-info-item:last-child {
-            padding-bottom: 0;
+            gap: 15px;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, .09);
         }
 
         .contact-page .contact-info-symbol {
             display: flex;
-            flex: 0 0 42px;
+            flex: 0 0 45px;
             align-items: center;
             justify-content: center;
-            width: 42px;
-            height: 42px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 13px;
-            background: rgba(255, 255, 255, 0.08);
-            color: #76b8ff;
-            font-size: 20px;
+            width: 45px;
+            height: 45px;
+            border: 1px solid rgba(53, 213, 245, .2);
+            border-radius: 14px;
+            background: rgba(53, 213, 245, .07);
+            color: var(--cyan);
+            font-size: 19px;
         }
 
         .contact-page .contact-info-item h3 {
-            margin: 1px 0 6px;
-            color: #ffffff;
-            font-size: 15px;
-            font-weight: 750;
+            margin: 2px 0 7px;
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 800;
         }
 
         .contact-page .contact-info-item p {
             margin: 0;
-            color: #d1deef;
-            font-size: 14px;
-            line-height: 1.7;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.8;
             overflow-wrap: anywhere;
         }
 
@@ -274,63 +372,72 @@
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-top: 12px;
+            margin-top: 13px;
         }
 
         .contact-page .service-tags span {
             display: inline-block;
-            padding: 7px 10px;
-            border: 1px solid rgba(255, 255, 255, 0.16);
+            padding: 8px 11px;
+            border: 1px solid rgba(53, 213, 245, .16);
             border-radius: 30px;
-            background: rgba(255, 255, 255, 0.08);
-            color: #e7f1ff;
-            font-size: 12px;
+            background: rgba(53, 213, 245, .055);
+            color: #ccefff;
+            font-size: 11px;
+            font-weight: 650;
         }
 
-        /* RIGHT FORM CARD */
+        /* ================= FORM CARD ================= */
 
         .contact-page .contact-form-wrapper {
-            padding: 34px;
-            border: 1px solid var(--contact-border);
-            border-radius: 24px;
-            background: #ffffff;
-            box-shadow: 0 15px 45px rgba(22, 48, 84, 0.07);
+            padding: 38px;
+            border: 1px solid var(--border);
+            border-radius: 25px;
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(16, 35, 59, .96),
+                    rgba(8, 20, 38, .98)
+                );
+            box-shadow:
+                0 25px 65px rgba(0, 0, 0, .22),
+                inset 0 1px 0 rgba(255, 255, 255, .035);
         }
 
         .contact-page .form-heading {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .contact-page .form-heading h2 {
-            margin: 0 0 10px;
-            color: var(--contact-navy);
-            font-size: 27px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
+            margin: 0 0 11px;
+            color: var(--text);
+            font-size: 28px;
+            font-weight: 850;
+            letter-spacing: -.8px;
         }
 
-        .contact-page .form-heading p {
+        .contact-page .form-heading p:not(.eyebrow) {
             margin: 0;
-            color: var(--contact-muted);
-            font-size: 14px;
-            line-height: 1.7;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.8;
         }
 
         .contact-page .form-group {
-            margin-bottom: 19px;
+            min-width: 0;
+            margin-bottom: 20px;
         }
 
         .contact-page .form-row {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 16px;
+            gap: 17px;
         }
 
         .contact-page .form-group label {
             display: block;
-            margin-bottom: 8px;
-            color: var(--contact-navy);
-            font-size: 13px;
+            margin-bottom: 9px;
+            color: #dce9fa;
+            font-size: 12px;
             font-weight: 750;
         }
 
@@ -340,292 +447,433 @@
             display: block;
             width: 100%;
             min-width: 0;
-            padding: 13px 14px;
-            border: 1px solid #d9e3ef;
+            padding: 14px 15px;
+            border: 1px solid rgba(148, 181, 222, .19);
             border-radius: 11px;
             outline: none;
-            background: #fbfdff;
-            color: var(--contact-text);
-            font: inherit;
-            font-size: 14px;
-            transition: border-color 0.2s ease,
-                        box-shadow 0.2s ease,
-                        background 0.2s ease;
+            background: #071426;
+            color: var(--text);
+            font-size: 13px;
+            line-height: 1.5;
+            transition:
+                border-color .25s ease,
+                box-shadow .25s ease,
+                background .25s ease;
         }
 
         .contact-page .form-group input,
         .contact-page .form-group select {
-            min-height: 48px;
+            min-height: 50px;
         }
 
         .contact-page .form-group textarea {
-            min-height: 135px;
+            min-height: 145px;
             resize: vertical;
-            line-height: 1.7;
         }
 
         .contact-page .form-group input:focus,
         .contact-page .form-group select:focus,
         .contact-page .form-group textarea:focus {
-            border-color: var(--contact-blue);
-            background: #ffffff;
-            box-shadow: 0 0 0 4px rgba(18, 104, 232, 0.09);
+            border-color: var(--cyan);
+            background: #091a30;
+            box-shadow: 0 0 0 4px rgba(53, 213, 245, .09);
         }
 
         .contact-page .form-group input::placeholder,
         .contact-page .form-group textarea::placeholder {
-            color: #8b98a9;
+            color: #71849e;
+            opacity: 1;
         }
 
+        .contact-page .form-group select {
+            color-scheme: dark;
+            cursor: pointer;
+        }
+
+        .contact-page .form-group option {
+            background: #0c1a2d;
+            color: var(--text);
+        }
+
+        /* ================= SUBMIT BUTTON ================= */
+
         .contact-page .contact-submit {
-            display: inline-flex;
+            display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             width: 100%;
-            min-height: 52px;
-            padding: 14px 20px;
-            border: 0;
+            min-height: 55px;
+            padding: 15px 22px;
+            border: 1px solid rgba(53, 213, 245, .35);
             border-radius: 12px;
-            background: linear-gradient(
-                120deg,
-                var(--contact-blue),
-                var(--contact-blue-dark)
-            );
+            background: linear-gradient(110deg, #1677ff, #0753c7);
             color: #ffffff;
-            font-size: 15px;
-            font-weight: 800;
+            font-size: 14px;
+            font-weight: 850;
             cursor: pointer;
-            box-shadow: 0 9px 22px rgba(18, 104, 232, 0.2);
+            box-shadow: 0 10px 30px rgba(22, 119, 255, .2);
+        }
+
+        .contact-page .contact-submit span {
+            font-size: 19px;
+            transition: transform .25s ease;
         }
 
         .contact-page .contact-submit:hover {
             transform: translateY(-2px);
-            box-shadow: 0 13px 27px rgba(18, 104, 232, 0.27);
+            box-shadow: 0 14px 35px rgba(22, 119, 255, .32);
+        }
+
+        .contact-page .contact-submit:hover span {
+            transform: translateX(5px);
+        }
+
+        .contact-page .contact-submit:focus-visible,
+        .contact-page a:focus-visible {
+            outline: 3px solid var(--cyan);
+            outline-offset: 4px;
         }
 
         .contact-page .form-note {
-            margin: 13px 0 0;
-            color: var(--contact-muted);
-            font-size: 12px;
-            line-height: 1.6;
-            text-align: center;
-        }
-
-        .contact-page #formStatus {
-            margin: 14px 0 0;
-            color: var(--contact-blue-dark);
-            font-size: 13px;
+            margin: 15px 0 0;
+            color: var(--muted);
+            font-size: 11px;
             line-height: 1.7;
-            overflow-wrap: anywhere;
+            text-align: center;
         }
 
         .contact-page #formStatus:empty {
             display: none;
         }
 
-        /* BOTTOM CTA */
+        .contact-page #formStatus {
+            margin: 14px 0 0;
+            color: var(--cyan);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        /* ================= FORM FEEDBACK ================= */
+
+        .contact-page .form-success,
+        .contact-page .form-error {
+            margin: 17px 0 0;
+            padding: 13px 15px;
+            border-radius: 10px;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .contact-page .form-success {
+            border: 1px solid rgba(53, 212, 154, .25);
+            background: rgba(53, 212, 154, .09);
+            color: #79edbd;
+        }
+
+        .contact-page .form-error {
+            border: 1px solid rgba(255, 119, 119, .25);
+            background: rgba(255, 119, 119, .08);
+            color: #ffaaaa;
+        }
+
+        /* ================= PREMIUM WHATSAPP BUTTON ================= */
+
+        .contact-page .whatsapp-contact {
+            width: 100%;
+            margin-top: 25px;
+        }
+
+        .contact-page .whatsapp-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+            min-height: 105px;
+            padding: 18px 22px;
+            border: 2px solid #20f879;
+            border-radius: 20px;
+            background: linear-gradient(
+                115deg,
+                #00a83f,
+                #00d45b,
+                #009c42
+            );
+            color: #ffffff;
+            text-decoration: none;
+            box-shadow:
+                0 0 12px rgba(0, 255, 100, .45),
+                0 0 30px rgba(0, 255, 100, .25),
+                inset 0 1px 0 rgba(255, 255, 255, .2);
+            transition: all .3s ease;
+        }
+
+        .contact-page .whatsapp-button:hover {
+            transform: translateY(-4px);
+            background: linear-gradient(
+                115deg,
+                #00bd4c,
+                #00e66a
+            );
+            box-shadow:
+                0 0 18px rgba(0, 255, 100, .65),
+                0 0 42px rgba(0, 255, 100, .35);
+        }
+
+        .contact-page .whatsapp-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            width: 76px;
+            height: 76px;
+        }
+
+        .contact-page .whatsapp-icon svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .contact-page .whatsapp-divider {
+            width: 2px;
+            height: 65px;
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, .85);
+        }
+
+        .contact-page .whatsapp-text {
+            color: #ffffff;
+            font-size: clamp(17px, 2vw, 25px);
+            font-weight: 850;
+            line-height: 1.3;
+            text-align: center;
+        }
+
+        /* ================= BOTTOM CTA ================= */
 
         .contact-page .contact-bottom-cta {
-            padding: 35px 0;
-            background: var(--contact-light);
-            border-top: 1px solid #e8f0fb;
+            position: relative;
+            overflow: hidden;
+            padding: 55px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background:
+                radial-gradient(
+                    ellipse at 90% 50%,
+                    rgba(22, 119, 255, .16),
+                    transparent 40%
+                ),
+                #081426;
         }
 
         .contact-page .contact-bottom-inner {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 24px;
+            gap: 30px;
         }
 
         .contact-page .contact-bottom-cta .eyebrow {
-            margin-bottom: 9px;
+            margin-bottom: 10px;
         }
 
         .contact-page .contact-bottom-cta h2 {
-            margin: 0 0 9px;
-            color: var(--contact-navy);
-            font-size: clamp(23px, 3vw, 32px);
-            line-height: 1.25;
+            margin: 0 0 12px;
+            color: var(--text);
+            font-size: clamp(24px, 3vw, 35px);
+            font-weight: 850;
+            letter-spacing: -.8px;
         }
 
         .contact-page .contact-bottom-cta p:not(.eyebrow) {
             max-width: 650px;
             margin: 0;
-            color: var(--contact-muted);
-            font-size: 14px;
-            line-height: 1.7;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.8;
         }
 
         .contact-page .contact-bottom-cta .btn {
-            flex-shrink: 0;
             display: inline-flex;
+            flex-shrink: 0;
             align-items: center;
             justify-content: center;
-            min-height: 48px;
-            padding: 12px 20px;
-            border: 1px solid var(--contact-blue);
+            gap: 10px;
+            min-height: 50px;
+            padding: 13px 22px;
+            border: 1px solid rgba(53, 213, 245, .3);
             border-radius: 11px;
-            background: var(--contact-blue);
+            background: linear-gradient(110deg, #1677ff, #0753c7);
             color: #ffffff;
-            font-weight: 750;
+            font-size: 13px;
+            font-weight: 800;
             text-decoration: none;
         }
 
         .contact-page .contact-bottom-cta .btn:hover {
-            background: var(--contact-blue-dark);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(22, 119, 255, .22);
         }
 
-        /* COMPACT FOOTER */
+        /* ================= FOOTER ================= */
 
         .contact-page .site-footer {
-            padding: 22px 0 14px;
-            border-top: 0;
-            background: #ffffff;
+            padding: 35px 0 20px;
+            border-top: 1px solid var(--border);
+            background: #040914;
         }
 
         .contact-page .footer-content {
             display: grid;
             grid-template-columns: 1fr auto;
             align-items: center;
-            gap: 12px 25px;
+            gap: 20px 30px;
         }
 
         .contact-page .footer-content h3 {
-            margin: 0 0 5px;
-            color: var(--contact-navy);
+            margin: 0 0 8px;
+            color: var(--text);
             font-size: 16px;
-            font-weight: 800;
+            font-weight: 850;
         }
 
         .contact-page .footer-content p {
             margin: 0;
-            color: var(--contact-muted);
+            color: var(--muted);
             font-size: 12px;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         .contact-page .footer-links {
             display: flex;
             flex-wrap: wrap;
             justify-content: flex-end;
-            gap: 16px;
+            gap: 22px;
         }
 
         .contact-page .footer-links a {
-            color: var(--contact-muted);
+            color: var(--muted);
             font-size: 12px;
             font-weight: 650;
             text-decoration: none;
         }
 
         .contact-page .footer-links a:hover {
-            color: var(--contact-blue);
+            color: var(--cyan);
         }
 
         .contact-page .footer-content .copyright {
             grid-column: 1 / -1;
-            padding-top: 12px;
-            border-top: 1px solid #edf1f6;
-            text-align: center;
+            padding-top: 18px;
+            border-top: 1px solid var(--border);
+            color: #71849e;
             font-size: 11px;
+            text-align: center;
         }
 
-        /* TABLET */
+        /* ================= TABLET ================= */
 
         @media (max-width: 900px) {
+
             .contact-page .contact-layout {
                 grid-template-columns: 1fr;
-                gap: 22px;
+                gap: 25px;
             }
 
-            .contact-page .contact-info {
-                padding: 28px;
+            .contact-page .contact-info,
+            .contact-page .contact-form-wrapper {
+                padding: 32px;
             }
 
             .contact-page .contact-hero-inner {
-                grid-template-columns: minmax(0, 1fr) 120px;
-                gap: 22px;
+                grid-template-columns: minmax(0, 1fr) 130px;
+                gap: 25px;
             }
 
             .contact-page .shield-icon {
-                width: 110px;
-                height: 110px;
-                border-radius: 27px;
+                width: 115px;
+                height: 115px;
+                border-radius: 28px;
             }
 
             .contact-page .shield-icon svg {
-                width: 62px;
-                height: 62px;
+                width: 65px;
+                height: 65px;
             }
         }
 
-        /* MOBILE */
+        /* ================= MOBILE ================= */
 
         @media (max-width: 600px) {
+
+            .contact-page .container {
+                width: min(100% - 34px, 520px);
+            }
+
             .contact-page .navbar {
-                gap: 12px;
+                min-height: 72px;
+                gap: 10px;
             }
 
             .contact-page .logo {
                 gap: 8px;
-                font-size: 13px;
-            }
-
-            .contact-page .logo-image {
-                width: 42px;
-                height: 42px;
-            }
-
-            .contact-page .nav-links {
-                gap: 13px;
-            }
-
-            .contact-page .nav-links a {
                 font-size: 12px;
             }
 
+            .contact-page .logo-image {
+                width: 39px;
+                height: 39px;
+            }
+
+            .contact-page .nav-links {
+                gap: 12px;
+            }
+
+            .contact-page .nav-links a {
+                font-size: 11px;
+            }
+
             .contact-page .contact-hero {
-                padding: 40px 0 35px;
+                padding: 58px 0 48px;
             }
 
             .contact-page .contact-hero-inner {
                 grid-template-columns: 1fr;
-                gap: 22px;
+                gap: 27px;
             }
 
             .contact-page .contact-hero h1 {
-                font-size: clamp(34px, 9vw, 46px);
-                letter-spacing: -1px;
+                font-size: clamp(36px, 9vw, 48px);
+                letter-spacing: -1.4px;
             }
 
             .contact-page .contact-hero-description {
-                font-size: 15px;
-                line-height: 1.7;
+                font-size: 14px;
+                line-height: 1.8;
             }
 
             .contact-page .shield-icon {
-                width: 76px;
-                height: 76px;
+                width: 78px;
+                height: 78px;
                 margin: 0;
                 border-radius: 21px;
             }
 
             .contact-page .shield-icon svg {
-                width: 44px;
-                height: 44px;
+                width: 45px;
+                height: 45px;
             }
 
             .contact-page .contact-section {
-                padding: 32px 0 40px;
+                padding: 45px 0 55px;
             }
 
             .contact-page .contact-info,
             .contact-page .contact-form-wrapper {
-                padding: 23px 19px;
-                border-radius: 18px;
+                padding: 25px 20px;
+                border-radius: 19px;
             }
 
             .contact-page .contact-info h2,
@@ -639,13 +887,13 @@
             }
 
             .contact-page .contact-bottom-cta {
-                padding: 28px 0;
+                padding: 38px 0;
             }
 
             .contact-page .contact-bottom-inner {
                 align-items: flex-start;
                 flex-direction: column;
-                gap: 18px;
+                gap: 20px;
             }
 
             .contact-page .footer-content {
@@ -655,56 +903,142 @@
 
             .contact-page .footer-links {
                 justify-content: center;
-                gap: 12px;
+                gap: 15px;
             }
 
             .contact-page .footer-content .copyright {
                 grid-column: auto;
             }
+
+            .contact-page .whatsapp-button {
+                min-height: 82px;
+                gap: 12px;
+                padding: 12px;
+                border-radius: 16px;
+            }
+
+            .contact-page .whatsapp-icon {
+                width: 53px;
+                height: 53px;
+            }
+
+            .contact-page .whatsapp-divider {
+                height: 45px;
+            }
+
+            .contact-page .whatsapp-text {
+                font-size: 14px;
+            }
         }
+
+        /* ================= SMALL PHONES ================= */
+
+        @media (max-width: 380px) {
+
+            .contact-page .logo {
+                font-size: 11px;
+            }
+
+            .contact-page .nav-links {
+                gap: 9px;
+            }
+
+            .contact-page .nav-links a {
+                font-size: 10px;
+            }
+
+            .contact-page .contact-info,
+            .contact-page .contact-form-wrapper {
+                padding: 21px 16px;
+            }
+
+            .contact-page .whatsapp-button {
+                gap: 8px;
+                padding: 10px;
+            }
+
+            .contact-page .whatsapp-icon {
+                width: 46px;
+                height: 46px;
+            }
+
+            .contact-page .whatsapp-text {
+                font-size: 12px;
+            }
+        }
+
+        /* ================= REDUCED MOTION ================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .contact-page *,
+            .contact-page *::before,
+            .contact-page *::after {
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
+                animation-duration: .01ms !important;
+            }
+        }
+
     </style>
+
 </head>
 
 <body class="contact-page">
 
     <!-- NAVIGATION -->
+
     <header class="site-header">
+
         <div class="container">
 
-            <nav class="navbar">
+            <nav class="navbar" aria-label="Main navigation">
 
-                <a href="/" class="logo">
+                <a href="{{ url_for('home') }}" class="logo">
+
                     <img
                         src="{{ url_for('static', filename='image/MIF_Logo.jpeg') }}"
                         alt="MIF Digital Solutions logo"
                         class="logo-image"
                     >
+
                     <span>MIF Digital Solutions</span>
+
                 </a>
 
                 <div class="nav-links">
-                    <a href="/">Home</a>
-                    <a href="/services">Services</a>
-                    <a href="/about">About</a>
-                    <a href="/contact" class="active" aria-current="page">
+
+                    <a href="{{ url_for('home') }}">Home</a>
+
+                    <a href="{{ url_for('services') }}">Services</a>
+
+                    <a href="{{ url_for('about') }}">About</a>
+
+                    <a href="{{ url_for('contact') }}"
+                       class="active"
+                       aria-current="page">
                         Contact
                     </a>
+
                 </div>
 
             </nav>
 
         </div>
+
     </header>
 
 
     <main>
 
         <!-- CONTACT HERO -->
+
         <section class="contact-hero">
 
             <div class="container contact-hero-inner">
 
                 <div>
+
                     <p class="eyebrow">LET'S TALK TECHNOLOGY</p>
 
                     <h1>
@@ -712,22 +1046,28 @@
                     </h1>
 
                     <p class="contact-hero-description">
-                        Whether you're planning a website, mobile app,
-                        AI solution, chatbot or cybersecurity project,
-                        tell us what you need. Let's explore a practical
-                        solution for your business.
+                        Great solutions begin with the right conversation.
+                        Whether you need a website, mobile application,
+                        AI-powered solution, chatbot, cybersecurity service
+                        or business automation, let's discuss how technology
+                        can move your idea forward.
                     </p>
+
                 </div>
 
+
                 <!-- MIF BLUE SHIELD -->
-                <div class="shield-icon" aria-label="MIF security shield">
+
+                <div class="shield-icon">
 
                     <svg
                         viewBox="0 0 100 100"
                         role="img"
-                        aria-label="Blue protection shield"
+                        aria-label="MIF protection shield"
                     >
+
                         <defs>
+
                             <linearGradient
                                 id="mifShieldGradient"
                                 x1="0"
@@ -735,9 +1075,10 @@
                                 x2="1"
                                 y2="1"
                             >
-                                <stop offset="0%" stop-color="#39b6ff"/>
+                                <stop offset="0%" stop-color="#35d5f5"/>
                                 <stop offset="100%" stop-color="#0753d6"/>
                             </linearGradient>
+
                         </defs>
 
                         <path
@@ -752,7 +1093,7 @@
                             fill="none"
                             stroke="#ffffff"
                             stroke-width="3"
-                            opacity="0.85"
+                            opacity=".85"
                         />
 
                         <path
@@ -768,10 +1109,11 @@
                             cx="78"
                             cy="21"
                             r="8"
-                            fill="#12a985"
+                            fill="#12c995"
                             stroke="#ffffff"
                             stroke-width="3"
                         />
+
                     </svg>
 
                 </div>
@@ -782,13 +1124,15 @@
 
 
         <!-- CONTACT DETAILS AND FORM -->
+
         <section class="contact-section">
 
             <div class="container">
 
                 <div class="contact-layout">
 
-                    <!-- LEFT: BUSINESS INFORMATION -->
+                    <!-- BUSINESS INFORMATION -->
+
                     <aside class="contact-info">
 
                         <p class="eyebrow">GET IN TOUCH</p>
@@ -796,10 +1140,11 @@
                         <h2>How Can We Help?</h2>
 
                         <p>
-                            Every good solution starts with understanding
-                            the problem. Tell us about your goals, challenges
-                            or idea, and we'll use your enquiry to understand
-                            what you need.
+                            We work towards practical technology solutions
+                            that address real needs. Share your idea,
+                            requirements or business challenge with us.
+                            We'll review your enquiry and identify a suitable
+                            next step.
                         </p>
 
 
@@ -838,21 +1183,23 @@
                             </div>
 
                             <div>
-                                <h3>What We Do</h3>
+
+                                <h3>Our Expertise</h3>
 
                                 <p>
-                                    Practical technology solutions for
-                                    businesses, startups and individuals.
+                                    Technology solutions for businesses,
+                                    startups and individuals.
                                 </p>
 
                                 <div class="service-tags">
-                                    <span>Websites</span>
+                                    <span>Web Development</span>
                                     <span>Mobile Apps</span>
-                                    <span>AI Solutions</span>
+                                    <span>Artificial Intelligence</span>
                                     <span>Chatbots</span>
                                     <span>Cybersecurity</span>
                                     <span>Automation</span>
                                 </div>
+
                             </div>
 
                         </div>
@@ -865,11 +1212,15 @@
                             </div>
 
                             <div>
+
                                 <h3>Our Approach</h3>
+
                                 <p>
-                                    Understand your needs, plan carefully
-                                    and work towards a practical solution.
+                                    Understand the challenge, plan the solution,
+                                    build with purpose and focus on practical
+                                    results.
                                 </p>
+
                             </div>
 
                         </div>
@@ -877,7 +1228,8 @@
                     </aside>
 
 
-                    <!-- RIGHT: PROJECT ENQUIRY FORM -->
+                    <!-- PROJECT ENQUIRY FORM -->
+
                     <div class="contact-form-wrapper">
 
                         <div class="form-heading">
@@ -887,19 +1239,25 @@
                             <h2>Tell Us About Your Project</h2>
 
                             <p>
-                                Complete the form below with a few details
-                                about your requirements.
+                                Give us a few details so we can better
+                                understand your requirements.
                             </p>
 
                         </div>
 
 
-                        <form id="contactForm" method="POST" action="{{ url_for('contact') }}">
+                        <form
+                            id="contactForm"
+                            method="POST"
+                            action="{{ url_for('contact') }}"
+                        >
 
                             <!-- NAME AND EMAIL -->
+
                             <div class="form-row">
 
                                 <div class="form-group">
+
                                     <label for="name">Full Name *</label>
 
                                     <input
@@ -911,10 +1269,12 @@
                                         maxlength="100"
                                         required
                                     >
+
                                 </div>
 
 
                                 <div class="form-group">
+
                                     <label for="email">Email Address *</label>
 
                                     <input
@@ -926,19 +1286,24 @@
                                         maxlength="150"
                                         required
                                     >
+
                                 </div>
 
                             </div>
 
 
                             <!-- SERVICE AND BUDGET -->
+
                             <div class="form-row">
 
                                 <div class="form-group">
+
                                     <label for="service">Service Required *</label>
 
                                     <select id="service" name="service" required>
+
                                         <option value="">Choose a service</option>
+
                                         <option>Website Development</option>
                                         <option>Android App Development</option>
                                         <option>iPhone App Development</option>
@@ -949,28 +1314,38 @@
                                         <option>Web Applications and Software</option>
                                         <option>IT Setup and Technical Support</option>
                                         <option>Other</option>
+
                                     </select>
+
                                 </div>
 
 
                                 <div class="form-group">
+
                                     <label for="budget">Estimated Budget</label>
 
                                     <select id="budget" name="budget">
-                                        <option value="">Choose a range (optional)</option>
+
+                                        <option value="">
+                                            Choose a range (optional)
+                                        </option>
+
                                         <option>Below ₦100,000</option>
                                         <option>₦100,000 – ₦300,000</option>
                                         <option>₦300,000 – ₦500,000</option>
                                         <option>₦500,000 – ₦1,000,000</option>
                                         <option>Above ₦1,000,000</option>
                                         <option>Not sure yet</option>
+
                                     </select>
+
                                 </div>
 
                             </div>
 
 
-                            <!-- PROJECT MESSAGE -->
+                            <!-- PROJECT DETAILS -->
+
                             <div class="form-group">
 
                                 <label for="message">Project Details *</label>
@@ -980,63 +1355,144 @@
                                     name="message"
                                     rows="5"
                                     maxlength="5000"
-                                    placeholder="Describe what you want to build, the problem you want to solve, or the improvement you need..."
+                                    placeholder="Describe your project, the problem you want to solve, your goals or the improvements you need..."
                                     required
                                 ></textarea>
 
                             </div>
 
 
+                            <!-- SUBMIT -->
+
                             <button type="submit" class="contact-submit">
-                                Prepare Project Enquiry <span aria-hidden="true">→</span>
+
+                                Send Project Enquiry
+
+                                <span aria-hidden="true">→</span>
+
                             </button>
-<p id="formStatus" role="status" aria-live="polite"></p>
+
+
+                            <p
+                                id="formStatus"
+                                role="status"
+                                aria-live="polite"
+                            ></p>
+
+
                             <p class="form-note">
-    Your enquiry will be sent securely to MIF Digital Solutions.
-    We will review your project details and get back to you.
-</p>
+                                Your enquiry will be sent securely to
+                                MIF Digital Solutions. We will review your
+                                project details and get back to you.
+                            </p>
+
+
+                            <!-- FLASK SERVER RESPONSE -->
 
                             {% if status == "success" %}
-    <p class="form-success" role="status" aria-live="polite">
-        Thank you! Your enquiry has been sent successfully.
-        We'll review your project details.
-    </p>
 
-{% elif status == "missing_fields" %}
-    <p class="form-error" role="alert">
-        Please complete all required fields and try again.
-    </p>
+                                <p class="form-success"
+                                   role="status"
+                                   aria-live="polite">
 
-{% elif status == "invalid_input" %}
-    <p class="form-error" role="alert">
-        Some information is too long. Please review your entries.
-    </p>
+                                    Thank you! Your enquiry has been sent
+                                    successfully. We'll review your project
+                                    details.
 
-{% elif status == "email_not_configured" %}
-    <p class="form-error" role="alert">
-        Our enquiry system is not fully configured yet.
-        Please contact us directly.
-    </p>
+                                </p>
 
-{% elif status == "send_failed" %}
-    <p class="form-error" role="alert">
-        We couldn't send your enquiry. Please try again later.
-    </p>
-{% endif %}
+                            {% elif status == "missing_fields" %}
+
+                                <p class="form-error" role="alert">
+
+                                    Please complete all required fields
+                                    and try again.
+
+                                </p>
+
+                            {% elif status == "invalid_input" %}
+
+                                <p class="form-error" role="alert">
+
+                                    Some information is too long.
+                                    Please review your entries.
+
+                                </p>
+
+                            {% elif status == "email_not_configured" %}
+
+                                <p class="form-error" role="alert">
+
+                                    Our enquiry system is not fully
+                                    configured yet. Please contact us directly.
+
+                                </p>
+
+                            {% elif status == "send_failed" %}
+
+                                <p class="form-error" role="alert">
+
+                                    We couldn't send your enquiry.
+                                    Please try again later.
+
+                                </p>
+
+                            {% endif %}
 
                         </form>
-<div class="whatsapp-contact">
-    <a
-        href="https://wa.me/2348128556446?text=Hello%20MIF%20Digital%20Solutions%2C%20I%27m%20interested%20in%20your%20services.%20Please%20provide%20more%20information."
-        target="_blank"
-        rel="noopener noreferrer"
-        class="whatsapp-button"
-        aria-label="Contact MIF Digital Solutions on WhatsApp"
-    >
-        <span aria-hidden="true">💬</span>
-        Chat with us on WhatsApp
-    </a>
-</div>
+
+
+                        <!-- PREMIUM WHATSAPP CONTACT -->
+
+                        <div class="whatsapp-contact">
+
+                            <a
+                                href="https://wa.me/2348128556446?text=Hello%20MIF%20Digital%20Solutions%2C%20I%27m%20interested%20in%20your%20services.%20Please%20provide%20more%20information."
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="whatsapp-button"
+                                aria-label="Chat with MIF Digital Solutions on WhatsApp"
+                            >
+
+                                <!-- LARGE WHATSAPP LOGO -->
+
+                                <span class="whatsapp-icon" aria-hidden="true">
+
+                                    <svg viewBox="0 0 48 48" fill="none">
+
+                                        <path
+                                            d="M24 3.5A20.3 20.3 0 0 0 6.7 34.4L4 44l9.9-2.6A20.3 20.3 0 1 0 24 3.5Z"
+                                            stroke="white"
+                                            stroke-width="3"
+                                            stroke-linejoin="round"
+                                        />
+
+                                        <path
+                                            d="M17.2 14.5c-.6-1.3-1.2-1.3-1.8-1.3h-1.5c-.5 0-1.3.2-2 1-.7.8-2.6 2.5-2.6 6.1s2.7 7.1 3.1 7.6c.4.5 5.2 8.3 12.8 11.3 6.3 2.5 7.6 2 9 1.9 1.4-.1 4.5-1.8 5.1-3.5.6-1.7.6-3.2.4-3.5-.2-.3-.7-.5-1.5-.9-.8-.4-4.5-2.2-5.2-2.4-.7-.3-1.2-.4-1.7.4-.5.8-2 2.4-2.4 2.9-.4.5-.9.6-1.7.2-.8-.4-3.3-1.2-6.2-3.8-2.3-2-3.8-4.5-4.2-5.3-.4-.8 0-1.2.3-1.6.4-.4.8-.9 1.2-1.4.4-.5.5-.8.8-1.3.3-.5.1-1-.1-1.4-.2-.4-1.7-4.1-2.3-5.5Z"
+                                            fill="white"
+                                        />
+
+                                    </svg>
+
+                                </span>
+
+
+                                <!-- VERTICAL DIVIDER -->
+
+                                <span class="whatsapp-divider"
+                                      aria-hidden="true"></span>
+
+
+                                <!-- BUTTON TEXT -->
+
+                                <span class="whatsapp-text">
+                                    Chat with us on WhatsApp
+                                </span>
+
+                            </a>
+
+                        </div>
+
                     </div>
 
                 </div>
@@ -1047,22 +1503,26 @@
 
 
         <!-- BOTTOM CALL TO ACTION -->
+
         <section class="contact-bottom-cta">
 
             <div class="container contact-bottom-inner">
 
                 <div>
+
                     <p class="eyebrow">BUILD. AUTOMATE. PROTECT.</p>
 
                     <h2>Have Another Question?</h2>
 
                     <p>
-                        Explore our technology services to find the right
-                        starting point for your next project.
+                        Explore our technology services and discover
+                        how MIF Digital Solutions can support your
+                        next business or technology project.
                     </p>
+
                 </div>
 
-                <a href="/services" class="btn">
+                <a href="{{ url_for('services') }}" class="btn">
                     Explore Our Services →
                 </a>
 
@@ -1074,29 +1534,39 @@
 
 
     <!-- FOOTER -->
+
     <footer class="site-footer">
 
         <div class="container footer-content">
 
             <div>
+
                 <h3>MIF Digital Solutions</h3>
 
                 <p>
                     Technology that solves real business problems.
                 </p>
+
             </div>
 
+
             <nav class="footer-links" aria-label="Footer navigation">
-                <a href="/">Home</a>
-                <a href="/services">Services</a>
-                <a href="/about">About</a>
-                <a href="/contact">Contact</a>
+
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('services') }}">Services</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('contact') }}">Contact</a>
+
             </nav>
+
 
             <p class="copyright">
                 © 2026 MIF Digital Solutions. All rights reserved.
             </p>
+
         </div>
+
     </footer>
+
 </body>
 </html>

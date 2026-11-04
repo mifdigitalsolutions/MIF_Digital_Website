@@ -1,516 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Explore MIF Digital Solutions services: website and software development, AI and automation, cybersecurity services, certification preparation, data analytics, web development training, and cybersecurity awareness programmes.">
-  <meta name="theme-color" content="#14213d">
-  <title>Services &amp; Training | MIF Digital Solutions</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <style>
-    :root {
-      --svc-ink: #172033;
-      --svc-ink-soft: #344054;
-      --svc-muted: #667085;
-      --svc-blue: #2563eb;
-      --svc-blue-dark: #1d4ed8;
-      --svc-blue-light: #eff6ff;
-      --svc-border: #e5eaf2;
-      --svc-surface: #ffffff;
-      --svc-soft: #f7f9fc;
-      --svc-green: #0f766e;
-      --svc-radius: 20px;
-      --svc-shadow: 0 14px 40px rgba(19, 35, 65, .07);
-    }
-
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; color: var(--svc-ink); background: #fff; }
-    .svc-page { overflow: hidden; }
-    .svc-container { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
-    .svc-section { padding: 88px 0; }
-    .svc-section--soft { background: var(--svc-soft); }
-    .svc-kicker { margin: 0 0 14px; color: var(--svc-blue); font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
-    .svc-heading { max-width: 780px; margin: 0 auto 16px; color: var(--svc-ink); font-size: clamp(30px, 4.3vw, 48px); font-weight: 800; line-height: 1.12; letter-spacing: -1.4px; }
-    .svc-intro { max-width: 760px; margin: 0 auto; color: var(--svc-muted); font-size: 16px; line-height: 1.8; }
-    .svc-section-head { margin: 0 auto 44px; text-align: center; }
-
-    /* Page header */
-    .svc-header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.96); border-bottom: 1px solid rgba(226,232,240,.9); backdrop-filter: blur(12px); }
-    .svc-header-inner { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-    .svc-brand { display: inline-flex; align-items: center; gap: 12px; min-width: 0; color: var(--svc-ink); font-weight: 800; text-decoration: none; }
-    .svc-brand img { display: block; width: 46px; height: 46px; object-fit: contain; border-radius: 8px; }
-    .svc-brand span { font-size: 16px; letter-spacing: -.2px; }
-    .svc-nav { display: flex; align-items: center; flex-wrap: wrap; gap: 26px; }
-    .svc-nav a { color: #475467; font-size: 14px; font-weight: 600; text-decoration: none; transition: color .2s ease; }
-    .svc-nav a:hover, .svc-nav a[aria-current="page"] { color: var(--svc-blue); }
-    .svc-nav .svc-nav-cta { padding: 11px 16px; border-radius: 10px; color: #fff; background: var(--svc-ink); }
-    .svc-nav .svc-nav-cta:hover { color: #fff; background: var(--svc-blue); }
-
-    /* Hero */
-    .svc-hero { position: relative; padding: 92px 0 82px; background: linear-gradient(135deg, #fbfcff 0%, #f3f7ff 58%, #fff 100%); }
-    .svc-hero::after { position: absolute; top: 44px; right: -95px; width: 320px; height: 320px; border: 1px solid #dbeafe; border-radius: 50%; content: ""; pointer-events: none; }
-    .svc-hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.13fr .87fr; align-items: center; gap: 68px; }
-    .svc-hero h1 { max-width: 700px; margin: 0 0 22px; color: var(--svc-ink); font-size: clamp(42px, 6vw, 68px); font-weight: 850; line-height: 1.03; letter-spacing: -2.2px; }
-    .svc-hero h1 span { color: var(--svc-blue); }
-    .svc-hero-copy { max-width: 610px; margin: 0; color: var(--svc-muted); font-size: 17px; line-height: 1.85; }
-    .svc-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
-    .svc-btn { display: inline-flex; justify-content: center; align-items: center; gap: 10px; min-height: 48px; padding: 13px 19px; border: 1px solid transparent; border-radius: 11px; font-size: 14px; font-weight: 750; text-decoration: none; transition: transform .2s ease, background .2s ease, border-color .2s ease; }
-    .svc-btn:hover { transform: translateY(-2px); }
-    .svc-btn--primary { color: #fff; background: var(--svc-blue); }
-    .svc-btn--primary:hover { color: #fff; background: var(--svc-blue-dark); }
-    .svc-btn--secondary { color: var(--svc-ink); background: #fff; border-color: #d8e0eb; }
-    .svc-btn--secondary:hover { border-color: #a7c5ff; }
-    .svc-hero-panel { position: relative; padding: 30px; border: 1px solid #e3eaf6; border-radius: 26px; background: rgba(255,255,255,.9); box-shadow: var(--svc-shadow); }
-    .svc-panel-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-bottom: 20px; border-bottom: 1px solid var(--svc-border); }
-    .svc-panel-title { margin: 0; color: var(--svc-ink); font-size: 17px; font-weight: 800; }
-    .svc-panel-badge { padding: 7px 10px; border-radius: 999px; color: #1d4ed8; background: var(--svc-blue-light); font-size: 10px; font-weight: 800; white-space: nowrap; }
-    .svc-highlight-list { display: grid; gap: 0; margin: 4px 0 0; padding: 0; list-style: none; }
-    .svc-highlight-list li { display: grid; grid-template-columns: 40px 1fr; align-items: start; gap: 13px; padding: 19px 0; border-bottom: 1px solid var(--svc-border); }
-    .svc-highlight-list li:last-child { padding-bottom: 0; border-bottom: 0; }
-    .svc-symbol { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: var(--svc-blue-light); color: var(--svc-blue); font-weight: 900; }
-    .svc-highlight-list strong { display: block; margin: 2px 0 5px; font-size: 14px; }
-    .svc-highlight-list small { display: block; color: var(--svc-muted); font-size: 12px; line-height: 1.65; }
-
-    /* Service cards */
-    .svc-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-    .svc-card { display: flex; flex-direction: column; min-width: 0; padding: 27px; border: 1px solid var(--svc-border); border-radius: var(--svc-radius); background: var(--svc-surface); box-shadow: 0 5px 20px rgba(19,35,65,.025); transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; }
-    .svc-card:hover { transform: translateY(-5px); border-color: #c7d9ff; box-shadow: var(--svc-shadow); }
-    .svc-card-icon { display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: 22px; border-radius: 14px; color: var(--svc-blue); background: var(--svc-blue-light); font-size: 22px; font-weight: 900; }
-    .svc-card h3 { margin: 0 0 11px; font-size: 20px; line-height: 1.35; letter-spacing: -.35px; }
-    .svc-card p { margin: 0 0 18px; color: var(--svc-muted); font-size: 14px; line-height: 1.8; }
-    .svc-list { display: grid; gap: 9px; margin: 0 0 24px; padding: 0; list-style: none; }
-    .svc-list li { position: relative; padding-left: 21px; color: #475467; font-size: 13px; line-height: 1.65; }
-    .svc-list li::before { position: absolute; left: 0; top: 0; color: var(--svc-green); font-weight: 900; content: "✓"; }
-    .svc-card-link { display: inline-flex; align-items: center; gap: 8px; margin-top: auto; color: var(--svc-blue); font-size: 13px; font-weight: 800; text-decoration: none; }
-    .svc-card-link:hover { color: var(--svc-blue-dark); }
-
-    /* Training */
-    .svc-training-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 58px; align-items: start; }
-    .svc-training-copy h2 { margin: 0 0 18px; font-size: clamp(30px, 4vw, 43px); line-height: 1.15; letter-spacing: -1.2px; }
-    .svc-training-copy p { margin: 0 0 17px; color: var(--svc-muted); font-size: 15px; line-height: 1.85; }
-    .svc-training-note { margin-top: 24px; padding: 17px 18px; border-left: 3px solid var(--svc-blue); border-radius: 0 12px 12px 0; color: #475467; background: #eff6ff; font-size: 13px; line-height: 1.75; }
-    .svc-track-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-    .svc-track { padding: 21px; border: 1px solid var(--svc-border); border-radius: 16px; background: #fff; }
-    .svc-track-number { display: inline-block; margin-bottom: 13px; color: var(--svc-blue); font-size: 11px; font-weight: 900; letter-spacing: 1.2px; }
-    .svc-track h3 { margin: 0 0 8px; font-size: 16px; line-height: 1.4; }
-    .svc-track p { margin: 0; color: var(--svc-muted); font-size: 13px; line-height: 1.7; }
-
-    /* Programme pricing */
-    .svc-prices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
-    .svc-price-card { position: relative; display: flex; flex-direction: column; padding: 28px; border: 1px solid var(--svc-border); border-radius: 20px; background: #fff; }
-    .svc-price-card--featured { border: 2px solid var(--svc-blue); box-shadow: var(--svc-shadow); }
-    .svc-price-tag { display: inline-flex; align-self: flex-start; margin-bottom: 15px; padding: 7px 10px; border-radius: 999px; color: #344054; background: #f2f4f7; font-size: 10px; font-weight: 850; letter-spacing: .8px; text-transform: uppercase; }
-    .svc-price-card--featured .svc-price-tag { color: #1d4ed8; background: var(--svc-blue-light); }
-    .svc-price-card h3 { margin: 0 0 10px; font-size: 21px; line-height: 1.35; }
-    .svc-price-description { min-height: 68px; margin: 0 0 20px; color: var(--svc-muted); font-size: 13px; line-height: 1.75; }
-    .svc-price { margin: 0 0 3px; color: var(--svc-ink); font-size: 34px; font-weight: 850; letter-spacing: -1px; }
-    .svc-price-period { margin: 0 0 22px; color: var(--svc-muted); font-size: 12px; }
-    .svc-price-card .svc-list { margin-bottom: 26px; }
-    .svc-price-card .svc-btn { width: 100%; margin-top: auto; }
-    .svc-price-footnote { margin: 26px auto 0; max-width: 900px; text-align: center; color: var(--svc-muted); font-size: 12px; line-height: 1.8; }
-
-    /* Company training band */
-    .svc-awareness { display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 44px; padding: 42px; border-radius: 25px; color: #fff; background: #14213d; }
-    .svc-awareness .svc-kicker { color: #93c5fd; }
-    .svc-awareness h2 { margin: 0 0 15px; font-size: clamp(28px, 4vw, 40px); line-height: 1.15; letter-spacing: -1px; }
-    .svc-awareness p { margin: 0; color: #d0d9e8; font-size: 14px; line-height: 1.85; }
-    .svc-awareness-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
-    .svc-awareness-list li { padding: 14px; border: 1px solid rgba(255,255,255,.14); border-radius: 12px; color: #f8fafc; background: rgba(255,255,255,.06); font-size: 13px; line-height: 1.6; }
-
-    /* Business packages */
-    .svc-package-kicker { margin-bottom: 12px; color: var(--svc-blue); font-size: 10px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; }
-    .svc-package-price { margin: 6px 0 14px; color: var(--svc-ink); font-size: 29px; font-weight: 850; letter-spacing: -.7px; }
-    .svc-package-price small { color: var(--svc-muted); font-size: 12px; font-weight: 600; letter-spacing: 0; }
-
-    /* Digital products */
-    .svc-product-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-    .svc-product { padding: 24px; border: 1px dashed #cbd5e1; border-radius: 17px; background: #fff; }
-    .svc-product-status { display: inline-block; margin-bottom: 14px; padding: 6px 9px; border-radius: 999px; color: #667085; background: #f2f4f7; font-size: 10px; font-weight: 850; text-transform: uppercase; letter-spacing: .7px; }
-    .svc-product h3 { margin: 0 0 9px; font-size: 17px; }
-    .svc-product p { margin: 0; color: var(--svc-muted); font-size: 13px; line-height: 1.75; }
-
-    /* How we work */
-    .svc-process { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
-    .svc-step { padding: 22px; border: 1px solid var(--svc-border); border-radius: 16px; background: #fff; }
-    .svc-step-number { display: grid; place-items: center; width: 34px; height: 34px; margin-bottom: 17px; border-radius: 11px; color: var(--svc-blue); background: var(--svc-blue-light); font-size: 13px; font-weight: 900; }
-    .svc-step h3 { margin: 0 0 8px; font-size: 16px; }
-    .svc-step p { margin: 0; color: var(--svc-muted); font-size: 13px; line-height: 1.75; }
-
-    /* Final call to action and footer */
-    .svc-cta { padding: 66px 0; background: linear-gradient(130deg, #eef5ff, #f9fbff); }
-    .svc-cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 28px; }
-    .svc-cta h2 { max-width: 670px; margin: 0 0 12px; font-size: clamp(29px, 4vw, 42px); line-height: 1.15; letter-spacing: -1.1px; }
-    .svc-cta p { max-width: 650px; margin: 0; color: var(--svc-muted); font-size: 14px; line-height: 1.8; }
-    .svc-footer { padding: 30px 0; border-top: 1px solid var(--svc-border); background: #fff; }
-    .svc-footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .svc-footer-brand { color: var(--svc-ink); font-size: 13px; font-weight: 800; }
-    .svc-footer-copy { margin: 7px 0 0; color: var(--svc-muted); font-size: 12px; }
-    .svc-footer-links { display: flex; align-items: center; flex-wrap: wrap; gap: 19px; }
-    .svc-footer-links a { color: #475467; font-size: 12px; font-weight: 650; text-decoration: none; }
-    .svc-footer-links a:hover { color: var(--svc-blue); }
-
-    @media (max-width: 980px) {
-      .svc-hero-grid { grid-template-columns: 1fr  .85fr; gap: 30px; }
-      .svc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .svc-training-layout { grid-template-columns: 1fr; gap: 28px; }
-      .svc-prices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .svc-process { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-    @media (max-width: 720px) {
-      .svc-container { width: min(100% - 30px, 600px); }
-      .svc-section { padding: 64px 0; }
-      .svc-header { position: relative; }
-      .svc-header-inner { align-items: flex-start; flex-direction: column; gap: 15px; padding: 16px 0; }
-      .svc-brand img { width: 40px; height: 40px; }
-      .svc-nav { width: 100%; gap: 12px 17px; }
-      .svc-nav a { font-size: 12px; }
-      .svc-nav .svc-nav-cta { padding: 9px 11px; }
-      .svc-hero { padding: 62px 0; }
-      .svc-hero-grid { grid-template-columns: 1fr; gap: 30px; }
-      .svc-hero h1 { font-size: clamp(39px, 11vw, 58px); letter-spacing: -1.7px; }
-      .svc-hero-copy { font-size: 15px; }
-      .svc-hero-panel { padding: 22px; }
-      .svc-grid, .svc-prices, .svc-product-grid { grid-template-columns: 1fr; }
-      .svc-track-grid { grid-template-columns: 1fr; }
-      .svc-price-description { min-height: 0; }
-      .svc-awareness { grid-template-columns: 1fr; gap: 27px; padding: 27px; }
-      .svc-awareness-list { grid-template-columns: 1fr 1fr; }
-      .svc-cta-inner { align-items: flex-start; flex-direction: column; }
-      .svc-footer-inner { align-items: flex-start; flex-direction: column; }
-    }
-    @media (max-width: 440px) {
-      .svc-actions { align-items: stretch; flex-direction: column; }
-      .svc-actions .svc-btn { width: 100%; }
-      .svc-process { grid-template-columns: 1fr; }
-      .svc-awareness-list { grid-template-columns: 1fr; }
-      .svc-panel-top { align-items: flex-start; flex-direction: column; }
-      .svc-section-head { margin-bottom: 30px; }
-      .svc-heading { font-size: 31px; letter-spacing: -.8px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Web development, AI, cybersecurity, automation and technology training from MIF Digital Solutions.">
+<meta name="theme-color" content="#071326">
+<title>Services & Training | MIF Digital Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#071326;--panel:#102541;--line:rgba(176,204,238,.16);--text:#f4f8ff;--muted:#a8bad2;--blue:#4c9dff;--cyan:#56e0e7;--gold:#f3c969;--green:#65e3b0}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;color:var(--text);font:16px/1.65 "DM Sans",sans-serif;background:radial-gradient(ellipse at 10% 0%,rgba(36,112,210,.2),transparent 35rem),radial-gradient(ellipse at 95% 20%,rgba(50,203,220,.1),transparent 30rem),var(--bg)}a{color:inherit;text-decoration:none}button,input{font:inherit}.container{width:min(1160px,calc(100% - 36px));margin:auto}
+header{position:sticky;top:0;z-index:20;background:rgba(7,19,38,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px;font:800 17px Manrope,sans-serif}.mark{display:grid;place-items:center;width:43px;height:43px;border-radius:14px;background:linear-gradient(130deg,var(--blue),var(--cyan));color:#06172b;font-size:24px}.brand small{display:block;color:var(--muted);font:600 10px "DM Sans";letter-spacing:1.6px;text-transform:uppercase}.navlinks{display:flex;align-items:center;gap:23px;font-size:14px;color:#d0dced}.navlinks a:hover,.link:hover{color:var(--cyan)}
+.btn{border:1px solid transparent;border-radius:12px;padding:12px 17px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;cursor:pointer;transition:.18s}.btn:hover{transform:translateY(-2px)}.primary{background:linear-gradient(110deg,var(--cyan),#76baff);color:#06172b;box-shadow:0 10px 28px #4c9dff24}.outline{border-color:var(--line);background:#ffffff05;color:var(--text)}
+.hero{padding:82px 0 68px}.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:50px}.eyebrow{color:var(--cyan);font-weight:800;font-size:11px;letter-spacing:2px;text-transform:uppercase}.eyebrow:before{content:"";display:inline-block;width:24px;height:2px;background:var(--cyan);vertical-align:middle;margin-right:10px}h1,h2,h3{font-family:Manrope,sans-serif;line-height:1.17;letter-spacing:-.7px}h1{font-size:clamp(2.7rem,6vw,4.7rem);margin:18px 0}.gradient{background:linear-gradient(100deg,#fff,var(--cyan),#83b8ff);color:transparent;background-clip:text}.lead{font-size:17px;color:var(--muted);max-width:620px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:27px}.checks{display:flex;gap:18px;flex-wrap:wrap;color:#c4d2e4;font-size:12px;margin-top:26px}.checks span:before{content:"✓";color:var(--green);margin-right:7px}.hero-card{position:relative;overflow:hidden;padding:28px;border:1px solid var(--line);border-radius:27px;background:linear-gradient(145deg,#19395be0,#0a1c32e8);box-shadow:0 22px 60px #0004}.shield{width:60px;height:60px;display:grid;place-items:center;border-radius:18px;background:#56e0e71a;border:1px solid #56e0e738;font-size:30px}.hero-card h3{font-size:23px;margin:19px 0 8px}.muted{color:var(--muted)}.statgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:22px}.stat{padding:14px;border-radius:14px;background:#ffffff08;border:1px solid var(--line)}.stat strong{display:block;font:700 15px Manrope}.stat small{color:var(--muted)}
+section{padding:72px 0}.soft{border-block:1px solid var(--line);background:#ffffff04}.sectionhead{max-width:730px;margin-bottom:30px}.sectionhead h2{font-size:clamp(2rem,4vw,3rem);margin:12px 0}.sectionhead p{color:var(--muted);margin:0}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{padding:23px;border:1px solid var(--line);border-radius:21px;background:#102541d9;transition:.2s}.card:hover{transform:translateY(-4px);border-color:#56e0e76b}.icon{width:46px;height:46px;display:grid;place-items:center;border-radius:14px;background:#4c9dff1c;border:1px solid #4c9dff29;color:var(--cyan);font-size:22px}.card h3{font-size:19px;margin:17px 0 9px}.card p{color:var(--muted);font-size:14px;margin:0 0 13px}.card ul,.pricecard ul,.training ul{list-style:none;padding:0;margin:0 0 17px;color:#d3deed;font-size:13px}.card li,.pricecard li{margin:7px 0}.card li:before,.pricecard li:before{content:"✓";color:var(--green);margin-right:8px}.link{color:var(--cyan);font-weight:700;font-size:13px}
+.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}.pricecard{position:relative;display:flex;flex-direction:column;padding:25px;border:1px solid var(--line);border-radius:23px;background:#102541d9}.pricecard.featured{border-color:#56e0e7b3;background:linear-gradient(160deg,#19405ff5,#0c1d34f5);box-shadow:0 20px 55px #0003}.popular{position:absolute;right:14px;top:14px;padding:4px 9px;border-radius:30px;background:var(--gold);color:#111d2b;font-size:10px;font-weight:900;text-transform:uppercase}.tag{color:var(--cyan);font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}.pricecard h3{font-size:21px;margin:10px 0}.desc{color:var(--muted);font-size:13px;min-height:42px}.price{font:800 30px Manrope;margin:15px 0 4px}.price small{font:500 11px "DM Sans";color:var(--muted)}.pricecard ul{flex:1;margin:16px 0 22px}.pricecard li{padding:7px 0;border-bottom:1px solid #b0ccee12}.pricecard .btn{width:100%}.note{font-size:12px;color:var(--muted);margin-top:18px}
+.traininggrid{display:grid;grid-template-columns:1fr 1fr;gap:17px}.training{padding:24px;border:1px solid var(--line);border-radius:21px;background:#102541d9}.training h3{font-size:21px;margin:14px 0 8px}.training p,.training li{color:var(--muted);font-size:14px}.training ul{list-style:disc;padding-left:19px}.band{padding:32px;border-radius:23px;border:1px solid #56e0e73b;background:linear-gradient(110deg,#286ea540,#56e0e712);display:flex;align-items:center;justify-content:space-between;gap:22px}.band h2{margin:0 0 8px;font-size:clamp(1.6rem,3vw,2.3rem)}.band p{margin:0;color:var(--muted)}.faq{display:grid;grid-template-columns:1fr 1fr;gap:12px}details{padding:17px 19px;border:1px solid var(--line);border-radius:14px;background:#ffffff04}summary{font-weight:700;cursor:pointer}details p{color:var(--muted);font-size:14px;margin-bottom:0}footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:13px}.foot{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}.footlinks{display:flex;gap:17px}
+.backdrop{display:none;position:fixed;inset:0;z-index:100;background:#010813c9;backdrop-filter:blur(8px);padding:18px;align-items:center;justify-content:center}.backdrop.open{display:flex}.modal{position:relative;width:min(500px,100%);padding:27px;border-radius:23px;background:#0c203a;border:1px solid #56e0e740;box-shadow:0 30px 100px #0008}.close{position:absolute;right:13px;top:8px;border:0;background:transparent;color:var(--muted);font-size:28px;cursor:pointer}.modal h2{font-size:26px;margin:9px 0}.modal p{color:var(--muted);font-size:13px}.selected{padding:14px;border-radius:13px;background:#56e0e710;border:1px solid #56e0e733;margin:17px 0}.selected strong{display:block}.selected span{font:800 22px Manrope;color:var(--cyan)}label{display:block;margin:13px 0 6px;font-size:13px;font-weight:700}.control{width:100%;padding:13px 14px;border-radius:11px;border:1px solid #b0ccee38;background:#07182d;color:white;outline:none}.control:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #56e0e718}.modal form .btn{width:100%;margin-top:17px}.secure{font-size:11px!important;margin-top:13px}.secure b{color:var(--green)}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}.grid3,.prices{grid-template-columns:repeat(2,1fr)}.navlinks{gap:12px}}
+@media(max-width:620px){.container{width:calc(100% - 28px)}nav{min-height:68px}.brand{font-size:14px}.mark{width:38px;height:38px}.navlinks{font-size:12px;gap:10px}.navlinks a:nth-child(2),.navlinks a:nth-child(3){display:none}.hero{padding:55px 0 42px}.lead{font-size:15px}section{padding:52px 0}.grid3,.prices,.traininggrid,.faq{grid-template-columns:1fr}.desc{min-height:0}.band{align-items:flex-start;flex-direction:column;padding:24px}.card{padding:21px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
 </head>
 <body>
-<div class="svc-page">
-  <header class="svc-header">
-    <div class="svc-container svc-header-inner">
-      <a class="svc-brand" href="{{ url_for('home') }}" aria-label="MIF Digital Solutions homepage">
-        <img src="{{ url_for('static', filename='image/MIF_Logo.jpeg') }}" alt="MIF Digital Solutions logo">
-        <span>MIF Digital Solutions</span>
-      </a>
-      <nav class="svc-nav" aria-label="Main navigation">
-        <a href="{{ url_for('home') }}">Home</a>
-        <a href="{{ url_for('services') }}" aria-current="page">Services</a>
-        <a href="{{ url_for('about') }}">About Us</a>
-        <a href="{{ url_for('contact') }}">Contact Us</a>
-        <a class="svc-nav-cta" href="{{ url_for('contact') }}">Start a Project</a>
-      </nav>
-    </div>
-  </header>
+<header><div class="container"><nav>
+<a class="brand" href="{{ url_for('home') }}"><span class="mark">⬡</span><span>MIF Digital Solutions<small>Smart technology. Real results.</small></span></a>
+<div class="navlinks"><a href="{{ url_for('home') }}">Home</a><a href="{{ url_for('services') }}">Services</a><a href="{{ url_for('about') }}">About</a><a href="{{ url_for('contact') }}">Contact</a><a class="btn primary" href="#packages">View packages ↗</a></div>
+</nav></div></header>
+<main>
+<section class="hero"><div class="container hero-grid"><div>
+<span class="eyebrow">Technology built around your goals</span><h1>Build smarter.<br><span class="gradient">Operate safer.</span><br>Grow faster.</h1>
+<p class="lead">MIF Digital Solutions helps businesses and individuals turn technology into an advantage—from professional websites and software to practical AI, cybersecurity, automation and guided technology training.</p>
+<div class="actions"><a class="btn primary" href="#services">Explore services →</a><a class="btn outline" href="{{ url_for('contact') }}">Talk to our team</a></div>
+<div class="checks"><span>Business-focused solutions</span><span>Clear scope and next steps</span><span>Support when you need it</span></div>
+</div><aside class="hero-card"><div class="shield">🛡</div><h3>One technology partner.<br>Multiple ways to move forward.</h3><p class="muted">From your first online presence to smarter workflows and safer digital operations, we help you choose a practical next step.</p><div class="statgrid"><div class="stat"><strong>Web & Software</strong><small>Digital experiences</small></div><div class="stat"><strong>AI & Automation</strong><small>Smarter workflows</small></div><div class="stat"><strong>Cybersecurity</strong><small>Awareness & prevention</small></div><div class="stat"><strong>Training</strong><small>Skills for real work</small></div></div></aside>
+</div></section>
+<section class="soft" id="services"><div class="container"><div class="sectionhead"><span class="eyebrow">What we do</span><h2>Practical digital services.<br><span class="gradient">Built for real-world results.</span></h2><p>Choose a focused service or combine solutions into a plan that fits your business, budget and stage of growth.</p></div>
+<div class="grid3">
+<article class="card"><div class="icon">⌘</div><h3>Website Development</h3><p>Professional, mobile-friendly websites that explain your offer and help customers take action.</p><ul><li>Business and service websites</li><li>Responsive design and contact forms</li><li>Deployment and basic SEO foundations</li></ul><a class="link" href="{{ url_for('contact') }}">Plan your website →</a></article>
+<article class="card"><div class="icon">▣</div><h3>Software & App Development</h3><p>Purpose-built digital tools designed around the tasks your customers or team need to complete.</p><ul><li>Web apps and dashboards</li><li>Android and iOS app planning</li><li>Feature design and prototypes</li></ul><a class="link" href="{{ url_for('contact') }}">Discuss your idea →</a></article>
+<article class="card"><div class="icon">✧</div><h3>Artificial Intelligence</h3><p>Use AI thoughtfully to improve customer support, information handling and repetitive work.</p><ul><li>AI assistants and chatbot planning</li><li>Document and workflow assistance</li><li>Practical AI integration</li></ul><a class="link" href="{{ url_for('contact') }}">Explore AI →</a></article>
+<article class="card"><div class="icon">◈</div><h3>Cybersecurity Solutions</h3><p>Build safer habits and strengthen basic digital protections with practical, authorised support.</p><ul><li>Security awareness guidance</li><li>Website and account safety review</li><li>Phishing and scam prevention education</li></ul><a class="link" href="{{ url_for('contact') }}">Improve security →</a></article>
+<article class="card"><div class="icon">↗</div><h3>Business Automation</h3><p>Reduce repetitive manual work by mapping processes and connecting the right tools.</p><ul><li>Workflow mapping</li><li>Form and notification automation</li><li>Process improvement recommendations</li></ul><a class="link" href="{{ url_for('contact') }}">Explore automation →</a></article>
+<article class="card"><div class="icon">☏</div><h3>WhatsApp Business Integration</h3><p>Make it easier for customers to reach your business and understand your offer.</p><ul><li>WhatsApp Business setup guidance</li><li>Business profile and catalogue support</li><li>Chatbot and automation planning</li></ul><a class="link" href="{{ url_for('contact') }}">Improve communication →</a></article>
+<article class="card"><div class="icon">◎</div><h3>Digital Business Solutions</h3><p>Make your online business presence clearer, more consistent and easier for customers to trust.</p><ul><li>Business profile setup or review</li><li>Service information guidance</li><li>Digital presence recommendations</li></ul><a class="link" href="{{ url_for('contact') }}">Strengthen your presence →</a></article>
+<article class="card"><div class="icon">↻</div><h3>Website Maintenance</h3><p>Keep your website content and key functions under review after launch.</p><ul><li>Content and link updates</li><li>Basic availability and form checks</li><li>Monthly support options</li></ul><a class="link" href="{{ url_for('contact') }}">Discuss maintenance →</a></article>
+<article class="card"><div class="icon">▤</div><h3>Technology Training</h3><p>Practical learning pathways for individuals, teams and organisations developing digital skills.</p><ul><li>Web and AI fundamentals</li><li>Cybersecurity awareness</li><li>Guided project-based learning</li></ul><a class="link" href="#training">Explore training →</a></article>
+</div></div></section>
+<section id="packages"><div class="container"><div class="sectionhead"><span class="eyebrow">Clear starting points</span><h2>Choose a service package.</h2><p>Starting packages for clearly scoped work. Larger projects, third-party subscriptions, domains and hosting may be quoted separately.</p></div>
+<div class="prices">
+<article class="pricecard"><span class="tag">Get online</span><h3>Business Starter Website</h3><p class="desc">For a small business that needs a professional starting point online.</p><div class="price">₦150,000 <small>/ starting price</small></div><ul><li>Up to 3 core pages</li><li>Mobile-responsive layout</li><li>Contact details and enquiry CTA</li><li>Basic on-page SEO setup</li><li>Launch support</li></ul><button <button class="btn outline pay-button"
+        type="button"
+        data-package-id="business_starter_website"
+        data-service="Business Starter Website"
+        data-display-price="150000">Choose website package →</button></article>
+<article class="pricecard featured"><span class="popular">Popular</span><span class="tag">Work smarter</span><h3>Business Automation Starter</h3><p class="desc">For a business ready to streamline one defined repetitive workflow.</p><div class="price">₦100,000 <small>/ starting price</small></div><ul><li>One workflow discovery session</li><li>Process map and recommendations</li><li>One scoped automation setup</li><li>Basic handover documentation</li><li>Testing and walkthrough</li></ul><button class="btn primary pay-button" type="button" data-package-id="business_automation_starter" data-service="Business Automation Starter" data-display-price="100000">Choose automation package →</button></article>
+<article class="pricecard"><span class="tag">Be more visible</span><h3>Google Business Profile Guidance</h3><p class="desc">For eligible businesses that want a clearer, more complete local profile.</p><div class="price">₦30,000 <small>/ one-time</small></div><ul><li>Profile setup or review guidance</li><li>Business information optimisation</li><li>Description and hours guidance</li><li>Service and photo recommendations</li><li>Improvement checklist</li></ul><button class="btn outline pay-button" type="button" data-package-id="google_business_profile_guidance" data-service="Google Business Profile Guidance" data-display-price="30000">Choose visibility package →</button></article>
+</div><p class="note">Prices are proposed starting prices in Nigerian naira, not a final quote for every project. Confirm scope, timeline and recurring costs with MIF Digital Solutions before work begins.</p>
+</div></section>
+<section class="soft" id="training"><div class="container"><div class="sectionhead"><span class="eyebrow">Learn by doing</span><h2>Technology training & awareness.</h2><p>Training is tailored to the learner's current level and goals. Duration, delivery method and fees are confirmed before enrolment.</p></div><div class="traininggrid">
+<article class="training"><div class="icon">⌘</div><h3>Web Development & AI Foundations</h3><p>Build a practical foundation in how websites and AI-powered tools work.</p><ul><li>HTML, CSS and JavaScript fundamentals</li><li>Introduction to Python and web applications</li><li>AI concepts, responsible use and simple projects</li></ul><a class="btn outline" href="{{ url_for('contact') }}">Ask about training</a></article>
+<article class="training"><div class="icon">🛡</div><h3>Cybersecurity Awareness</h3><p>Help people recognise common digital threats and build safer habits.</p><ul><li>Phishing, impersonation and scam awareness</li><li>Password and account-protection practices</li><li>Safe handling of customer information</li><li>Incident reporting and first steps</li></ul><a class="btn outline" href="{{ url_for('contact') }}">Request a session</a></article>
+</div></div></section>
+<section><div class="container"><div class="band"><div><h2>Have a project in mind?</h2><p>Tell us what you want to improve. We'll recommend a practical next step.</p></div><a class="btn primary" href="{{ url_for('contact') }}">Discuss your project →</a></div></div></section>
+<section class="soft" id="faq"><div class="container"><div class="sectionhead"><span class="eyebrow">Before you start</span><h2>Frequently asked questions.</h2></div><div class="faq">
+<details><summary>Can I request a custom package?</summary><p>Yes. Tell us your goals, required features, budget range and target timeline. We will confirm the scope before work begins.</p></details>
+<details><summary>Can I pay online?</summary><p>Yes. Select a package, enter your email and continue to Paystack's hosted checkout. Use test credentials only for testing; live payments require live-mode configuration.</p></details>
+<details><summary>Are domain and hosting included?</summary><p>Not automatically. The proposal will state whether domain registration, hosting, paid APIs, licences or third-party costs are included or billed separately.</p></details>
+<details><summary>How do I get support after delivery?</summary><p>Support and maintenance can be scoped separately, with response times, included changes and recurring fees agreed in writing.</p></details>
+</div></div></section>
+</main>
+<footer><div class="container foot"><div>© <span id="year"></span> MIF Digital Solutions. Smart technology. Real results.</div><div class="footlinks"><a href="{{ url_for('home') }}">Home</a><a href="{{ url_for('about') }}">About</a><a href="{{ url_for('contact') }}">Contact</a></div></div></footer>
+<div class="backdrop" id="paymentModal" role="dialog" aria-modal="true" aria-labelledby="paymentTitle"><div class="modal">
+<button class="close" type="button" id="closePayment" aria-label="Close payment window">×</button><span class="eyebrow">Secure checkout</span><h2 id="paymentTitle">Continue to payment</h2><p>Review your selected service and enter the email address associated with the transaction.</p>
+<div class="selected"><strong id="selectedService">Selected service</strong><span id="selectedPrice">₦0</span></div>
+<!-- The browser sends only a package ID. The server determines the authoritative price. -->
+<form method="POST" action="{{ url_for('start_payment') }}" id="paystackForm">
 
-  <main>
-    <!-- Hero -->
-    <section class="svc-hero">
-      <div class="svc-container svc-hero-grid">
-        <div>
-          <p class="svc-kicker">Technology Solutions &amp; Training</p>
-          <h1>Technology that helps you <span>build, learn &amp; grow.</span></h1>
-          <p class="svc-hero-copy">From professional websites and business automation to cybersecurity services, practical technology training and awareness programmes, MIF Digital Solutions helps businesses and individuals make meaningful progress in the digital world.</p>
-          <div class="svc-actions">
-            <a class="svc-btn svc-btn--primary" href="{{ url_for('contact') }}">Discuss Your Project <span aria-hidden="true">→</span></a>
-            <a class="svc-btn svc-btn--secondary" href="#training">Explore Training</a>
-          </div>
-        </div>
-        <aside class="svc-hero-panel" aria-label="Our service approach">
-          <div class="svc-panel-top">
-            <h2 class="svc-panel-title">One technology partner</h2>
-            <span class="svc-panel-badge">Practical solutions</span>
-          </div>
-          <ul class="svc-highlight-list">
-            <li><span class="svc-symbol" aria-hidden="true">01</span><div><strong>Build digital products</strong><small>Websites, applications and automation designed around real needs.</small></div></li>
-            <li><span class="svc-symbol" aria-hidden="true">02</span><div><strong>Improve cyber awareness</strong><small>Learn to recognise common scams, phishing and digital risks.</small></div></li>
-            <li><span class="svc-symbol" aria-hidden="true">03</span><div><strong>Learn practical skills</strong><small>Develop technology knowledge through guided learning and projects.</small></div></li>
-          </ul>
-        </aside>
-      </div>
-    </section>
+    <input type="hidden" name="package_id" id="paymentPackage">
 
-    <!-- Core services -->
-    <section class="svc-section" id="services">
-      <div class="svc-container">
-        <div class="svc-section-head">
-          <p class="svc-kicker">What we do</p>
-          <h2 class="svc-heading">Services designed around your goals.</h2>
-          <p class="svc-intro">Explore our technology services for businesses, organisations, entrepreneurs and individuals. Each project is scoped around your needs, timeline and budget.</p>
-        </div>
-        <div class="svc-grid">
-          <article class="svc-card">
-            <div class="svc-card-icon" aria-hidden="true">⌘</div>
-            <h3>Website Development</h3>
-            <p>Establish a professional online presence with a clear, responsive website built around your business and customers.</p>
-            <ul class="svc-list"><li>Business and service websites</li><li>Landing pages and contact forms</li><li>Mobile-friendly design</li><li>Basic on-page SEO setup</li></ul>
-            <a class="svc-card-link" href="{{ url_for('contact') }}">Discuss a website <span aria-hidden="true">→</span></a>
-          </article>
-          <article class="svc-card">
-            <div class="svc-card-icon" aria-hidden="true">▣</div>
-            <h3>Software &amp; App Development</h3>
-            <p>Explore practical software solutions that support business processes, customer experiences and digital products.</p>
-            <ul class="svc-list"><li>Web applications and prototypes</li><li>Mobile app planning and development</li><li>Internal workflow tools</li><li>Technical consultation and setup</li></ul>
-            <a class="svc-card-link" href="{{ url_for('contact') }}">Discuss an app <span aria-hidden="true">→</span></a>
-          </article>
-          <article class="svc-card">
-            <div class="svc-card-icon" aria-hidden="true">⬟</div>
-            <h3>Cybersecurity Services</h3>
-            <p>Improve security awareness and strengthen digital systems through appropriately scoped, authorised security work.</p>
-            <ul class="svc-list"><li>Cybersecurity awareness and guidance</li><li>Basic security configuration reviews</li><li>Phishing and scam-risk education</li><li>Security checklists and recommendations</li></ul>
-            <a class="svc-card-link" href="{{ url_for('contact') }}">Discuss security needs <span aria-hidden="true">→</span></a>
-          </article>
-          <article class="svc-card">
-            <div class="svc-card-icon" aria-hidden="true">✧</div>
-            <h3>AI Solutions &amp; Chatbots</h3>
-            <p>Use appropriate AI tools to support customer service, information access and repetitive business tasks.</p>
-            <ul class="svc-list"><li>FAQ and customer-support chatbots</li><li>AI-assisted business workflows</li><li>Content and knowledge helpers</li><li>Prototype planning and integration</li></ul>
-            <a class="svc-card-link" href="{{ url_for('contact') }}">Discuss an AI project <span aria-hidden="true">→</span></a>
-          </article>
-          <article class="svc-card">
-            <div class="svc-card-icon" aria-hidden="true">↗️</div>
-            <h3>Business Automation</h3>
-            <p>Reduce repetitive manual work by improving how your business manages enquiries, information and routine tasks.</p>
-            <ul class="svc-list"><li>Workflow mapping and automation</li><li>Forms and enquiry management</li><li>WhatsApp Business setup guidance</li><li>Simple reporting and notifications</li></ul>
-            <a class="svc-card-link" href="{{ url_for('contact') }}">Explore automation <span aria-hidden="true">→</span></a>
-          </article>
-          <article class="svc-card">
-            <div class="svc-card-icon" aria-hidden="true">◎</div>
-            <h3>Digital Business Solutions</h3>
-            <p>Help customers discover your business online with essential digital setup and practical visibility improvements.</p>
-            <ul class="svc-list"><li>Digital presence and profile setup</li><li>Basic SEO guidance</li><li>Business email and tool setup</li><li>Digital process consultation</li></ul>
-            <a class="svc-card-link" href="{{ url_for('contact') }}">Improve your digital presence <span aria-hidden="true">→</span></a>
-          </article>
-          <article class="svc-card">
-            <div class="svc-card-icon" aria-hidden="true">▤</div>
-            <h3>Technology Training &amp; Career Development</h3>
-            <p>Develop practical technology skills through guided learning, hands-on projects, certification preparation and career-readiness support.</p>
-            <ul class="svc-list"><li>ISC2 Certified in Cybersecurity (CC) preparation</li><li>CompTIA Security+ preparation</li><li>Data analytics and web development</li><li>Portfolio, CV and interview guidance</li></ul>
-            <a class="svc-card-link" href="#training">Explore training <span aria-hidden="true">→</span></a>
-          </article>
-          <article class="svc-card">
-            <div class="svc-card-icon" aria-hidden="true">✓</div>
-            <h3>Cybersecurity Awareness Programmes</h3>
-            <p>Help individuals and teams develop safer digital habits and understand how common cyber threats affect everyday work.</p>
-            <ul class="svc-list"><li>Phishing, impersonation and social engineering</li><li>Fraudulent links, messages and fake alerts</li><li>Password and account protection</li><li>Staff workshops and awareness materials</li></ul>
-            <a class="svc-card-link" href="#awareness">View awareness programmes <span aria-hidden="true">→</span></a>
-          </article>
-          <article class="svc-card">
-            <div class="svc-card-icon" aria-hidden="true">⌕</div>
-            <h3>Technical Consultation</h3>
-            <p>Get help choosing a sensible next step before investing time or money in a website, application or technology project.</p>
-            <ul class="svc-list"><li>Project scoping and requirements</li><li>Technology selection guidance</li><li>Implementation planning</li><li>Support and improvement recommendations</li></ul>
-            <a class="svc-card-link" href="{{ url_for('contact') }}">Book a discussion <span aria-hidden="true">→</span></a>
-          </article>
-        </div>
-      </div>
-    </section>
+    <label for="customerEmail">Email address</label>
 
-    <!-- Training overview -->
-    <section class="svc-section svc-section--soft" id="training">
-      <div class="svc-container svc-training-layout">
-        <div class="svc-training-copy">
-          <p class="svc-kicker">Online learning &amp; skills development</p>
-          <h2>Learn technology through practical, guided training.</h2>
-          <p>Our training pathways are designed for learners who want to build knowledge step by step, practise with relevant exercises and create evidence of their skills.</p>
-          <p>Cybersecurity learners can prepare for recognised certification exams while building foundational knowledge. Data analytics and web development learners focus on tools, projects and portfolio development.</p>
-          <div class="svc-training-note"><strong>Career note:</strong> Training can help you prepare for opportunities, but certification results and employment are not guaranteed. Job-readiness support focuses on practical projects, CVs, interviews and legitimate job-search methods.</div>
-          <div class="svc-actions"><a class="svc-btn svc-btn--primary" href="{{ url_for('contact') }}">Ask About Training <span aria-hidden="true">→</span></a></div>
-        </div>
-        <div class="svc-track-grid">
-          <article class="svc-track"><span class="svc-track-number">TRACK 01</span><h3>Cybersecurity Certification Preparation</h3><p>Build foundational security knowledge and prepare for the ISC2 Certified in Cybersecurity (CC) exam with guided study and practice assessments.</p></article>
-          <article class="svc-track"><span class="svc-track-number">TRACK 02</span><h3>CompTIA Security+ Preparation</h3><p>Study security concepts, threats, risk, identity, network security and incident response aligned to the certification objectives.</p></article>
-          <article class="svc-track"><span class="svc-track-number">TRACK 03</span><h3>Data Analytics</h3><p>Practise data cleaning, spreadsheets, SQL fundamentals, charts, dashboards and communicating useful findings.</p></article>
-          <article class="svc-track"><span class="svc-track-number">TRACK 04</span><h3>Web Development</h3><p>Learn HTML, CSS and JavaScript fundamentals, responsive layouts, version control and the steps involved in deploying a website.</p></article>
-        </div>
-      </div>
-    </section>
+    <input
+        class="control"
+        type="email"
+        name="email"
+        id="customerEmail"
+        placeholder="you@example.com"
+        required
+    >
 
-    <!-- Course pricing -->
-    <section class="svc-section" id="programmes">
-      <div class="svc-container">
-        <div class="svc-section-head">
-          <p class="svc-kicker">Technology education</p>
-          <h2 class="svc-heading">Training programmes for your next step.</h2>
-          <p class="svc-intro">These are proposed introductory MIF Digital Solutions prices. Contact us to confirm the next cohort, course schedule, curriculum, delivery format and enrolment details.</p>
-        </div>
-        <div class="svc-prices">
-          <article class="svc-price-card svc-price-card--featured">
-            <span class="svc-price-tag">Cybersecurity foundation</span>
-            <h3>ISC2 CC Preparation</h3>
-            <p class="svc-price-description">A guided foundation track for learners preparing for the ISC2 Certified in Cybersecurity examination.</p>
-            <ul class="svc-list"><li>Structured foundational lessons</li><li>Guided practice and revision</li><li>Practice assessments</li><li>Study plan and next-step guidance</li></ul>
-            <a class="svc-btn svc-btn--primary" href="{{ url_for('contact') }}">Enquire about ISC2 CC</a>
-          </article>
-          <article class="svc-price-card">
-            <span class="svc-price-tag">Intermediate preparation</span>
-            <h3>CompTIA Security+ Preparation</h3>
-            <p class="svc-price-description">A structured learning track covering core security concepts and exam-oriented practice.</p>
-            <ul class="svc-list"><li>Guided study plan</li><li>Security concepts and practical exercises</li><li>Practice questions and revision</li><li>Career-readiness guidance</li></ul>
-            <a class="svc-btn svc-btn--secondary" href="{{ url_for('contact') }}">Enquire about Security+</a>
-          </article>
-          <article class="svc-price-card">
-            <span class="svc-price-tag">Data &amp; reporting</span>
-            <h3>Data Analytics</h3>
-            <p class="svc-price-description">Build practical analytical skills and complete a project to demonstrate what you have learned.</p>
-            <ul class="svc-list"><li>Spreadsheets and data cleaning</li><li>SQL fundamentals</li><li>Visualisation and reporting</li><li>Portfolio project guidance</li></ul>
-            <a class="svc-btn svc-btn--secondary" href="{{ url_for('contact') }}">Enquire about analytics</a>
-          </article>
-          <article class="svc-price-card">
-            <span class="svc-price-tag">Build for the web</span>
-            <h3>Web Development</h3>
-            <p class="svc-price-description">Learn the foundations of responsive websites and build practical projects as you progress.</p>
-            <ul class="svc-list"><li>HTML, CSS and JavaScript foundations</li><li>Responsive web layouts</li><li>Git and GitHub basics</li><li>Deployment and portfolio guidance</li></ul>
-            <a class="svc-btn svc-btn--secondary" href="{{ url_for('contact') }}">Enquire about web development</a>
-          </article>
-          <article class="svc-price-card">
-            <span class="svc-price-tag">Individuals &amp; small teams</span>
-            <h3>Cybersecurity Awareness Workshop</h3>
-            <p class="svc-price-description">An accessible introduction to common online threats and safer everyday digital habits.</p>
-            <ul class="svc-list"><li>Recognising phishing and scams</li><li>Safer passwords and account practices</li><li>Fake links and impersonation warning signs</li><li>Practical safety checklist</li></ul>
-            <a class="svc-btn svc-btn--secondary" href="{{ url_for('contact') }}">Book a workshop</a>
-          </article>
-          <article class="svc-price-card">
-            <span class="svc-price-tag">For organisations</span>
-            <h3>Business Cybersecurity Awareness</h3>
-            <p class="svc-price-description">A staff awareness session tailored to your team's workflows, risks and learning needs.</p>
-            <ul class="svc-list"><li>Staff-focused threat awareness</li><li>Phishing and social engineering scenarios</li><li>Account and information protection</li><li>Scope agreed before delivery</li></ul>
-            <a class="svc-btn svc-btn--secondary" href="{{ url_for('contact') }}">Request a team session</a>
-          </article>
-        </div>
-        <p class="svc-price-footnote">Important: MIF's course fees cover the training described in the final course offer. Official certification exam registration, exam vouchers, resits, third-party subscriptions and taxes are not included unless a written offer expressly says otherwise. Course dates and final prices must be confirmed before payment.</p>
-      </div>
-    </section>
+    <button class="btn primary" type="submit">
+        Continue securely to Paystack →
+    </button>
 
-    <!-- Cyber awareness programme details -->
-    <section class="svc-section svc-section--soft" id="awareness">
-      <div class="svc-container">
-        <div class="svc-awareness">
-          <div>
-            <p class="svc-kicker">Cybersecurity awareness programmes</p>
-            <h2>Help your people recognise threats before they become incidents.</h2>
-            <p>Practical awareness sessions help individuals and teams recognise common social-engineering tactics, protect their accounts and handle suspicious messages more carefully. Sessions can be adapted for small businesses, community groups, students and staff teams.</p>
-            <div class="svc-actions"><a class="svc-btn svc-btn--primary" href="{{ url_for('contact') }}">Arrange an Awareness Session <span aria-hidden="true">→</span></a></div>
-          </div>
-          <ul class="svc-awareness-list">
-            <li>Phishing emails and suspicious links</li>
-            <li>Fake bank alerts and payment scams</li>
-            <li>Impersonation and social engineering</li>
-            <li>Password and account protection</li>
-            <li>Safe handling of customer information</li>
-            <li>Incident reporting and first steps</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Business packages -->
-    <section class="svc-section" id="packages">
-      <div class="svc-container">
-        <div class="svc-section-head">
-          <p class="svc-kicker">Business packages</p>
-          <h2 class="svc-heading">Practical packages for growing businesses.</h2>
-          <p class="svc-intro">Start with the support you need today, then improve your digital capabilities as your business grows. Final scope and quotation are confirmed before work begins.</p>
-        </div>
-        <div class="svc-prices">
-          <article class="svc-price-card">
-            <p class="svc-package-kicker">Getting started</p>
-            <h3>Digital Business Setup</h3>
-            <p class="svc-price-description">Essential configuration and guidance for a business improving its digital presence.</p>
-            <p class="svc-package-price">From ₦25,000</p>
-            <ul class="svc-list"><li>Initial needs discussion</li><li>Guidance on relevant digital tools</li><li>Business profile or tool setup scoped to your needs</li><li>Clear next-step recommendations</li></ul>
-            <a class="svc-btn svc-btn--secondary" href="{{ url_for('contact') }}">Discuss this package</a>
-          </article>
-          <article class="svc-price-card svc-price-card--featured">
-            <span class="svc-price-tag">Business growth</span>
-            <h3>Business Website Launch</h3>
-            <p class="svc-price-description">A professional website package for a business that needs a stronger online presence.</p>
-            <p class="svc-package-price">From ₦150,000</p>
-            <ul class="svc-list"><li>Page count and features agreed in advance</li><li>Responsive layout for mobile and desktop</li><li>Contact or enquiry pathway</li><li>Basic on-page SEO setup</li><li>Deployment scope confirmed in quotation</li></ul>
-            <a class="svc-btn svc-btn--primary" href="{{ url_for('contact') }}">Plan your website</a>
-          </article>
-          <article class="svc-price-card">
-            <p class="svc-package-kicker">Ongoing support</p>
-            <h3>Website Care &amp; Maintenance</h3>
-            <p class="svc-price-description">Ongoing website checks and agreed maintenance support to keep your site cared for.</p>
-            <p class="svc-package-price">From ₦20,000 <small>/ month</small></p>
-            <ul class="svc-list"><li>Routine website checks</li><li>Agreed text or content updates</li><li>Basic uptime and form checks</li><li>Maintenance report or issue summary</li></ul>
-            <a class="svc-btn svc-btn--secondary" href="{{ url_for('contact') }}">Discuss maintenance</a>
-          </article>
-        </div>
-        <p class="svc-price-footnote">Prices shown are proposed starting prices, not fixed quotes for every project. Domain registration, hosting, paid plugins, third-party subscriptions, advanced integrations and significant content creation may incur separate charges. A written scope and quotation will be provided before work begins.</p>
-      </div>
-    </section>
-
-    <!-- Future products -->
-    <section class="svc-section svc-section--soft" id="digital-products">
-      <div class="svc-container">
-        <div class="svc-section-head">
-          <p class="svc-kicker">Digital products</p>
-          <h2 class="svc-heading">Useful resources we're preparing.</h2>
-          <p class="svc-intro">We are planning practical digital resources to help people learn, improve online safety and organise their businesses. These products are not yet available for purchase.</p>
-        </div>
-        <div class="svc-product-grid">
-          <article class="svc-product"><span class="svc-product-status">Planned product</span><h3>Cyber Safety Guides</h3><p>Practical checklists and learning materials covering scam awareness, safer accounts and common online threats.</p></article>
-          <article class="svc-product"><span class="svc-product-status">Planned product</span><h3>Programming Learning Kits</h3><p>Beginner-friendly exercises and project guides for learning web development and programming fundamentals.</p></article>
-          <article class="svc-product"><span class="svc-product-status">Planned product</span><h3>Business Templates</h3><p>Reusable digital templates and checklists designed to help small businesses organise routine work.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Process -->
-    <section class="svc-section" id="process">
-      <div class="svc-container">
-        <div class="svc-section-head">
-          <p class="svc-kicker">How we work</p>
-          <h2 class="svc-heading">From your idea to the next step.</h2>
-          <p class="svc-intro">Every engagement starts with understanding your requirements and agreeing on a practical scope.</p>
-        </div>
-        <div class="svc-process">
-          <article class="svc-step"><span class="svc-step-number">01</span><h3>Understand</h3><p>We discuss your goals, challenges, requirements and the outcome you want to achieve.</p></article>
-          <article class="svc-step"><span class="svc-step-number">02</span><h3>Plan</h3><p>We agree on deliverables, timeline, pricing and the approach appropriate to your project.</p></article>
-          <article class="svc-step"><span class="svc-step-number">03</span><h3>Deliver</h3><p>We work through the agreed scope and communicate progress as the project develops.</p></article>
-          <article class="svc-step"><span class="svc-step-number">04</span><h3>Support</h3><p>Where included in the agreement, we provide handover guidance and ongoing support.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="svc-cta">
-      <div class="svc-container svc-cta-inner">
-        <div>
-          <p class="svc-kicker">Let's get started</p>
-          <h2>Tell us what you want to build, learn or improve.</h2>
-          <p>Share a little about your project or training goals. We'll discuss your needs and help you identify a practical next step.</p>
-        </div>
-        <a class="svc-btn svc-btn--primary" href="{{ url_for('contact') }}">Contact MIF Digital Solutions <span aria-hidden="true">→</span></a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="svc-footer">
-    <div class="svc-container svc-footer-inner">
-      <div>
-        <div class="svc-footer-brand">MIF Digital Solutions</div>
-        <p class="svc-footer-copy">Practical technology solutions, skills and safer digital habits.</p>
-      </div>
-      <nav class="svc-footer-links" aria-label="Footer navigation">
-        <a href="{{ url_for('home') }}">Home</a>
-        <a href="{{ url_for('services') }}">Services</a>
-        <a href="{{ url_for('about') }}">About Us</a>
-        <a href="{{ url_for('contact') }}">Contact</a>
-      </nav>
-    </div>
-  </footer>
-</div>
+</form>
+</div></div>
+<script>
+const modal=document.getElementById("paymentModal"), email=document.getElementById("customerEmail");
+const naira=new Intl.NumberFormat("en-NG",{style:"currency",currency:"NGN",maximumFractionDigits:0});
+document.getElementById("year").textContent=new Date().getFullYear();
+document.querySelectorAll(".pay-button").forEach(button=>button.addEventListener("click",()=>{
+ const name=button.dataset.service, amount=Number(button.dataset.displayPrice), packageId=button.dataset.packageId;
+ document.getElementById("selectedService").textContent=name;
+ document.getElementById("selectedPrice").textContent=naira.format(amount);
+ document.getElementById("paymentPackage").value=packageId;
+ modal.classList.add("open");document.body.style.overflow="hidden";setTimeout(()=>email.focus(),80);
+}));
+function closeModal(){modal.classList.remove("open");document.body.style.overflow="";}
+document.getElementById("closePayment").addEventListener("click",closeModal);
+modal.addEventListener("click",e=>{if(e.target===modal)closeModal()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&modal.classList.contains("open"))closeModal()});
+</script>
 </body>
 </html>

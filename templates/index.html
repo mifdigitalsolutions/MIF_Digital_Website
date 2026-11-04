@@ -5,60 +5,991 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>MIF Digital Solutions | Smart Technology, Real Solutions</title>
+    <title>MIF Digital Solutions | AI, Cybersecurity & Digital Innovation</title>
 
     <meta name="description"
-          content="MIF Digital Solutions builds professional websites, mobile applications, AI solutions, chatbots and cybersecurity tools to solve real business problems.">
+          content="MIF Digital Solutions helps businesses build, automate and protect their operations through AI, cybersecurity, websites, applications and intelligent digital solutions.">
 
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#071326">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        /* =====================================
+           MIF HOMEPAGE — PREMIUM DESIGN
+        ===================================== */
+
+        .home-page {
+            --home-navy: #071326;
+            --home-blue: #1478ff;
+            --home-cyan: #38c5ff;
+            --home-gold: #d9b66f;
+            --home-white: #ffffff;
+            --home-muted: #a9b7cc;
+            font-family: 'DM Sans', sans-serif;
+            color: #17243a;
+            overflow: hidden;
+        }
+
+        .home-page * {
+            box-sizing: border-box;
+        }
+
+        .home-page a {
+            text-decoration: none;
+        }
+
+        .home-container {
+            width: min(1180px, 90%);
+            margin: auto;
+        }
+
+        /* HEADER */
+
+        .home-header {
+            background: var(--home-navy);
+            border-bottom: 1px solid rgba(255,255,255,.09);
+            position: relative;
+            z-index: 10;
+        }
+
+        .home-navbar {
+            min-height: 88px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .home-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            font-family: 'Manrope', sans-serif;
+            font-size: 19px;
+            font-weight: 800;
+        }
+
+        .home-brand img {
+            width: 52px;
+            height: 52px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .home-nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .home-nav a {
+            color: #c4d0e0;
+            font-size: 14px;
+            font-weight: 600;
+            transition: .25s ease;
+        }
+
+        .home-nav a:hover,
+        .home-nav a.active {
+            color: var(--home-cyan);
+        }
+
+        .home-nav .home-nav-cta {
+            background: var(--home-blue);
+            color: white;
+            padding: 12px 21px;
+            border-radius: 7px;
+        }
+
+        .home-nav .home-nav-cta:hover {
+            background: #3691ff;
+            color: white;
+        }
+
+        /* HERO */
+
+        .home-hero {
+            background:
+                radial-gradient(circle at 80% 40%, rgba(20,120,255,.19), transparent 35%),
+                linear-gradient(125deg, #071326 0%, #0b1c37 65%, #08182d 100%);
+            color: white;
+            position: relative;
+            padding: 100px 0 110px;
+        }
+
+        .home-hero-grid {
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
+            align-items: center;
+            gap: 65px;
+        }
+
+        .home-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--home-cyan);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 22px;
+        }
+
+        .home-eyebrow::before {
+            content: "";
+            width: 28px;
+            height: 2px;
+            background: var(--home-gold);
+        }
+
+        .home-hero h1 {
+            font-family: 'Manrope', sans-serif;
+            font-size: clamp(42px, 5vw, 66px);
+            line-height: 1.12;
+            letter-spacing: -2.5px;
+            margin: 0 0 24px;
+            font-weight: 800;
+        }
+
+        .home-highlight {
+            background: linear-gradient(90deg, #38c5ff, #1478ff, #d9b66f);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .home-hero-description {
+            max-width: 560px;
+            color: #b7c5d9;
+            font-size: 16px;
+            line-height: 1.9;
+            margin-bottom: 32px;
+        }
+
+        .home-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .home-btn {
+            min-height: 51px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 0 23px;
+            border-radius: 7px;
+            font-size: 14px;
+            font-weight: 700;
+            transition: .25s ease;
+        }
+
+        .home-btn-primary {
+            background: var(--home-blue);
+            color: white;
+            box-shadow: 0 10px 30px rgba(20,120,255,.25);
+        }
+
+        .home-btn-primary:hover {
+            background: #3994ff;
+            transform: translateY(-3px);
+        }
+
+        .home-btn-outline {
+            border: 1px solid rgba(255,255,255,.3);
+            color: white;
+        }
+
+        .home-btn-outline:hover {
+            border-color: var(--home-cyan);
+            color: var(--home-cyan);
+            transform: translateY(-3px);
+        }
+
+        /* HERO TECHNOLOGY VISUAL */
+
+        .home-visual {
+            min-height: 430px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .home-orbit {
+            position: absolute;
+            width: 370px;
+            height: 370px;
+            border: 1px solid rgba(56,197,255,.17);
+            border-radius: 50%;
+            box-shadow:
+                0 0 70px rgba(20,120,255,.1),
+                inset 0 0 70px rgba(20,120,255,.08);
+        }
+
+        .home-orbit::before,
+        .home-orbit::after {
+            content: "";
+            position: absolute;
+            border: 1px solid rgba(217,182,111,.18);
+            border-radius: 50%;
+        }
+
+        .home-orbit::before {
+            inset: 35px;
+        }
+
+        .home-orbit::after {
+            inset: 75px;
+        }
+
+        .home-core {
+            position: relative;
+            z-index: 2;
+            width: 180px;
+            height: 180px;
+            border-radius: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: linear-gradient(145deg, #122e55, #08172c);
+            border: 1px solid rgba(56,197,255,.4);
+            box-shadow: 0 0 65px rgba(20,120,255,.28);
+            transform: rotate(-5deg);
+        }
+
+        .home-core-shield {
+            width: 76px;
+            height: 76px;
+            margin-bottom: 12px;
+        }
+
+        .home-core strong {
+            color: white;
+            font-size: 15px;
+            letter-spacing: 2px;
+        }
+
+        .home-core small {
+            color: var(--home-cyan);
+            font-size: 9px;
+            letter-spacing: 2px;
+            margin-top: 5px;
+        }
+
+        .home-floating-card {
+            position: absolute;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 17px;
+            background: rgba(15,36,67,.94);
+            border: 1px solid rgba(255,255,255,.13);
+            border-radius: 10px;
+            box-shadow: 0 15px 40px rgba(0,0,0,.25);
+            backdrop-filter: blur(12px);
+        }
+
+        .home-floating-card span {
+            font-size: 12px;
+            color: #c5d2e5;
+        }
+
+        .home-floating-card strong {
+            display: block;
+            color: white;
+            font-size: 13px;
+            margin-bottom: 3px;
+        }
+
+        .home-floating-icon {
+            width: 39px;
+            height: 39px;
+            display: grid;
+            place-items: center;
+            border-radius: 9px;
+            color: var(--home-cyan);
+            background: rgba(20,120,255,.17);
+            font-size: 19px;
+        }
+
+        .home-card-ai {
+            top: 40px;
+            right: -5px;
+        }
+
+        .home-card-security {
+            bottom: 45px;
+            left: -10px;
+        }
+
+        .home-card-build {
+            bottom: 5px;
+            right: 20px;
+        }
+
+        /* TRUST STRIP */
+
+        .home-trust {
+            background: #0b1c34;
+            border-top: 1px solid rgba(255,255,255,.08);
+            border-bottom: 1px solid rgba(255,255,255,.08);
+            padding: 27px 0;
+        }
+
+        .home-trust-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            text-align: center;
+        }
+
+        .home-trust-item {
+            color: #c6d2e2;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .home-trust-item span {
+            display: block;
+            color: var(--home-cyan);
+            font-size: 20px;
+            margin-bottom: 6px;
+        }
+
+        /* GENERAL SECTIONS */
+
+        .home-section {
+            padding: 95px 0;
+        }
+
+        .home-section-heading {
+            max-width: 700px;
+            margin: 0 auto 48px;
+            text-align: center;
+        }
+
+        .home-section-heading .home-eyebrow {
+            justify-content: center;
+        }
+
+        .home-section-heading h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: clamp(30px, 4vw, 43px);
+            line-height: 1.2;
+            letter-spacing: -1.3px;
+            color: #10213c;
+            margin: 0 0 16px;
+        }
+
+        .home-section-heading p {
+            color: #64748b;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        /* SERVICES */
+
+        .home-services {
+            background: #f7faff;
+        }
+
+        .home-service-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .home-service-card {
+            background: white;
+            padding: 30px 24px;
+            border: 1px solid #e5edf7;
+            border-radius: 13px;
+            transition: .3s ease;
+        }
+
+        .home-service-card:hover {
+            transform: translateY(-7px);
+            border-color: #9bcaff;
+            box-shadow: 0 20px 45px rgba(24,82,145,.09);
+        }
+
+        .home-service-icon {
+            width: 49px;
+            height: 49px;
+            display: grid;
+            place-items: center;
+            background: #eaf3ff;
+            color: #0866e8;
+            font-size: 23px;
+            border-radius: 11px;
+            margin-bottom: 23px;
+        }
+
+        .home-service-card h3 {
+            color: #142744;
+            font-size: 17px;
+            margin: 0 0 12px;
+        }
+
+        .home-service-card p {
+            color: #66758a;
+            font-size: 13px;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .home-service-link {
+            display: inline-block;
+            margin-top: 19px;
+            color: #0866e8;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .home-centered-button {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        /* WHY MIF */
+
+        .home-why {
+            background: white;
+        }
+
+        .home-why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .home-why-card {
+            padding: 30px;
+            border-left: 3px solid var(--home-blue);
+            background: #f7faff;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .home-why-number {
+            color: #1478ff;
+            font-family: 'Manrope', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .home-why-card h3 {
+            color: #142744;
+            font-size: 18px;
+            margin: 0 0 12px;
+        }
+
+        .home-why-card p {
+            color: #66758a;
+            font-size: 14px;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* FINAL CTA */
+
+        .home-cta {
+            background:
+                radial-gradient(circle at 85% 50%, rgba(20,120,255,.2), transparent 35%),
+                #08172c;
+            color: white;
+            padding: 75px 0;
+        }
+
+        .home-cta-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 35px;
+        }
+
+        .home-cta h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: clamp(28px, 4vw, 39px);
+            margin: 0 0 13px;
+        }
+
+        .home-cta p {
+            color: #a9b7cc;
+            font-size: 14px;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0;
+        }
+
+        /* FOOTER */
+
+        .home-footer {
+            background: #050e1c;
+            color: white;
+            padding: 55px 0 25px;
+        }
+
+        .home-footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 35px;
+            padding-bottom: 35px;
+        }
+
+        .home-footer-brand {
+            max-width: 350px;
+        }
+
+        .home-footer-brand h3 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 20px;
+            margin: 0 0 13px;
+        }
+
+        .home-footer-brand p {
+            color: #93a4bb;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .home-footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .home-footer-links a {
+            color: #b5c2d5;
+            font-size: 13px;
+        }
+
+        .home-footer-links a:hover {
+            color: var(--home-cyan);
+        }
+
+        .home-footer-bottom {
+            border-top: 1px solid rgba(255,255,255,.1);
+            padding-top: 22px;
+            color: #8292a8;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        /* WHATSAPP */
+
+        .home-whatsapp {
+            position: fixed;
+            z-index: 99;
+            right: 23px;
+            bottom: 23px;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 13px 19px;
+            border-radius: 50px;
+            background: #16a765;
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(0,0,0,.2);
+            transition: .25s ease;
+        }
+
+        .home-whatsapp:hover {
+            background: #128b54;
+            transform: translateY(-4px);
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width: 950px) {
+            .home-hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .home-hero-text {
+                text-align: center;
+            }
+
+            .home-hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .home-buttons {
+                justify-content: center;
+            }
+
+            .home-service-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .home-visual {
+                min-height: 400px;
+            }
+        }
+
+        @media(max-width: 650px) {
+            .home-navbar {
+                padding: 15px 0;
+                flex-direction: column;
+                gap: 17px;
+            }
+
+            .home-nav {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 14px 20px;
+            }
+
+            .home-nav a {
+                font-size: 12px;
+            }
+
+            .home-nav .home-nav-cta {
+                padding: 9px 13px;
+            }
+
+            .home-hero {
+                padding: 70px 0;
+            }
+
+            .home-hero h1 {
+                font-size: 40px;
+                letter-spacing: -1.5px;
+            }
+
+            .home-hero-description {
+                font-size: 14px;
+            }
+
+            .home-visual {
+                min-height: 330px;
+                transform: scale(.88);
+                margin: -10px -15px;
+            }
+
+            .home-orbit {
+                width: 290px;
+                height: 290px;
+            }
+
+            .home-core {
+                width: 145px;
+                height: 145px;
+            }
+
+            .home-core-shield {
+                width: 60px;
+                height: 60px;
+            }
+
+            .home-floating-card {
+                padding: 10px;
+            }
+
+            .home-floating-card span {
+                font-size: 10px;
+            }
+
+            .home-floating-card strong {
+                font-size: 11px;
+            }
+
+            .home-card-ai {
+                right: -5px;
+                top: 25px;
+            }
+
+            .home-card-security {
+                left: -5px;
+                bottom: 35px;
+            }
+
+            .home-card-build {
+                right: 0;
+                bottom: 0;
+            }
+
+            .home-trust-grid {
+                grid-template-columns: 1fr;
+                gap: 22px;
+            }
+
+            .home-section {
+                padding: 70px 0;
+            }
+
+            .home-service-grid,
+            .home-why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .home-cta-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .home-footer-top {
+                flex-direction: column;
+            }
+
+            .home-footer-links {
+                gap: 18px;
+            }
+
+            .home-whatsapp {
+                right: 13px;
+                bottom: 13px;
+                padding: 12px 15px;
+            }
+        }
+
+        @media(prefers-reduced-motion: reduce) {
+            .home-page *,
+            .home-page *::before,
+            .home-page *::after {
+                scroll-behavior: auto !important;
+                transition: none !important;
+         
+            }
+        }
+        /* ==========================================
+   MIF DIGITAL SOLUTIONS
+   PREMIUM DARK DESIGN UPGRADE
+   Navy | Black | Electric Blue | Gold | Purple
+========================================== */
+
+.home-page {
+    --home-navy: #050b18;
+    --home-blue: #1677ff;
+    --home-cyan: #36cfff;
+    --home-gold: #d9b66f;
+    --home-muted: #a9b8ce;
+
+    background: #050b18 !important;
+    color: #dce6f5 !important;
+}
+
+/* GLOBAL BACKGROUNDS */
+
+.home-page .home-services,
+.home-page .home-why {
+    background:
+        radial-gradient(circle at 10% 20%, rgba(22,119,255,.09), transparent 30%),
+        #080f20 !important;
+}
+
+/* SECTION HEADINGS */
+
+.home-page .home-section-heading h2 {
+    color: #e4edfa !important;
+}
+
+.home-page .home-section-heading p {
+    color: #a5b5cb !important;
+}
+
+/* SERVICE CARDS */
+
+.home-page .home-service-card {
+    background: linear-gradient(145deg, #101d33, #0a1427) !important;
+    border: 1px solid rgba(54,207,255,.15) !important;
+    box-shadow: 0 12px 35px rgba(0,0,0,.2);
+}
+
+.home-page .home-service-card:hover {
+    border-color: rgba(54,207,255,.65) !important;
+    box-shadow: 0 20px 45px rgba(22,119,255,.15);
+}
+
+.home-page .home-service-card h3 {
+    color: #e4edfa !important;
+}
+
+.home-page .home-service-card p {
+    color: #a9b8ce !important;
+}
+
+.home-page .home-service-icon {
+    background: linear-gradient(145deg, #142e55, #182442) !important;
+    color: #36cfff !important;
+    border: 1px solid rgba(54,207,255,.2);
+}
+
+.home-page .home-service-link {
+    color: #42c9ff !important;
+}
+
+/* WHY MIF CARDS */
+
+.home-page .home-why-card {
+    background: linear-gradient(145deg, #111e35, #0a1426) !important;
+    border-left: 3px solid #1677ff !important;
+    border-top: 1px solid rgba(54,207,255,.1);
+    border-right: 1px solid rgba(54,207,255,.1);
+    border-bottom: 1px solid rgba(54,207,255,.1);
+    border-radius: 0 12px 12px 0;
+}
+
+.home-page .home-why-number {
+    color: #d9b66f !important;
+}
+
+.home-page .home-why-card h3 {
+    color: #e4edfa !important;
+}
+
+.home-page .home-why-card p {
+    color: #a9b8ce !important;
+}
+
+/* TRUST SECTION */
+
+.home-page .home-trust {
+    background: #080f20 !important;
+    border-color: rgba(54,207,255,.15);
+}
+
+/* HERO ENHANCEMENT */
+
+.home-page .home-hero {
+    background:
+        radial-gradient(circle at 80% 30%, rgba(22,119,255,.2), transparent 35%),
+        radial-gradient(circle at 15% 85%, rgba(119,64,190,.13), transparent 30%),
+        linear-gradient(135deg, #040914, #0a1830 60%, #071326) !important;
+}
+
+.home-page .home-core {
+    background: linear-gradient(145deg, #142c50, #080f20);
+    border-color: rgba(54,207,255,.55);
+}
+
+.home-page .home-core strong {
+    color: #e4edfa;
+}
+
+.home-page .home-floating-card {
+    background: rgba(12,27,49,.96);
+    border-color: rgba(54,207,255,.2);
+}
+
+/* FINAL CTA */
+
+.home-page .home-cta {
+    background:
+        radial-gradient(circle at 80% 50%, rgba(22,119,255,.2), transparent 35%),
+        linear-gradient(120deg, #050b18, #0b1c38) !important;
+}
+
+/* FOOTER */
+
+.home-page .home-footer {
+    background: #030812 !important;
+    border-top: 1px solid rgba(54,207,255,.15);
+}
+
+.home-page .home-footer-brand h3 {
+    color: #dce6f5;
+}
+
+.home-page .home-footer-brand p,
+.home-page .home-footer-bottom {
+    color: #91a4bf;
+}
+
+/* BUTTON ENHANCEMENTS */
+
+.home-page .home-btn-primary {
+    background: linear-gradient(110deg, #1268e8, #168bff) !important;
+    box-shadow: 0 8px 28px rgba(22,119,255,.25);
+}
+
+.home-page .home-btn-primary:hover {
+    box-shadow: 0 12px 35px rgba(22,119,255,.4);
+}
+
+/* ACCESSIBILITY: REPLACE PURE WHITE TEXT */
+
+.home-page .home-brand,
+.home-page .home-nav .home-nav-cta,
+.home-page .home-hero,
+.home-page .home-cta,
+.home-page .home-footer {
+    color: #dce6f5;
+}
+
+.home-page .home-core svg path:last-child {
+    stroke: #e4edfa;
+}
+
+/* MOBILE REFINEMENT */
+
+@media(max-width: 650px) {
+    .home-page .home-service-card,
+    .home-page .home-why-card {
+        padding: 25px 21px;
+    }
+
+    .home-page .home-section-heading h2 {
+        font-size: 29px;
+    }
+}
+    </style>
 </head>
 
 <body>
 
-    <!-- =========================
-         NAVIGATION
-    ========================== -->
+<div class="home-page">
 
-    <header class="site-header">
+    <!-- HEADER -->
 
-        <div class="container">
+    <header class="home-header">
 
-            <nav class="navbar" aria-label="Main navigation">
+        <div class="home-container">
 
-                <a href="/"
-                   class="logo"
-                   aria-label="MIF Digital Solutions Home">
+            <nav class="home-navbar" aria-label="Main navigation">
+
+                <a href="/" class="home-brand">
 
                     <img
                         src="{{ url_for('static', filename='image/MIF_Logo.jpeg') }}"
                         alt="MIF Digital Solutions Logo"
-                        class="logo-image"
                     >
 
                     <span>MIF Digital Solutions</span>
 
                 </a>
 
-                <div class="nav-links">
+                <div class="home-nav">
 
-                    <a href="/" class="active" aria-current="page">
-                        Home
-                    </a>
+                    <a href="/" class="active" aria-current="page">Home</a>
 
-                    <a href="/services">
-                        Services
-                    </a>
+                    <a href="/services">Services</a>
 
-                    <a href="/about">
-                        About
-                    </a>
+                    <a href="/about">About</a>
 
-                    <a href="/contact">
-                        Contact
-                    </a>
+                    <a href="/contact">Contact</a>
+
+                    <a href="/contact" class="home-nav-cta">Let's Talk</a>
 
                 </div>
 
@@ -69,47 +1000,38 @@
     </header>
 
 
-    <!-- =========================
-         HOMEPAGE HERO
-    ========================== -->
-
     <main>
 
-        <section class="hero">
+        <!-- HERO -->
 
-            <div class="container hero-content">
+        <section class="home-hero">
 
-                <!-- LEFT: HEADLINE AND CALL TO ACTION -->
+            <div class="home-container home-hero-grid">
 
-                <div class="hero-text">
+                <div class="home-hero-text">
 
-                    <p class="eyebrow">
-                        SMART TECHNOLOGY. REAL SOLUTIONS.
+                    <p class="home-eyebrow">
+                        TECHNOLOGY. INTELLIGENCE. SECURITY.
                     </p>
 
                     <h1>
-                        Technology That
-                        <span class="highlight">Solves</span>
-                        Real Business Problems.
+                        Building Smarter
+                        <span class="home-highlight">Digital Futures.</span>
                     </h1>
 
-                    <p class="hero-description">
-                        We help businesses work smarter, operate more
-                        efficiently and grow confidently through professional
-                        websites, artificial intelligence, cybersecurity
-                        and digital solutions.
+                    <p class="home-hero-description">
+                        We help businesses build better digital experiences,
+                        automate operations and strengthen digital security
+                        through intelligent technology solutions.
                     </p>
 
-                    <div class="hero-buttons">
+                    <div class="home-buttons">
 
-                        <a href="/services" class="btn btn-primary">
-                            Explore Our Services
-                            <span class="button-arrow" aria-hidden="true">
-                                →
-                            </span>
+                        <a href="/services" class="home-btn home-btn-primary">
+                            Explore Our Solutions <span>→</span>
                         </a>
 
-                        <a href="/contact" class="btn btn-secondary">
+                        <a href="/contact" class="home-btn home-btn-outline">
                             Start a Project
                         </a>
 
@@ -118,255 +1040,75 @@
                 </div>
 
 
-                <!-- RIGHT: TECHNOLOGY VISUAL -->
+                <!-- TECHNOLOGY VISUAL -->
 
-                <div class="hero-visual"
-                     aria-label="Build, automate and protect">
+                <div class="home-visual" aria-label="MIF technology solutions">
 
-                    <div class="visual-background"></div>
+                    <div class="home-orbit"></div>
 
+                    <div class="home-core">
 
-                    <!-- DECORATIVE PLANT -->
-
-                    <div class="plant plant-left" aria-hidden="true">
-
-                        <svg viewBox="0 0 100 140" fill="none">
+                        <svg class="home-core-shield"
+                             viewBox="0 0 64 64"
+                             fill="none"
+                             aria-hidden="true">
 
                             <path
-                                d="M50 140V55"
-                                stroke="#397A58"
-                                stroke-width="4"
+                                d="M32 4L54 13V29C54 44 44 55 32 61C20 55 10 44 10 29V13L32 4Z"
+                                fill="#1478ff"
+                                stroke="#55ccff"
+                                stroke-width="2"
+                            />
+
+                            <path
+                                d="M21 32L28 39L44 23"
+                                stroke="white"
+                                stroke-width="5"
                                 stroke-linecap="round"
-                            />
-
-                            <path
-                                d="M50 100C20 100 8 78 12 56C38 58 52 75 50 100Z"
-                                fill="#83B79A"
-                            />
-
-                            <path
-                                d="M50 82C76 80 91 57 85 34C61 39 48 59 50 82Z"
-                                fill="#559873"
-                            />
-
-                            <path
-                                d="M50 60C24 58 16 37 22 18C43 22 53 40 50 60Z"
-                                fill="#A0CDB0"
-                            />
-
-                            <path
-                                d="M50 48C73 43 79 22 70 7C52 14 44 30 50 48Z"
-                                fill="#397A58"
+                                stroke-linejoin="round"
                             />
 
                         </svg>
 
+                        <strong>MIF</strong>
+
+                        <small>DIGITAL SOLUTIONS</small>
+
                     </div>
 
 
-                    <!-- LAPTOP MOCKUP -->
+                    <div class="home-floating-card home-card-ai">
 
-                    <div class="laptop-mockup">
+                        <div class="home-floating-icon">✦</div>
 
-                        <div class="laptop-screen">
-
-                            <div class="laptop-screen-content">
-
-                                <div class="screen-logo">
-
-                                    <img
-                                        src="{{ url_for('static', filename='image/MIF_Logo.jpeg') }}"
-                                        alt="MIF Digital Solutions"
-                                    >
-
-                                </div>
-
-                                <p class="screen-caption">
-                                    DIGITAL SOLUTIONS
-                                </p>
-
-                                <div class="screen-light"></div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="laptop-hinge"></div>
-
-                        <div class="laptop-base">
-
-                            <div class="laptop-keyboard"></div>
-
-                            <div class="laptop-trackpad"></div>
-
+                        <div>
+                            <strong>Artificial Intelligence</strong>
+                            <span>Intelligent solutions</span>
                         </div>
 
                     </div>
 
 
-                    <!-- BUILD, AUTOMATE, PROTECT -->
+                    <div class="home-floating-card home-card-security">
 
-                    <div class="feature-panel">
+                        <div class="home-floating-icon">🛡️</div>
 
+                        <div>
+                            <strong>Cybersecurity</strong>
+                            <span>Digital protection</span>
+                        </div>
 
-                        <!-- BUILD -->
-
-                        <article class="feature-card">
-
-                            <div class="feature-icon">
-
-                                <svg
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    aria-hidden="true"
-                                >
-
-                                    <circle cx="12" cy="12" r="3"/>
-
-                                    <path
-                                        d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-1.7 2.94-.1-.03a1.7 1.7 0 0 0-1.8.68l-.05.08h-3.4l-.04-.08a1.7 1.7 0 0 0-1.8-.68l-.1.03-1.7-2.94.06-.06A1.7 1.7 0 0 0 9.6 15l-.1-.03v-3.4l.1-.04a1.7 1.7 0 0 0-.34-1.88L9.2 9.6l1.7-2.94.1.03a1.7 1.7 0 0 0 1.8-.68l.04-.08h3.4l.05.08a1.7 1.7 0 0 0 1.8.68l.1-.03 1.7 2.94-.06.06a1.7 1.7 0 0 0-.34 1.88l.1.04v3.4z"
-                                        transform="translate(-1 -1) scale(1.08)"
-                                    />
-
-                                </svg>
-
-                            </div>
-
-                            <div class="feature-copy">
-
-                                <h2>Build</h2>
-
-                                <p>
-                                    Custom digital solutions designed
-                                    around your business needs.
-                                </p>
-
-                            </div>
-
-                        </article>
+                    </div>
 
 
-                        <!-- AUTOMATE -->
+                    <div class="home-floating-card home-card-build">
 
-                        <article class="feature-card">
+                        <div class="home-floating-icon">⌘</div>
 
-                            <div class="feature-icon">
-
-                                <svg
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    aria-hidden="true"
-                                >
-
-                                    <path d="M4 19V13"/>
-
-                                    <path d="M10 19V8"/>
-
-                                    <path d="M16 19V4"/>
-
-                                    <path d="M2 21H22"/>
-
-                                    <path d="M13 7l3-3 3 3"/>
-
-                                </svg>
-
-                            </div>
-
-                            <div class="feature-copy">
-
-                                <h2>Automate</h2>
-
-                                <p>
-                                    Reduce repetitive work, save time
-                                    and improve efficiency.
-                                </p>
-
-                            </div>
-
-                        </article>
-
-
-                        <!-- PROTECT -->
-
-                        <article class="feature-card">
-
-                            <div class="feature-icon shield-icon">
-
-                                <svg
-                                    viewBox="0 0 64 64"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    role="img"
-                                    aria-label="Cybersecurity shield"
-                                >
-
-                                    <defs>
-
-                                        <linearGradient
-                                            id="shieldBlue"
-                                            x1="0"
-                                            y1="0"
-                                            x2="1"
-                                            y2="1"
-                                        >
-
-                                            <stop
-                                                offset="0%"
-                                                stop-color="#39B6FF"
-                                            />
-
-                                            <stop
-                                                offset="100%"
-                                                stop-color="#0757D8"
-                                            />
-
-                                        </linearGradient>
-
-                                    </defs>
-
-                                    <path
-                                        d="M32 4 L54 13 V29 C54 44 44 55 32 61 C20 55 10 44 10 29 V13 Z"
-                                        fill="url(#shieldBlue)"
-                                    />
-
-                                    <path
-                                        d="M32 12 L47 18 V29 C47 40 40 48 32 53 C24 48 17 40 17 29 V18 Z"
-                                        fill="#FFFFFF"
-                                        opacity="0.18"
-                                    />
-
-                                    <path
-                                        d="M22 32 L29 39 L43 24"
-                                        fill="none"
-                                        stroke="#FFFFFF"
-                                        stroke-width="5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-
-                                </svg>
-
-                            </div>
-
-                            <div class="feature-copy">
-
-                                <h2>Protect</h2>
-
-                                <p>
-                                    Help safeguard business information
-                                    through security-minded solutions.
-                                </p>
-
-                            </div>
-
-                        </article>
+                        <div>
+                            <strong>Digital Development</strong>
+                            <span>Build and innovate</span>
+                        </div>
 
                     </div>
 
@@ -377,83 +1119,133 @@
         </section>
 
 
-        <!-- =========================
-             FEATURED SERVICES
-        ========================== -->
+        <!-- BRAND POSITIONING -->
 
-        <section class="section">
+        <section class="home-trust">
 
-            <div class="container">
+            <div class="home-container home-trust-grid">
 
-                <div class="section-heading">
+                <div class="home-trust-item">
+                    <span>01</span>
+                    Build Digital Solutions
+                </div>
 
-                    <p class="eyebrow">WHAT WE DO</p>
+                <div class="home-trust-item">
+                    <span>02</span>
+                    Automate Business Operations
+                </div>
 
-                    <h2>Technology That Moves Your Business Forward</h2>
+                <div class="home-trust-item">
+                    <span>03</span>
+                    Strengthen Digital Security
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SERVICES -->
+
+        <section class="home-section home-services">
+
+            <div class="home-container">
+
+                <div class="home-section-heading">
+
+                    <p class="home-eyebrow">OUR EXPERTISE</p>
+
+                    <h2>Technology Designed Around Your Business</h2>
 
                     <p>
-                        From your first website to intelligent automation,
-                        we help turn business challenges into practical
-                        digital solutions.
+                        From digital presence to intelligent automation,
+                        we develop practical solutions that help businesses
+                        operate, connect and grow.
                     </p>
 
                 </div>
 
-                <div class="services-grid">
 
-                    <article class="service-card">
+                <div class="home-service-grid">
+
+                    <article class="home-service-card">
+
+                        <div class="home-service-icon">⌘</div>
 
                         <h3>Website Development</h3>
 
                         <p>
-                            Responsive, professional websites that establish
-                            credibility and help customers find your business.
+                            Professional, responsive websites that strengthen
+                            your brand and connect you with customers.
                         </p>
+
+                        <a href="/services" class="home-service-link">
+                            Explore service →
+                        </a>
 
                     </article>
 
 
-                    <article class="service-card">
+                    <article class="home-service-card">
 
-                        <h3>AI and Chatbots</h3>
+                        <div class="home-service-icon">✦</div>
+
+                        <h3>Artificial Intelligence</h3>
 
                         <p>
-                            Intelligent tools and chatbot solutions that
-                            support customer service and everyday workflows.
+                            Intelligent applications, AI-powered tools
+                            and solutions designed around real needs.
                         </p>
+
+                        <a href="/services" class="home-service-link">
+                            Explore service →
+                        </a>
 
                     </article>
 
 
-                    <article class="service-card">
+                    <article class="home-service-card">
+
+                        <div class="home-service-icon">🛡️</div>
 
                         <h3>Cybersecurity</h3>
 
                         <p>
-                            Security-focused tools and practices that help
-                            identify risks and protect digital operations.
+                            Security-focused solutions that help businesses
+                            identify digital risks and improve protection.
                         </p>
+
+                        <a href="/services" class="home-service-link">
+                            Explore service →
+                        </a>
 
                     </article>
 
 
-                    <article class="service-card">
+                    <article class="home-service-card">
+
+                        <div class="home-service-icon">⚙️</div>
 
                         <h3>Business Automation</h3>
 
                         <p>
-                            Practical automation that reduces repetitive
-                            tasks and improves operational efficiency.
+                            Smarter workflows, chatbots and automated
+                            processes that reduce repetitive work.
                         </p>
+
+                        <a href="/services" class="home-service-link">
+                            Explore service →
+                        </a>
 
                     </article>
 
                 </div>
 
-                <div class="hero-buttons">
 
-                    <a href="/services" class="btn btn-primary">
-                        View All Services →
+                <div class="home-centered-button">
+
+                    <a href="/services" class="home-btn home-btn-primary">
+                        Discover All Services →
                     </a>
 
                 </div>
@@ -463,72 +1255,71 @@
         </section>
 
 
-        <!-- =========================
-             WHY MIF
-        ========================== -->
+        <!-- WHY MIF -->
 
-        <section class="section">
+        <section class="home-section home-why">
 
-            <div class="container">
+            <div class="home-container">
 
-                <div class="section-heading">
+                <div class="home-section-heading">
 
-                    <p class="eyebrow">WHY MIF DIGITAL SOLUTIONS</p>
+                    <p class="home-eyebrow">WHY WORK WITH MIF</p>
 
-                    <h2>Practical Technology. Clear Purpose.</h2>
+                    <h2>Technology With Purpose and Direction</h2>
 
                     <p>
-                        We start by understanding the problem, then choose
-                        a suitable approach and build with usability,
-                        security and future improvement in mind.
+                        We believe technology should solve problems,
+                        create opportunities and make everyday operations
+                        easier.
                     </p>
 
                 </div>
 
-                <div class="services-grid">
 
-                    <article class="service-card">
+                <div class="home-why-grid">
 
-                        <h3>Problem-Focused</h3>
+                    <article class="home-why-card">
+
+                        <div class="home-why-number">01</div>
+
+                        <h3>Problem-Focused Thinking</h3>
 
                         <p>
-                            Solutions are shaped around real business
-                            requirements rather than unnecessary complexity.
+                            We begin by understanding your objectives
+                            and identifying the right technology
+                            for the problem.
                         </p>
 
                     </article>
 
 
-                    <article class="service-card">
+                    <article class="home-why-card">
 
-                        <h3>Security-Minded</h3>
+                        <div class="home-why-number">02</div>
+
+                        <h3>Security-Conscious Approach</h3>
 
                         <p>
-                            We consider digital safety and responsible
-                            technology practices when planning solutions.
+                            We consider security, reliability and
+                            responsible technology practices
+                            throughout the development process.
                         </p>
 
                     </article>
 
 
-                    <article class="service-card">
+                    <article class="home-why-card">
 
-                        <h3>Built for Growth</h3>
+                        <div class="home-why-number">03</div>
+
+                        <h3>Designed for Growth</h3>
 
                         <p>
-                            We value useful, maintainable solutions that
-                            can improve as your business develops.
+                            We value scalable, maintainable solutions
+                            that can evolve alongside your business.
                         </p>
 
                     </article>
-
-                </div>
-
-                <div class="hero-buttons">
-
-                    <a href="/about" class="btn btn-secondary">
-                        Learn About Us →
-                    </a>
 
                 </div>
 
@@ -537,29 +1328,28 @@
         </section>
 
 
-        <!-- =========================
-             FINAL CALL TO ACTION
-        ========================== -->
+        <!-- FINAL CTA -->
 
-        <section class="cta-section">
+        <section class="home-cta">
 
-            <div class="container cta-content">
+            <div class="home-container home-cta-content">
 
                 <div>
 
-                    <p class="eyebrow">LET'S BUILD SOMETHING VALUABLE</p>
+                    <p class="home-eyebrow">YOUR NEXT DIGITAL MOVE STARTS HERE</p>
 
-                    <h2>Have a Project in Mind?</h2>
+                    <h2>Let's Build Something That Matters.</h2>
 
                     <p>
-                        Tell us about your business challenge or digital
-                        product idea. Let's explore a practical solution.
+                        Have a business challenge, an application idea
+                        or a digital project? Let's discuss how
+                        technology can help.
                     </p>
 
                 </div>
 
-                <a href="/contact" class="btn btn-primary">
-                    Start a Project →
+                <a href="/contact" class="home-btn home-btn-primary">
+                    Talk to Our Team →
                 </a>
 
             </div>
@@ -569,54 +1359,67 @@
     </main>
 
 
-    <!-- =========================
-         FOOTER
-    ========================== -->
+    <!-- FOOTER -->
 
-    <footer class="site-footer">
+    <footer class="home-footer">
 
-        <div class="container footer-content">
+        <div class="home-container">
 
-            <div>
+            <div class="home-footer-top">
 
-                <h3>MIF Digital Solutions</h3>
+                <div class="home-footer-brand">
 
-                <p>
-                    Technology that solves real business problems.
-                </p>
+                    <h3>MIF Digital Solutions</h3>
+
+                    <p>
+                        Building smarter digital experiences,
+                        intelligent solutions and safer
+                        digital operations.
+                    </p>
+
+                </div>
+
+
+                <div class="home-footer-links">
+
+                    <a href="/">Home</a>
+
+                    <a href="/services">Services</a>
+
+                    <a href="/about">About</a>
+
+                    <a href="/contact">Contact</a>
+
+                </div>
 
             </div>
 
-            <div class="footer-links">
 
-                <a href="/">Home</a>
+            <div class="home-footer-bottom">
 
-                <a href="/services">Services</a>
-
-                <a href="/about">About</a>
-
-                <a href="/contact">Contact</a>
-
-            </div>
-
-            <p class="copyright">
                 © 2026 MIF Digital Solutions. All rights reserved.
-            </p>
+
+            </div>
 
         </div>
 
     </footer>
-<!-- Floating WhatsApp Contact Button -->
-<a
-    href="https://wa.me/2348128556446?text=Hello%20MIF%20Digital%20Solutions%2C%20I%27m%20interested%20in%20your%20services."
-    class="whatsapp-float"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Chat with MIF Digital Solutions on WhatsApp"
->
-    <span aria-hidden="true">☏</span>
-    <span>Chat with us</span>
-</a>
+
+
+    <!-- WHATSAPP -->
+
+    <a
+        href="https://wa.me/2348128556446?text=Hello%20MIF%20Digital%20Solutions%2C%20I%27m%20interested%20in%20your%20services."
+        class="home-whatsapp"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with MIF Digital Solutions on WhatsApp"
+    >
+        <span aria-hidden="true">☏</span>
+        Chat with us
+    </a>
+
+</div>
 
 </body>
 </html>

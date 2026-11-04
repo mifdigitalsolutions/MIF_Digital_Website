@@ -1,966 +1,1055 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>About Us | MIF Digital Solutions</title>
 
-    <title>About Us | MIF Digital Solutions</title>
+<meta name="description"
+      content="Discover MIF Digital Solutions, our mission, vision and commitment to AI, cybersecurity, web development and digital innovation.">
 
-    <meta name="description"
-          content="Discover MIF Digital Solutions, our mission, vision, and commitment to helping businesses grow through AI, cybersecurity, web development, and digital innovation.">
+<meta name="theme-color" content="#070d1b">
 
-    <meta name="theme-color" content="#0756cf">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet">
 
-    <style>
-        /* =========================================
-           MIF DIGITAL SOLUTIONS — ABOUT PAGE
-           Brand: Blue, Cyan, White and Navy
-        ========================================= */
+<style>
 
-        .about-page {
-            --about-blue: #0756cf;
-            --about-dark-blue: #073b8c;
-            --about-cyan: #00c2e8;
-            --about-navy: #071b36;
-            --about-text: #52627a;
-            --about-light: #f3f8ff;
-            --about-border: #e1eaf5;
-            color: var(--about-navy);
-            background: #ffffff;
-            font-family: inherit;
-            overflow: hidden;
+    /* ==========================================
+       MIF DIGITAL SOLUTIONS — ABOUT PAGE
+       PREMIUM DARK BRAND IDENTITY
+       Navy | Black | Blue | Cyan | Gold | Purple
+    ========================================== */
+
+    .about-page {
+        --navy: #070d1b;
+        --navy-light: #0c1830;
+        --navy-card: #101f3a;
+        --navy-card-2: #132746;
+
+        --blue: #1478ff;
+        --blue-light: #3995ff;
+        --cyan: #38c5ff;
+        --gold: #d9b66f;
+        --purple: #9875ff;
+
+        --heading: #dce9fa;
+        --text: #a5b6ce;
+        --muted: #8296b3;
+
+        --border: rgba(117, 163, 222, .16);
+
+        background: var(--navy);
+        color: var(--text);
+        font-family: 'DM Sans', sans-serif;
+        overflow: hidden;
+    }
+
+    .about-page *,
+    .about-page *::before,
+    .about-page *::after {
+        box-sizing: border-box;
+    }
+
+    .about-page a {
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .about-container {
+        width: min(1160px, calc(100% - 40px));
+        margin: 0 auto;
+    }
+
+    /* HEADER */
+
+    .about-header {
+        position: relative;
+        z-index: 20;
+        background: rgba(7, 13, 27, .97);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .about-header-inner {
+        min-height: 86px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 25px;
+    }
+
+    .about-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--heading);
+        font-family: 'Manrope', sans-serif;
+        font-size: 18px;
+        font-weight: 800;
+    }
+
+    .about-brand img {
+        width: 49px;
+        height: 49px;
+        object-fit: contain;
+        border-radius: 9px;
+    }
+
+    .about-brand span {
+        color: var(--cyan);
+    }
+
+    .about-nav {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 27px;
+    }
+
+    .about-nav a {
+        color: var(--text);
+        font-size: 13px;
+        font-weight: 650;
+        transition: .25s ease;
+    }
+
+    .about-nav a:hover,
+    .about-nav a.active {
+        color: var(--cyan);
+    }
+
+    .about-nav .nav-contact {
+        padding: 12px 19px;
+        border-radius: 7px;
+        background: var(--blue);
+        color: #ffffff;
+    }
+
+    .about-nav .nav-contact:hover {
+        background: var(--cyan);
+        color: #071326;
+    }
+
+    /* BUTTONS */
+
+    .about-button {
+        min-height: 50px;
+        padding: 13px 22px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        background: var(--blue);
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 800;
+        transition: .25s ease;
+    }
+
+    .about-button:hover {
+        transform: translateY(-3px);
+        background: var(--cyan);
+        color: #071326;
+        box-shadow: 0 10px 30px rgba(20, 120, 255, .2);
+    }
+
+    .about-button.secondary {
+        background: transparent;
+        border-color: rgba(56, 197, 255, .45);
+        color: var(--cyan);
+    }
+
+    .about-button.secondary:hover {
+        background: rgba(56, 197, 255, .1);
+    }
+
+    /* SECTION LABEL */
+
+    .about-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 19px;
+        color: var(--cyan);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .about-eyebrow::before {
+        content: "";
+        width: 25px;
+        height: 2px;
+        background: var(--gold);
+    }
+
+    /* HERO */
+
+    .about-hero {
+        position: relative;
+        padding: 95px 0;
+        background:
+            radial-gradient(
+                circle at 85% 20%,
+                rgba(20, 120, 255, .2),
+                transparent 32%
+            ),
+            radial-gradient(
+                circle at 5% 90%,
+                rgba(152, 117, 255, .11),
+                transparent 30%
+            ),
+            linear-gradient(130deg, #070d1b, #0b1932);
+    }
+
+    .about-hero-grid {
+        display: grid;
+        grid-template-columns: 1.08fr .92fr;
+        align-items: center;
+        gap: 65px;
+    }
+
+    .about-hero h1 {
+        margin: 0 0 23px;
+        max-width: 650px;
+        color: var(--heading);
+        font-family: 'Manrope', sans-serif;
+        font-size: clamp(38px, 5vw, 60px);
+        font-weight: 800;
+        line-height: 1.12;
+        letter-spacing: -2px;
+    }
+
+    .about-hero h1 span {
+        background: linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--blue-light),
+            var(--gold)
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+
+    .about-hero-copy {
+        max-width: 590px;
+        margin-bottom: 30px;
+        color: var(--text);
+        font-size: 15px;
+        line-height: 1.95;
+    }
+
+    .about-hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 13px;
+    }
+
+    /* HERO VISUAL */
+
+    .about-visual {
+        position: relative;
+    }
+
+    .about-visual-card {
+        position: relative;
+        overflow: hidden;
+        padding: 37px;
+        border: 1px solid rgba(56, 197, 255, .2);
+        border-radius: 23px;
+        background:
+            radial-gradient(
+                circle at 100% 0%,
+                rgba(20, 120, 255, .23),
+                transparent 38%
+            ),
+            linear-gradient(145deg, #101f3a, #09172d);
+        box-shadow: 0 25px 70px rgba(0, 0, 0, .25);
+    }
+
+    .about-visual-card::before {
+        content: "";
+        position: absolute;
+        top: -100px;
+        right: -80px;
+        width: 230px;
+        height: 230px;
+        border: 35px solid rgba(56, 197, 255, .1);
+        border-radius: 50%;
+    }
+
+    .about-visual-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .about-shield {
+        width: 82px;
+        height: 82px;
+        display: grid;
+        place-items: center;
+        margin-bottom: 26px;
+        border: 1px solid rgba(56, 197, 255, .35);
+        border-radius: 20px;
+        background: rgba(20, 120, 255, .13);
+        box-shadow: 0 0 35px rgba(20, 120, 255, .12);
+    }
+
+    .about-shield svg {
+        width: 49px;
+        height: 49px;
+        color: var(--cyan);
+    }
+
+    .about-visual-card h2 {
+        margin: 0 0 13px;
+        color: var(--heading);
+        font-family: 'Manrope', sans-serif;
+        font-size: 29px;
+    }
+
+    .about-visual-card > p {
+        color: var(--text);
+        font-size: 14px;
+        line-height: 1.85;
+        margin-bottom: 26px;
+    }
+
+    .about-principle {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 15px 0;
+        border-top: 1px solid var(--border);
+    }
+
+    .about-principle-icon {
+        width: 43px;
+        height: 43px;
+        flex-shrink: 0;
+        display: grid;
+        place-items: center;
+        border-radius: 11px;
+        background: rgba(56, 197, 255, .12);
+        color: var(--cyan);
+        font-size: 19px;
+    }
+
+    .about-principle strong {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--heading);
+        font-size: 13px;
+    }
+
+    .about-principle small {
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+    /* GENERAL SECTIONS */
+
+    .about-section {
+        padding: 90px 0;
+        background: var(--navy);
+    }
+
+    .about-section.alternate {
+        background:
+            radial-gradient(
+                circle at 90% 10%,
+                rgba(20, 120, 255, .08),
+                transparent 32%
+            ),
+            #0a162b;
+    }
+
+    .about-section-heading {
+        max-width: 720px;
+        margin: 0 auto 45px;
+        text-align: center;
+    }
+
+    .about-section-heading .about-eyebrow {
+        justify-content: center;
+    }
+
+    .about-section-heading h2 {
+        margin: 0 0 16px;
+        color: var(--heading);
+        font-family: 'Manrope', sans-serif;
+        font-size: clamp(30px, 4vw, 42px);
+        line-height: 1.2;
+        letter-spacing: -1px;
+    }
+
+    .about-section-heading h2 span {
+        color: var(--cyan);
+    }
+
+    .about-section-heading > p {
+        color: var(--text);
+        font-size: 14px;
+        line-height: 1.9;
+    }
+
+    /* OUR STORY */
+
+    .about-story-grid {
+        display: grid;
+        grid-template-columns: .9fr 1.1fr;
+        align-items: center;
+        gap: 65px;
+    }
+
+    .about-story-visual {
+        position: relative;
+        min-height: 355px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border: 1px solid rgba(56, 197, 255, .17);
+        border-radius: 22px;
+        background:
+            radial-gradient(
+                circle at 80% 20%,
+                rgba(56, 197, 255, .2),
+                transparent 35%
+            ),
+            linear-gradient(145deg, #101f3a, #0756cf);
+    }
+
+    .about-story-visual::before,
+    .about-story-visual::after {
+        content: "";
+        position: absolute;
+        border: 1px solid rgba(56, 197, 255, .2);
+        border-radius: 50%;
+    }
+
+    .about-story-visual::before {
+        width: 310px;
+        height: 310px;
+    }
+
+    .about-story-visual::after {
+        width: 220px;
+        height: 220px;
+        border-color: rgba(217, 182, 111, .28);
+    }
+
+    /* ENLARGED MIF LOGO */
+
+    .about-story-logo {
+        position: relative;
+        z-index: 2;
+
+        width: 200px;
+        height: 200px;
+
+        display: grid;
+        place-items: center;
+
+        padding: 8px;
+
+        border: 1px solid rgba(56, 197, 255, .4);
+        border-radius: 28px;
+
+        background:
+            linear-gradient(145deg, #12365e, #081a32);
+
+        box-shadow:
+            0 25px 65px rgba(0, 0, 0, .4),
+            0 0 40px rgba(20, 120, 255, .25),
+            inset 0 0 25px rgba(56, 197, 255, .08);
+    }
+
+    .about-story-logo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        object-fit: contain;
+        transform: scale(1.12);
+        filter: drop-shadow(
+            0 8px 15px rgba(0, 0, 0, .25)
+        );
+    }
+
+    .about-story-copy h2 {
+        margin: 0 0 20px;
+        color: var(--heading);
+        font-family: 'Manrope', sans-serif;
+        font-size: clamp(28px, 3.5vw, 39px);
+        line-height: 1.2;
+    }
+
+    .about-story-copy h2 span {
+        color: var(--cyan);
+    }
+
+    .about-story-copy p {
+        margin: 0 0 17px;
+        color: var(--text);
+        font-size: 14px;
+        line-height: 1.95;
+    }
+
+    .about-story-note {
+        margin-top: 23px;
+        padding: 18px 20px;
+        border-left: 3px solid var(--gold);
+        border-radius: 0 10px 10px 0;
+        background: rgba(217, 182, 111, .08);
+        color: #d9c89f;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.8;
+    }
+
+    /* MISSION / VISION / COMMITMENT */
+
+    .about-values-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+    }
+
+    .about-value-card {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        padding: 31px 27px;
+        border: 1px solid var(--border);
+        border-radius: 17px;
+        background: linear-gradient(145deg, #11233f, #0c192e);
+        transition: .3s ease;
+    }
+
+    .about-value-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(56, 197, 255, .45);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, .2);
+    }
+
+    .about-value-icon {
+        width: 57px;
+        height: 57px;
+        display: grid;
+        place-items: center;
+        margin-bottom: 23px;
+        border: 1px solid rgba(56, 197, 255, .2);
+        border-radius: 14px;
+        background: rgba(20, 120, 255, .13);
+        color: var(--cyan);
+        font-size: 25px;
+    }
+
+    .about-value-card:nth-child(2) .about-value-icon {
+        background: rgba(152, 117, 255, .13);
+        border-color: rgba(152, 117, 255, .25);
+        color: var(--purple);
+    }
+
+    .about-value-card:nth-child(3) .about-value-icon {
+        background: rgba(217, 182, 111, .12);
+        border-color: rgba(217, 182, 111, .25);
+        color: var(--gold);
+    }
+
+    .about-value-card h3 {
+        margin: 0 0 16px;
+        color: var(--heading);
+        font-family: 'Manrope', sans-serif;
+        font-size: 21px;
+    }
+
+    .about-value-card p {
+        margin: 0 0 14px;
+        color: var(--text);
+        font-size: 13px;
+        line-height: 1.9;
+    }
+
+    .about-value-highlight {
+        margin-top: auto;
+        padding-top: 17px;
+        color: var(--cyan);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 1.5px;
+    }
+
+    /* WHY CHOOSE MIF */
+
+    .about-reasons-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 19px;
+    }
+
+    .about-reason {
+        display: flex;
+        align-items: flex-start;
+        gap: 17px;
+        padding: 25px;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: #101f38;
+        transition: .25s ease;
+    }
+
+    .about-reason:hover {
+        border-color: rgba(56, 197, 255, .4);
+        transform: translateY(-3px);
+    }
+
+    .about-reason-icon {
+        width: 47px;
+        height: 47px;
+        flex-shrink: 0;
+        display: grid;
+        place-items: center;
+        border-radius: 12px;
+        background: rgba(20, 120, 255, .14);
+        color: var(--cyan);
+        font-size: 20px;
+    }
+
+    .about-reason h3 {
+        margin: 2px 0 9px;
+        color: var(--heading);
+        font-size: 16px;
+    }
+
+    .about-reason p {
+        margin: 0;
+        color: var(--text);
+        font-size: 13px;
+        line-height: 1.85;
+    }
+
+    /* HOW WE WORK */
+
+    .about-approach-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    .about-approach-card {
+        padding: 25px 21px;
+        border: 1px solid var(--border);
+        border-radius: 15px;
+        background: linear-gradient(145deg, #11233f, #0c192e);
+    }
+
+    .about-approach-number {
+        margin-bottom: 17px;
+        color: var(--gold);
+        font-family: 'Manrope', sans-serif;
+        font-size: 27px;
+        font-weight: 800;
+    }
+
+    .about-approach-icon {
+        width: 46px;
+        height: 46px;
+        display: grid;
+        place-items: center;
+        margin-bottom: 17px;
+        border-radius: 12px;
+        background: rgba(20, 120, 255, .14);
+        color: var(--cyan);
+        font-size: 21px;
+    }
+
+    .about-approach-card h3 {
+        margin: 0 0 10px;
+        color: var(--heading);
+        font-size: 16px;
+    }
+
+    .about-approach-card p {
+        margin: 0;
+        color: var(--text);
+        font-size: 12px;
+        line-height: 1.85;
+    }
+
+    /* CTA */
+
+    .about-cta {
+        padding: 80px 0;
+        background:
+            radial-gradient(
+                circle at 85% 10%,
+                rgba(20, 120, 255, .25),
+                transparent 33%
+            ),
+            linear-gradient(130deg, #0c1930, #102b50);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .about-cta-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 35px;
+    }
+
+    .about-cta-copy {
+        max-width: 700px;
+    }
+
+    .about-cta h2 {
+        margin: 0 0 15px;
+        color: var(--heading);
+        font-family: 'Manrope', sans-serif;
+        font-size: clamp(29px, 4vw, 41px);
+        line-height: 1.2;
+    }
+
+    .about-cta p {
+        margin: 0;
+        color: var(--text);
+        font-size: 14px;
+        line-height: 1.9;
+    }
+
+    .about-cta .about-button {
+        flex-shrink: 0;
+        background: var(--gold);
+        color: #171321;
+    }
+
+    .about-cta .about-button:hover {
+        background: #edcf8e;
+    }
+
+    /* FOOTER */
+
+    .about-footer {
+        padding: 30px 0;
+        background: #040914;
+    }
+
+    .about-footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .about-footer-copy {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.8;
+    }
+
+    .about-footer-links {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 21px;
+    }
+
+    .about-footer-links a {
+        color: var(--text);
+        font-size: 12px;
+        transition: .2s ease;
+    }
+
+    .about-footer-links a:hover {
+        color: var(--cyan);
+    }
+
+    /* WHATSAPP */
+
+    .about-whatsapp {
+        position: fixed;
+        z-index: 99;
+        right: 23px;
+        bottom: 23px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 13px 19px;
+        border-radius: 50px;
+        background: #16a765;
+        color: #061c16;
+        font-size: 13px;
+        font-weight: 800;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, .25);
+        transition: .25s ease;
+    }
+
+    .about-whatsapp:hover {
+        transform: translateY(-4px);
+        background: #32d58c;
+    }
+
+    /* TABLET */
+
+    @media(max-width: 950px) {
+
+        .about-hero-grid,
+        .about-story-grid {
+            gap: 35px;
         }
+
+        .about-values-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .about-approach-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+    }
+
+    /* MOBILE */
+
+    @media(max-width: 680px) {
+
+        .about-container {
+            width: calc(100% - 32px);
+        }
+
+        .about-header-inner {
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 16px;
+            padding: 15px 0;
+        }
+
+        .about-brand {
+            font-size: 16px;
+        }
+
+        .about-brand img {
+            width: 43px;
+            height: 43px;
+        }
+
+        .about-nav {
+            width: 100%;
+            justify-content: flex-start;
+            gap: 13px 20px;
+        }
+
+        .about-nav a {
+            font-size: 12px;
+        }
+
+        .about-nav .nav-contact {
+            padding: 9px 12px;
+        }
+
+        .about-hero {
+            padding: 65px 0;
+        }
+
+        .about-hero-grid,
+        .about-story-grid {
+            grid-template-columns: 1fr;
+            gap: 35px;
+        }
+
+        .about-hero h1 {
+            font-size: clamp(36px, 10vw, 48px);
+            letter-spacing: -1.2px;
+        }
+
+        .about-hero-copy {
+            font-size: 14px;
+        }
+
+        .about-hero-actions {
+            flex-direction: column;
+        }
+
+        .about-hero-actions .about-button {
+            width: 100%;
+        }
+
+        .about-visual-card {
+            padding: 26px 22px;
+        }
+
+        .about-visual-card h2 {
+            font-size: 25px;
+        }
+
+        .about-section {
+            padding: 65px 0;
+        }
+
+        .about-section-heading {
+            margin-bottom: 30px;
+        }
+
+        .about-section-heading h2 {
+            font-size: 30px;
+        }
+
+        .about-story-visual {
+            min-height: 280px;
+        }
+
+        .about-story-visual::before {
+            width: 245px;
+            height: 245px;
+        }
+
+        .about-story-visual::after {
+            width: 185px;
+            height: 185px;
+        }
+
+        /* MOBILE LOGO SIZE */
+
+        .about-story-logo {
+            width: 165px;
+            height: 165px;
+            padding: 7px;
+            border-radius: 23px;
+        }
+
+        .about-story-logo img {
+            transform: scale(1.1);
+        }
+
+        .about-story-copy h2 {
+            font-size: 31px;
+        }
+
+        .about-values-grid,
+        .about-reasons-grid,
+        .about-approach-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .about-value-card {
+            padding: 26px 22px;
+        }
+
+        .about-reason {
+            padding: 20px 17px;
+        }
+
+        .about-cta {
+            padding: 62px 0;
+        }
+
+        .about-cta-inner {
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .about-cta .about-button {
+            width: 100%;
+        }
+
+        .about-footer-inner {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .about-footer-links {
+            gap: 15px;
+        }
+
+        .about-whatsapp {
+            right: 13px;
+            bottom: 13px;
+            padding: 12px 15px;
+        }
+
+    }
+
+    @media(prefers-reduced-motion: reduce) {
 
         .about-page *,
         .about-page *::before,
         .about-page *::after {
-            box-sizing: border-box;
+            transition: none !important;
         }
 
-        .about-page a {
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .about-container {
-            width: min(1160px, calc(100% - 40px));
-            margin: 0 auto;
-        }
-
-        /* HEADER */
-
-        .about-page .site-header {
-            position: relative;
-            z-index: 20;
-            background: rgba(255, 255, 255, 0.98);
-            border-bottom: 1px solid var(--about-border);
-        }
-
-        .about-page .site-header .container {
-            width: min(1160px, calc(100% - 40px));
-            margin: 0 auto;
-        }
-
-        .about-page .header-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 24px;
-            min-height: 82px;
-        }
-
-        .about-page .logo {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            color: var(--about-navy);
-            text-decoration: none;
-            font-size: 19px;
-            font-weight: 800;
-            flex-shrink: 0;
-        }
-
-        .about-page .logo img {
-            width: 48px;
-            height: 48px;
-            object-fit: contain;
-            border-radius: 8px;
-        }
-
-        .about-page .logo span {
-            color: var(--about-blue);
-        }
-
-        .about-page .nav-links {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            flex-wrap: wrap;
-            gap: 26px;
-        }
-
-        .about-page .nav-links a {
-            color: #34445c;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 650;
-            transition: color 0.2s ease;
-        }
-
-        .about-page .nav-links a:hover,
-        .about-page .nav-links a.active {
-            color: var(--about-blue);
-        }
-
-        /* BUTTONS */
-
-        .about-page .about-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 9px;
-            min-height: 49px;
-            padding: 13px 22px;
-            border: 1px solid transparent;
-            border-radius: 10px;
-            background: var(--about-blue);
-            color: #ffffff;
-            font-size: 14px;
-            font-weight: 750;
-            text-decoration: none;
-            text-align: center;
-            transition: transform 0.2s ease,
-                        background 0.2s ease,
-                        box-shadow 0.2s ease;
-        }
-
-        .about-page .about-button:hover {
-            transform: translateY(-2px);
-            background: var(--about-dark-blue);
-            box-shadow: 0 8px 22px rgba(7, 86, 207, 0.2);
-        }
-
-        .about-page .about-button.secondary {
-            background: #ffffff;
-            color: var(--about-blue);
-            border-color: #cbdcf3;
-        }
-
-        .about-page .about-button.secondary:hover {
-            background: var(--about-light);
-        }
-
-        /* HERO */
-
-        .about-hero {
-            position: relative;
-            padding: 90px 0 86px;
-            background:
-                radial-gradient(
-                    circle at 85% 15%,
-                    rgba(0, 194, 232, 0.13),
-                    transparent 31%
-                ),
-                linear-gradient(135deg, #f5f9ff 0%, #ffffff 65%);
-        }
-
-        .about-hero-grid {
-            display: grid;
-            grid-template-columns: 1.08fr 0.92fr;
-            align-items: center;
-            gap: 65px;
-        }
-
-        .about-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            margin-bottom: 20px;
-            color: var(--about-blue);
-            font-size: 12px;
-            font-weight: 850;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .about-eyebrow::before {
-            content: "";
-            width: 25px;
-            height: 3px;
-            border-radius: 4px;
-            background: var(--about-cyan);
-        }
-
-        .about-hero h1 {
-            max-width: 650px;
-            margin: 0 0 22px;
-            color: var(--about-navy);
-            font-size: clamp(36px, 5vw, 59px);
-            font-weight: 850;
-            line-height: 1.1;
-            letter-spacing: -1.8px;
-        }
-
-        .about-hero h1 span {
-            color: var(--about-blue);
-        }
-
-        .about-hero-copy {
-            max-width: 590px;
-            margin: 0 0 29px;
-            color: var(--about-text);
-            font-size: 16px;
-            line-height: 1.9;
-        }
-
-        .about-hero-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 13px;
-        }
-
-        /* HERO VISUAL */
-
-        .about-visual {
-            position: relative;
-            min-width: 0;
-        }
-
-        .about-visual-card {
-            position: relative;
-            padding: 35px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 26px;
-            background: linear-gradient(
-                145deg,
-                #071b36 0%,
-                #0b3b79 58%,
-                #0756cf 100%
-            );
-            box-shadow: 0 28px 70px rgba(7, 59, 140, 0.2);
-        }
-
-        .about-visual-card::before {
-            content: "";
-            position: absolute;
-            top: -95px;
-            right: -90px;
-            width: 240px;
-            height: 240px;
-            border: 35px solid rgba(0, 194, 232, 0.17);
-            border-radius: 50%;
-        }
-
-        .about-visual-card::after {
-            content: "";
-            position: absolute;
-            right: -45px;
-            bottom: -110px;
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            background: rgba(0, 194, 232, 0.1);
-        }
-
-        .about-visual-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .about-shield {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 88px;
-            height: 88px;
-            margin-bottom: 26px;
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            border-radius: 23px;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--about-cyan);
-        }
-
-        .about-shield svg {
-            width: 48px;
-            height: 48px;
-        }
-
-        .about-visual-card h2 {
-            margin: 0 0 13px;
-            color: #ffffff;
-            font-size: 30px;
-            line-height: 1.25;
-        }
-
-        .about-visual-card > p {
-            margin: 0 0 28px;
-            color: #d9e9ff;
-            font-size: 14px;
-            line-height: 1.8;
-        }
-
-        .about-principle {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 15px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.16);
-        }
-
-        .about-principle-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 43px;
-            height: 43px;
-            flex-shrink: 0;
-            border-radius: 12px;
-            background: rgba(0, 194, 232, 0.15);
-            color: var(--about-cyan);
-            font-size: 20px;
-        }
-
-        .about-principle strong {
-            display: block;
-            margin-bottom: 4px;
-            color: #ffffff;
-            font-size: 14px;
-        }
-
-        .about-principle small {
-            color: #c6d9f3;
-            font-size: 12px;
-            line-height: 1.6;
-        }
-
-        /* GENERAL SECTION STYLES */
-
-        .about-section {
-            padding: 84px 0;
-        }
-
-        .about-section.light {
-            background: var(--about-light);
-        }
-
-        .about-section-heading {
-            max-width: 720px;
-            margin: 0 auto 42px;
-            text-align: center;
-        }
-
-        .about-section-heading .about-eyebrow {
-            justify-content: center;
-        }
-
-        .about-section-heading h2 {
-            margin: 0 0 16px;
-            color: var(--about-navy);
-            font-size: clamp(29px, 4vw, 41px);
-            font-weight: 850;
-            line-height: 1.2;
-            letter-spacing: -0.8px;
-        }
-
-        .about-section-heading h2 span {
-            color: var(--about-blue);
-        }
-
-        .about-section-heading > p {
-            margin: 0;
-            color: var(--about-text);
-            font-size: 15px;
-            line-height: 1.9;
-        }
-
-        /* OUR STORY */
-
-        .about-story-grid {
-            display: grid;
-            grid-template-columns: 0.9fr 1.1fr;
-            align-items: center;
-            gap: 65px;
-        }
-
-        .about-story-visual {
-            position: relative;
-            min-height: 355px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border-radius: 25px;
-            background:
-                radial-gradient(
-                    circle at 80% 20%,
-                    rgba(0, 194, 232, 0.3),
-                    transparent 32%
-                ),
-                linear-gradient(145deg, #071b36, #0756cf);
-        }
-
-        .about-story-visual::before,
-        .about-story-visual::after {
-            content: "";
-            position: absolute;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 50%;
-        }
-
-        .about-story-visual::before {
-            width: 310px;
-            height: 310px;
-        }
-
-        .about-story-visual::after {
-            width: 220px;
-            height: 220px;
-        }
-
-        .about-story-logo {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 150px;
-            height: 150px;
-            padding: 18px;
-            border-radius: 24px;
-            background: #ffffff;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
-        }
-
-        .about-story-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .about-story-copy h2 {
-            margin: 0 0 20px;
-            color: var(--about-navy);
-            font-size: clamp(28px, 3.5vw, 38px);
-            line-height: 1.2;
-            letter-spacing: -0.7px;
-        }
-
-        .about-story-copy h2 span {
-            color: var(--about-blue);
-        }
-
-        .about-story-copy p {
-            margin: 0 0 17px;
-            color: var(--about-text);
-            font-size: 15px;
-            line-height: 1.95;
-        }
-
-        .about-story-note {
-            margin-top: 24px;
-            padding: 18px 20px;
-            border-left: 4px solid var(--about-cyan);
-            border-radius: 0 12px 12px 0;
-            background: var(--about-light);
-            color: var(--about-dark-blue);
-            font-size: 14px;
-            font-weight: 650;
-            line-height: 1.8;
-        }
-
-        /* MISSION / VISION / COMMITMENT */
-
-        .about-values-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 23px;
-        }
-
-        .about-value-card {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            min-width: 0;
-            padding: 30px 26px;
-            overflow: hidden;
-            border: 1px solid var(--about-border);
-            border-radius: 19px;
-            background: #ffffff;
-            box-shadow: 0 8px 28px rgba(7, 27, 54, 0.035);
-            transition: transform 0.25s ease,
-                        box-shadow 0.25s ease,
-                        border-color 0.25s ease;
-        }
-
-        .about-value-card:hover {
-            transform: translateY(-6px);
-            border-color: #b8d5fb;
-            box-shadow: 0 18px 40px rgba(7, 59, 140, 0.1);
-        }
-
-        .about-value-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            margin-bottom: 24px;
-            border-radius: 16px;
-            background: #edf5ff;
-            color: var(--about-blue);
-            font-size: 28px;
-        }
-
-        .about-value-card:nth-child(2) .about-value-icon {
-            background: #e6fbff;
-            color: #008eaf;
-        }
-
-        .about-value-card:nth-child(3) .about-value-icon {
-            background: #eaf8f0;
-            color: #17864b;
-        }
-
-        .about-value-card h3 {
-            margin: 0 0 16px;
-            color: var(--about-navy);
-            font-size: 22px;
-            font-weight: 800;
-        }
-
-        .about-value-card p {
-            margin: 0 0 13px;
-            color: var(--about-text);
-            font-size: 14px;
-            line-height: 1.9;
-        }
-
-        .about-value-card p:last-child {
-            margin-bottom: 0;
-        }
-
-        .about-value-highlight {
-            display: inline-block;
-            margin-top: auto;
-            padding-top: 20px;
-            color: var(--about-blue);
-            font-size: 12px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-        }
-
-        /* WHY CHOOSE US */
-
-        .about-reasons-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 20px;
-        }
-
-        .about-reason {
-            display: flex;
-            align-items: flex-start;
-            gap: 17px;
-            padding: 25px;
-            border: 1px solid var(--about-border);
-            border-radius: 16px;
-            background: #ffffff;
-        }
-
-        .about-reason-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 48px;
-            height: 48px;
-            flex-shrink: 0;
-            border-radius: 13px;
-            background: #edf5ff;
-            color: var(--about-blue);
-            font-size: 21px;
-        }
-
-        .about-reason h3 {
-            margin: 2px 0 9px;
-            color: var(--about-navy);
-            font-size: 17px;
-            line-height: 1.4;
-        }
-
-        .about-reason p {
-            margin: 0;
-            color: var(--about-text);
-            font-size: 14px;
-            line-height: 1.8;
-        }
-
-        /* OUR APPROACH */
-
-        .about-approach-grid {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 19px;
-        }
-
-        .about-approach-card {
-            padding: 25px 21px;
-            border: 1px solid var(--about-border);
-            border-radius: 16px;
-            background: #ffffff;
-        }
-
-        .about-approach-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 49px;
-            height: 49px;
-            margin-bottom: 19px;
-            border-radius: 13px;
-            background: #edf5ff;
-            color: var(--about-blue);
-            font-size: 22px;
-        }
-
-        .about-approach-card h3 {
-            margin: 0 0 10px;
-            color: var(--about-navy);
-            font-size: 17px;
-        }
-
-        .about-approach-card p {
-            margin: 0;
-            color: var(--about-text);
-            font-size: 13px;
-            line-height: 1.85;
-        }
-
-        /* CALL TO ACTION */
-
-        .about-cta {
-            padding: 78px 0;
-            background:
-                radial-gradient(
-                    circle at 85% 10%,
-                    rgba(0, 194, 232, 0.23),
-                    transparent 30%
-                ),
-                linear-gradient(135deg, #071b36, #073b8c);
-        }
-
-        .about-cta-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 35px;
-        }
-
-        .about-cta-copy {
-            max-width: 700px;
-        }
-
-        .about-cta .about-eyebrow {
-            color: #65e5ff;
-        }
+    }
 
-        .about-cta h2 {
-            margin: 0 0 15px;
-            color: #ffffff;
-            font-size: clamp(29px, 4vw, 42px);
-            line-height: 1.2;
-            letter-spacing: -0.7px;
-        }
-
-        .about-cta p {
-            margin: 0;
-            color: #d4e5fb;
-            font-size: 15px;
-            line-height: 1.9;
-        }
-
-        .about-cta .about-button {
-            flex-shrink: 0;
-            background: var(--about-cyan);
-            color: #062747;
-        }
-
-        .about-cta .about-button:hover {
-            background: #6deaff;
-        }
-
-        /* FOOTER */
-
-        .about-page .site-footer {
-            padding: 29px 0;
-            background: #041329;
-            color: #d0deef;
-        }
-
-        .about-page .footer-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .about-page .footer-copy {
-            margin: 0;
-            color: #b9cbe1;
-            font-size: 13px;
-            line-height: 1.8;
-        }
-
-        .about-page .footer-links {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .about-page .footer-links a {
-            color: #d0deef;
-            text-decoration: none;
-            font-size: 13px;
-            transition: color 0.2s ease;
-        }
-
-        .about-page .footer-links a:hover {
-            color: var(--about-cyan);
-        }
-
-        /* TABLET */
-
-        @media (max-width: 950px) {
-            .about-page .header-inner {
-                gap: 18px;
-            }
-
-            .about-page .nav-links {
-                gap: 15px;
-            }
-
-            .about-page .logo {
-                font-size: 16px;
-            }
-
-            .about-hero-grid {
-                gap: 35px;
-            }
-
-            .about-story-grid {
-                gap: 35px;
-            }
-
-            .about-values-grid {
-                grid-template-columns: 1fr;
-            }
+</style>
 
-            .about-value-card {
-                padding: 27px;
-            }
+</head><body><div class="about-page"><!-- HEADER -->
 
-            .about-approach-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        /* MOBILE */
-
-        @media (max-width: 680px) {
-            .about-container {
-                width: min(100% - 32px, 520px);
-            }
-
-            .about-page .site-header .container {
-                width: calc(100% - 28px);
-            }
-
-            .about-page .header-inner {
-                align-items: flex-start;
-                flex-direction: column;
-                gap: 15px;
-                padding: 16px 0;
-            }
-
-            .about-page .logo img {
-                width: 42px;
-                height: 42px;
-            }
-
-            .about-page .nav-links {
-                justify-content: flex-start;
-                width: 100%;
-                gap: 12px 19px;
-            }
-
-            .about-page .nav-links a {
-                font-size: 13px;
-            }
-
-            .about-page .nav-links .nav-contact {
-                padding: 9px 12px;
-                border-radius: 7px;
-                background: var(--about-blue);
-                color: #ffffff;
-            }
-
-            .about-hero {
-                padding: 58px 0;
-            }
-
-            .about-hero-grid,
-            .about-story-grid {
-                grid-template-columns: 1fr;
-                gap: 36px;
-            }
-
-            .about-hero h1 {
-                font-size: clamp(35px, 10vw, 48px);
-                letter-spacing: -1.1px;
-            }
-
-            .about-hero-copy {
-                font-size: 15px;
-            }
-
-            .about-hero-actions {
-                flex-direction: column;
-                align-items: stretch;
-            }
+<header class="about-header">
 
-            .about-hero-actions .about-button {
-                width: 100%;
-            }
+    <div class="about-container">
 
-            .about-visual-card {
-                padding: 27px 23px;
-                border-radius: 20px;
-            }
+        <nav class="about-header-inner" aria-label="Main navigation">
 
-            .about-visual-card h2 {
-                font-size: 27px;
-            }
+            <a class="about-brand" href="{{ url_for('home') }}">
 
-            .about-section {
-                padding: 62px 0;
-            }
+                <img
+                    src="{{ url_for('static', filename='image/MIF_Logo.jpeg') }}"
+                    alt="MIF Digital Solutions logo"
+                >
 
-            .about-section-heading {
-                margin-bottom: 30px;
-            }
+                <div>
+                    MIF <span>Digital Solutions</span>
+                </div>
 
-            .about-section-heading h2 {
-                font-size: 30px;
-            }
-
-            .about-story-visual {
-                min-height: 280px;
-            }
-
-            .about-story-copy h2 {
-                font-size: 31px;
-            }
-
-            .about-values-grid,
-            .about-reasons-grid,
-            .about-approach-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .about-value-card {
-                padding: 25px 22px;
-            }
-
-            .about-reason {
-                padding: 21px 18px;
-            }
-
-            .about-approach-card {
-                padding: 23px;
-            }
-
-            .about-cta {
-                padding: 60px 0;
-            }
-
-            .about-cta-inner {
-                align-items: flex-start;
-                flex-direction: column;
-                gap: 26px;
-            }
-
-            .about-cta .about-button {
-                width: 100%;
-            }
-
-            .about-page .footer-inner {
-                align-items: flex-start;
-                flex-direction: column;
-            }
-
-            .about-page .footer-links {
-                gap: 14px;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .about-page *,
-            .about-page *::before,
-            .about-page *::after {
-                scroll-behavior: auto !important;
-                transition: none !important;
-            }
-        }
-    </style>
-</head>
+            </a>
 
-<body>
+            <div class="about-nav">
 
-<div class="about-page">
+                <a href="{{ url_for('home') }}">Home</a>
 
-    <!-- HEADER -->
-    <header class="site-header">
-        <div class="container">
-            <div class="header-inner">
+                <a href="{{ url_for('services') }}">Services</a>
 
-                <a class="logo" href="{{ url_for('home') }}">
-                    <img
-                        src="{{ url_for('static', filename='image/MIF_Logo.jpeg') }}"
-                        alt="MIF Digital Solutions logo"
-                    >
-                    <div>
-                        MIF <span>Digital Solutions</span>
-                    </div>
+                <a href="{{ url_for('about') }}"
+                   class="active"
+                   aria-current="page">
+                    About Us
                 </a>
 
-                <nav class="nav-links" aria-label="Main navigation">
-                    <a href="{{ url_for('home') }}">Home</a>
-                    <a href="{{ url_for('services') }}">Services</a>
-                    <a href="{{ url_for('about') }}" class="active"
-                       aria-current="page">About Us</a>
-                    <a href="{{ url_for('contact') }}"
-                       class="nav-contact">Contact Us</a>
-                </nav>
+                <a href="{{ url_for('contact') }}"
+                   class="nav-contact">
+                    Contact Us
+                </a>
 
             </div>
-        </div>
-    </header>
 
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main>
 
     <!-- HERO -->
+
     <section class="about-hero">
+
         <div class="about-container about-hero-grid">
 
-            <div class="about-hero-copy-wrap">
+            <div>
 
-                <div class="about-eyebrow">
+                <p class="about-eyebrow">
                     About MIF Digital Solutions
-                </div>
+                </p>
 
                 <h1>
                     Technology That Works
@@ -968,111 +1057,138 @@
                 </h1>
 
                 <p class="about-hero-copy">
-                    We help businesses and individuals navigate the digital
-                    world with practical technology solutions. From building
-                    modern websites to exploring AI, strengthening cybersecurity,
-                    and improving everyday business processes, our goal is to
-                    make technology useful, accessible, and valuable.
+                    We help businesses and individuals navigate the
+                    digital world with practical technology solutions.
+                    From modern websites to artificial intelligence,
+                    cybersecurity and business automation, our goal
+                    is to make technology useful, accessible and valuable.
                 </p>
 
                 <div class="about-hero-actions">
+
                     <a class="about-button"
                        href="{{ url_for('services') }}">
-                        Explore Our Services &rarr;
+                        Explore Our Services →
                     </a>
 
                     <a class="about-button secondary"
                        href="{{ url_for('contact') }}">
                         Let's Talk
                     </a>
+
                 </div>
 
             </div>
 
 
+            <!-- BRAND VISUAL -->
+
             <div class="about-visual">
+
                 <div class="about-visual-card">
+
                     <div class="about-visual-content">
 
                         <div class="about-shield">
+
                             <svg viewBox="0 0 64 64"
                                  fill="none"
-                                 xmlns="http://www.w3.org/2000/svg"
                                  aria-hidden="true">
+
                                 <path
                                     d="M32 5L53 13V28C53 42 44 52 32 59C20 52 11 42 11 28V13L32 5Z"
                                     stroke="currentColor"
                                     stroke-width="3.5"
-                                    stroke-linejoin="round"/>
+                                />
+
                                 <path
                                     d="M23 32L29 38L42 24"
                                     stroke="currentColor"
                                     stroke-width="4"
                                     stroke-linecap="round"
-                                    stroke-linejoin="round"/>
+                                    stroke-linejoin="round"
+                                />
+
                             </svg>
+
                         </div>
 
                         <h2>Build. Innovate. Protect.</h2>
 
                         <p>
                             Digital solutions designed to help businesses
-                            work smarter, operate more confidently, and
-                            prepare for tomorrow.
+                            work smarter, operate confidently and prepare
+                            for tomorrow.
                         </p>
 
                         <div class="about-principle">
-                            <div class="about-principle-icon"
-                                 aria-hidden="true">✦</div>
+
+                            <div class="about-principle-icon">✦</div>
+
                             <div>
                                 <strong>Smart Technology</strong>
-                                <small>Practical digital solutions for real needs.</small>
+                                <small>Practical solutions for real needs.</small>
                             </div>
+
                         </div>
 
                         <div class="about-principle">
-                            <div class="about-principle-icon"
-                                 aria-hidden="true">♧</div>
+
+                            <div class="about-principle-icon">◇</div>
+
                             <div>
                                 <strong>Safer Businesses</strong>
                                 <small>Security-conscious digital thinking.</small>
                             </div>
+
                         </div>
 
                         <div class="about-principle">
-                            <div class="about-principle-icon"
-                                 aria-hidden="true">↗️</div>
+
+                            <div class="about-principle-icon">↗️</div>
+
                             <div>
                                 <strong>Brighter Opportunities</strong>
                                 <small>Technology that supports growth.</small>
                             </div>
+
                         </div>
 
                     </div>
+
                 </div>
+
             </div>
 
         </div>
+
     </section>
 
 
     <!-- OUR STORY -->
+
     <section class="about-section">
+
         <div class="about-container about-story-grid">
 
             <div class="about-story-visual">
+
                 <div class="about-story-logo">
+
                     <img
                         src="{{ url_for('static', filename='image/MIF_Logo.jpeg') }}"
-                        alt="MIF Digital Solutions"
+                        alt="MIF Digital Solutions logo"
                         loading="lazy"
                     >
+
                 </div>
+
             </div>
+
 
             <div class="about-story-copy">
 
-                <div class="about-eyebrow">Who We Are</div>
+                <p class="about-eyebrow">Who We Are</p>
 
                 <h2>
                     Technology With
@@ -1081,42 +1197,49 @@
 
                 <p>
                     MIF Digital Solutions is a technology-focused business
-                    committed to helping people and organizations make better
-                    use of digital tools. We focus on solutions that address
-                    real challenges rather than technology for its own sake.
+                    committed to helping people and organizations make
+                    better use of digital tools. We focus on solutions
+                    that address real challenges rather than technology
+                    for its own sake.
                 </p>
 
                 <p>
                     Our work spans website development, AI-driven solutions,
-                    cybersecurity awareness, business automation, and digital
-                    support. We approach every project by first understanding
-                    the client's needs and then identifying practical ways
-                    technology can help.
+                    cybersecurity awareness, business automation and
+                    digital support. We approach every project by first
+                    understanding the client's needs and then identifying
+                    practical ways technology can help.
                 </p>
 
                 <p>
-                    We believe that businesses of different sizes should be
-                    able to explore digital opportunities, improve how they
-                    work, and build stronger connections with their customers.
+                    We believe businesses of different sizes should be able
+                    to explore digital opportunities, improve how they
+                    work and build stronger connections with customers.
                 </p>
 
                 <div class="about-story-note">
-                    Our focus is simple: understand the problem, build a
-                    practical solution, and help our clients move forward
-                    with greater confidence.
+
+                    Understand the problem. Build a practical solution.
+                    Help our clients move forward with confidence.
+
                 </div>
 
             </div>
+
         </div>
+
     </section>
 
 
     <!-- MISSION, VISION AND COMMITMENT -->
-    <section class="about-section light">
+
+    <section class="about-section alternate">
+
         <div class="about-container">
 
             <div class="about-section-heading">
-                <div class="about-eyebrow">What Guides Us</div>
+
+                <p class="about-eyebrow">What Guides Us</p>
 
                 <h2>
                     Our Mission, Vision
@@ -1124,34 +1247,33 @@
                 </h2>
 
                 <p>
-                    These three principles guide how we serve our clients,
-                    approach technology, and build relationships.
+                    Three principles guide how we serve our clients,
+                    approach technology and build relationships.
                 </p>
+
             </div>
 
 
             <div class="about-values-grid">
 
-                <!-- MISSION -->
                 <article class="about-value-card">
 
-                    <div class="about-value-icon" aria-hidden="true">
-                        🎯
-                    </div>
+                    <div class="about-value-icon">◎</div>
 
                     <h3>Our Mission</h3>
 
                     <p>
-                        Our mission is to empower businesses and individuals
-                        with practical, accessible, and reliable technology
-                        solutions that solve real problems.
+                        Our mission is to empower businesses and
+                        individuals with practical, accessible and
+                        reliable technology solutions that solve
+                        real problems.
                     </p>
 
                     <p>
-                        Through website development, artificial intelligence,
-                        cybersecurity, and automation, we aim to simplify
-                        digital processes, strengthen online experiences,
-                        and help our clients work more efficiently.
+                        Through website development, artificial
+                        intelligence, cybersecurity and automation,
+                        we aim to simplify digital processes and
+                        improve business efficiency.
                     </p>
 
                     <div class="about-value-highlight">
@@ -1161,26 +1283,22 @@
                 </article>
 
 
-                <!-- VISION -->
                 <article class="about-value-card">
 
-                    <div class="about-value-icon" aria-hidden="true">
-                        🌍
-                    </div>
+                    <div class="about-value-icon">◈</div>
 
                     <h3>Our Vision</h3>
 
                     <p>
-                        Our vision is to become a trusted technology partner
-                        recognised for innovation, dependable service, and
-                        meaningful digital impact.
+                        Our vision is to become a trusted technology
+                        partner recognised for innovation, dependable
+                        service and meaningful digital impact.
                     </p>
 
                     <p>
-                        We aspire to contribute to a future where businesses
-                        can embrace emerging technologies confidently,
-                        compete in a changing digital economy, and create
-                        opportunities for growth.
+                        We aspire to contribute to a future where
+                        businesses can embrace emerging technologies
+                        confidently and create opportunities for growth.
                     </p>
 
                     <div class="about-value-highlight">
@@ -1190,26 +1308,22 @@
                 </article>
 
 
-                <!-- COMMITMENT -->
                 <article class="about-value-card">
 
-                    <div class="about-value-icon" aria-hidden="true">
-                        🤝
-                    </div>
+                    <div class="about-value-icon">✧</div>
 
                     <h3>Our Commitment</h3>
 
                     <p>
                         We are committed to understanding our clients,
-                        communicating clearly, and approaching every project
-                        with professionalism, care, and responsibility.
+                        communicating clearly and approaching every
+                        project with professionalism and responsibility.
                     </p>
 
                     <p>
                         We value practical solutions, continuous learning,
-                        security-conscious development, and lasting
-                        relationships. We aim to be honest about what we
-                        deliver and attentive to the needs of every client.
+                        security-conscious development and lasting
+                        relationships.
                     </p>
 
                     <div class="about-value-highlight">
@@ -1219,16 +1333,21 @@
                 </article>
 
             </div>
+
         </div>
+
     </section>
 
 
-    <!-- WHY CHOOSE US -->
+    <!-- WHY CHOOSE MIF -->
+
     <section class="about-section">
+
         <div class="about-container">
 
             <div class="about-section-heading">
-                <div class="about-eyebrow">Why MIF Digital Solutions</div>
+
+                <p class="about-eyebrow">Why MIF Digital Solutions</p>
 
                 <h2>
                     A Practical Partner
@@ -1236,88 +1355,99 @@
                 </h2>
 
                 <p>
-                    Good technology should make things clearer, easier,
-                    and more effective. That belief shapes how we work.
+                    Good technology should make things clearer,
+                    easier and more effective. That belief shapes
+                    how we work.
                 </p>
+
             </div>
 
 
             <div class="about-reasons-grid">
 
                 <article class="about-reason">
-                    <div class="about-reason-icon" aria-hidden="true">
-                        ◈
-                    </div>
+
+                    <div class="about-reason-icon">◈</div>
 
                     <div>
                         <h3>Solutions Built Around Your Needs</h3>
+
                         <p>
-                            We start by understanding your goals and challenges
-                            so the proposed solution fits the problem you
-                            actually need to solve.
+                            We start by understanding your goals and
+                            challenges so the proposed solution fits
+                            the problem you actually need to solve.
                         </p>
                     </div>
+
                 </article>
 
 
                 <article class="about-reason">
-                    <div class="about-reason-icon" aria-hidden="true">
-                        🔐
-                    </div>
+
+                    <div class="about-reason-icon">◇</div>
 
                     <div>
                         <h3>Security-Conscious Thinking</h3>
+
                         <p>
-                            We recognise the importance of protecting digital
-                            information and consider security and responsible
-                            practices throughout our work.
+                            We recognise the importance of protecting
+                            digital information and consider security
+                            and responsible practices throughout our work.
                         </p>
                     </div>
+
                 </article>
 
 
                 <article class="about-reason">
-                    <div class="about-reason-icon" aria-hidden="true">
-                        ⚙️
-                    </div>
+
+                    <div class="about-reason-icon">⚙️</div>
 
                     <div>
                         <h3>Practical Innovation</h3>
+
                         <p>
-                            We explore useful applications of AI, automation,
-                            and digital tools to help reduce repetitive work
-                            and improve business processes.
+                            We explore useful applications of AI,
+                            automation and digital tools to help
+                            improve business processes.
                         </p>
                     </div>
+
                 </article>
 
 
                 <article class="about-reason">
-                    <div class="about-reason-icon" aria-hidden="true">
-                        ↗️
-                    </div>
+
+                    <div class="about-reason-icon">↗️</div>
 
                     <div>
-                        <h3>A Focus on Long-Term Value</h3>
+                        <h3>Long-Term Value</h3>
+
                         <p>
-                            We want our solutions to support lasting progress
-                            through thoughtful development, clear communication,
-                            and opportunities for future improvement.
+                            We want our solutions to support lasting
+                            progress through thoughtful development,
+                            communication and future improvement.
                         </p>
                     </div>
+
                 </article>
 
             </div>
+
         </div>
+
     </section>
 
 
     <!-- OUR APPROACH -->
-    <section class="about-section light">
+
+    <section class="about-section alternate">
+
         <div class="about-container">
 
             <div class="about-section-heading">
-                <div class="about-eyebrow">How We Work</div>
+
+                <p class="about-eyebrow">How We Work</p>
 
                 <h2>
                     A Clear Process.
@@ -1326,125 +1456,160 @@
 
                 <p>
                     Every project deserves a thoughtful approach.
-                    We focus on understanding the need before choosing
-                    the solution.
+                    We focus on understanding the need before
+                    choosing the solution.
                 </p>
+
             </div>
 
 
             <div class="about-approach-grid">
 
                 <article class="about-approach-card">
-                    <div class="about-approach-icon" aria-hidden="true">
-                        ◉
-                    </div>
+
+                    <div class="about-approach-number">01</div>
+
+                    <div class="about-approach-icon">◎</div>
 
                     <h3>Understand</h3>
 
                     <p>
-                        We listen, ask questions, and identify the challenge,
-                        goals, and expectations.
+                        We listen, ask questions and identify
+                        the challenge, goals and expectations.
                     </p>
+
                 </article>
 
 
                 <article class="about-approach-card">
-                    <div class="about-approach-icon" aria-hidden="true">
-                        ◇
-                    </div>
+
+                    <div class="about-approach-number">02</div>
+
+                    <div class="about-approach-icon">◇</div>
 
                     <h3>Plan</h3>
 
                     <p>
-                        We consider the requirements and outline a practical
-                        approach that fits the project.
+                        We consider the requirements and outline
+                        a practical approach that fits the project.
                     </p>
+
                 </article>
 
 
                 <article class="about-approach-card">
-                    <div class="about-approach-icon" aria-hidden="true">
-                        ⚙️
-                    </div>
+
+                    <div class="about-approach-number">03</div>
+
+                    <div class="about-approach-icon">⚙️</div>
 
                     <h3>Build</h3>
 
                     <p>
-                        We develop the agreed solution with attention to
-                        usability, functionality, and quality.
+                        We develop the agreed solution with attention
+                        to usability, functionality and quality.
                     </p>
+
                 </article>
 
 
                 <article class="about-approach-card">
-                    <div class="about-approach-icon" aria-hidden="true">
-                        ↗️
-                    </div>
+
+                    <div class="about-approach-number">04</div>
+
+                    <div class="about-approach-icon">↗️</div>
 
                     <h3>Improve</h3>
 
                     <p>
-                        We value feedback and look for opportunities to refine
-                        the solution as needs evolve.
+                        We value feedback and look for opportunities
+                        to refine solutions as needs evolve.
                     </p>
+
                 </article>
 
             </div>
+
         </div>
+
     </section>
 
 
-    <!-- CALL TO ACTION -->
+    <!-- CTA -->
+
     <section class="about-cta">
+
         <div class="about-container about-cta-inner">
 
             <div class="about-cta-copy">
 
-                <div class="about-eyebrow">
-                    Let's Work Together
-                </div>
+                <p class="about-eyebrow">Let's Work Together</p>
 
                 <h2>
                     Have an Idea or a Business Challenge?
                 </h2>
 
                 <p>
-                    Tell us what you're working on. Let's explore how
-                    practical digital solutions can help you take the
-                    next step.
+                    Tell us what you're working on. Let's explore
+                    how practical digital solutions can help you
+                    take the next step.
                 </p>
 
             </div>
 
             <a class="about-button"
                href="{{ url_for('contact') }}">
-                Contact MIF Digital Solutions &rarr;
+                Contact MIF Digital Solutions →
             </a>
 
         </div>
+
     </section>
 
+</main>
 
-    <!-- FOOTER -->
-    <footer class="site-footer">
-        <div class="about-container footer-inner">
 
-            <p class="footer-copy">
-                &copy; 2026 MIF Digital Solutions.
-                Technology with purpose. Built for progress.
-            </p>
+<!-- FOOTER -->
 
-            <nav class="footer-links" aria-label="Footer navigation">
-                <a href="{{ url_for('home') }}">Home</a>
-                <a href="{{ url_for('services') }}">Services</a>
-                <a href="{{ url_for('about') }}">About Us</a>
-                <a href="{{ url_for('contact') }}">Contact</a>
-            </nav>
+<footer class="about-footer">
 
-        </div>
-    </footer>
+    <div class="about-container about-footer-inner">
 
-</div>
+        <p class="about-footer-copy">
+            © 2026 MIF Digital Solutions.
+            Technology with purpose. Built for progress.
+        </p>
 
-</body>
+        <nav class="about-footer-links"
+             aria-label="Footer navigation">
+
+            <a href="{{ url_for('home') }}">Home</a>
+
+            <a href="{{ url_for('services') }}">Services</a>
+
+            <a href="{{ url_for('about') }}">About Us</a>
+
+            <a href="{{ url_for('contact') }}">Contact</a>
+
+        </nav>
+
+    </div>
+
+</footer>
+
+
+<!-- WHATSAPP -->
+
+<a
+    href="https://wa.me/2348128556446?text=Hello%20MIF%20Digital%20Solutions%2C%20I%27m%20interested%20in%20your%20services."
+    class="about-whatsapp"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Chat with MIF Digital Solutions on WhatsApp"
+>
+    <span aria-hidden="true">☏</span>
+    Chat with us
+</a>
+
+</div></body>
 </html>

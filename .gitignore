@@ -6,3 +6,5 @@ templates/index - Copy.html
 templates/services - Copy.html
 
 _pycache_/
+
+orders.db

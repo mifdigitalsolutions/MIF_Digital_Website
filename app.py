@@ -400,6 +400,29 @@ def verify_payment():
     except ValueError:
         app.logger.exception("Invalid response received from Paystack.")
         return "<h1>Invalid payment response</h1>", 502
+# ==================================================
+# XML SITEMAP FOR GOOGLE SEARCH
+# ==================================================
+
+@app.route("/sitemap.xml")
+def sitemap():
+    pages = [
+        "https://mifdigitalsolutions.com/",
+        "https://mifdigitalsolutions.com/services",
+        "https://mifdigitalsolutions.com/about",
+        "https://mifdigitalsolutions.com/contact"
+    ]
+
+    xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
+    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+
+    for page in pages:
+        xml += f"    <url><loc>{page}</loc></url>\n"
+
+    xml += "</urlset>"
+
+    return app.response_class(xml, mimetype="application/xml")
+
 # ==============================
 # RUN APPLICATION
 # ==============================

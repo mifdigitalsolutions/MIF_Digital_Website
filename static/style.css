@@ -2223,3 +2223,36 @@ footer {
         padding: 20px;
     }
 }
+
+/* MIF DIGITAL SOLUTIONS — SIX SERVICE CARDS */
+
+.svc-page #packages .svc-prices.svc-business-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 24px !important;
+    width: 100%;
+    align-items: stretch;
+}
+
+.svc-page #packages .svc-prices.svc-business-grid > .svc-price-card {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .svc-page #packages .svc-prices.svc-business-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 18px !important;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .svc-page #packages .svc-prices.svc-business-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+}

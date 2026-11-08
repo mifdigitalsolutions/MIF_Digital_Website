@@ -250,26 +250,22 @@ PAYMENT_PACKAGES = {
 }
 @app.route("/payment/start", methods=["POST"])
 def start_payment():
-
-    # Check Paystack configuration
-    if not PAYSTACK_SECRET_KEY or not PAYSTACK_SECRET_KEY.startswith("sk_test_"):
-        return "Paystack test key is missing or invalid.", 500
+    
+    # CHECK PAYSTACK LIVE CONFIGURATION
+    if not PAYSTACK_SECRET_KEY or not PAYSTACK_SECRET_KEY.startswith("sk_live_"):
+        app.logger.error("Paystack live secret key is missing or invalid.")
+        return "Paystack live payment configuration is invalid.", 500
 
     # Get customer email
     customer_email = request.form.get("email", "").strip()
-
     if not customer_email or "@" not in customer_email:
         return "Please provide a valid email address.", 400
-
     # Get selected package
     package_id = request.form.get("package_id", "").strip()
-
     # Find official server-side price
     package = PAYMENT_PACKAGES.get(package_id)
-
     if not package:
         return "Invalid service package selected.", 400
-
     # Convert naira to kobo
     amount_kobo = int(package["amount_naira"] * 100)
 

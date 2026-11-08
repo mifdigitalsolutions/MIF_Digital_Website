@@ -1,3 +1,5 @@
+import hmac
+import hashlib
 import os
 import sqlite3
 from datetime import datetime, timezone
@@ -400,6 +402,39 @@ def verify_payment():
     except ValueError:
         app.logger.exception("Invalid response received from Paystack.")
         return "<h1>Invalid payment response</h1>", 502
+
+@app.route("/paystack/webhook", methods=["POST"])
+def paystack_webhook():
+    secret_key = os.getenv("PAYSTACK_SECRET_KEY", "")
+    signature = request.headers.get("x-paystack-signature", "")
+    payload = request.get_data()
+
+    if not secret_key or not signature:
+        return "", 400
+
+    expected_signature = hmac.new(
+        secret_key.encode("utf-8"),
+        payload,
+        hashlib.sha512
+    ).hexdigest()
+
+    if not hmac.compare_digest(expected_signature, signature):
+        app.logger.warning("Invalid Paystack webhook signature.")
+        return "", 401
+
+    event = request.get_json(silent=True) or {}
+
+    if event.get("event") == "charge.success":
+        payment = event.get("data", {})
+
+        app.logger.info(
+            "Paystack payment successful: reference=%s, amount=%s, currency=%s",
+            payment.get("reference"),
+            payment.get("amount"),
+            payment.get("currency")
+        )
+
+    return "", 200
 # ==================================================
 # XML SITEMAP FOR GOOGLE SEARCH
 # ==================================================
